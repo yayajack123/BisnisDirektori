@@ -1,0 +1,134 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".LoginActivity">
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Get Started"
+        android:textSize="30dp"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="@style/body2"
+        android:textAlignment="center"
+        android:text="Enter your email and password to register and we will send an email to continue"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_marginTop="30dp"
+        android:text="Email "
+        android:textColor="#000"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="@style/body"
+        android:hint="Input your email address..."
+        android:inputType="text"
+        android:background="@drawable/input_border"
+        android:padding="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_marginTop="10dp"
+        android:text="Password "
+        android:inputType="text"
+        android:textColor="#000"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_marginTop="10dp"
+        android:hint="Input your password..."
+        android:inputType="textPassword"
+        android:background="@drawable/input_border"
+        android:padding="10dp"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/btn_login"
+        android:layout_width="match_parent"
+        style="@style/subheader"
+        android:layout_height="60dp"
+        android:layout_marginTop="20dp"
+        android:text="Login"
+        android:textColor="#ffffff"
+        android:background="@drawable/btn_login"
+        android:textAllCaps="false"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/montserat_regular"
+        android:text="OR"
+        android:textSize="15dp"
+        android:textColor="#000"/>
+    <Button
+        android:id="@+id/btn_register"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register App Account"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="20dp"
+        android:textSize="18dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_border"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        />
+    <Button
+        android:id="@+id/btn_loginadmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login as Admin"
+        android:drawableStart="@drawable/ic_admin"
+        android:drawablePadding="20dp"
+        android:textSize="18dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_border"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        />
+
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <TextView
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:fontFamily="@font/montserat_regular"
+            android:textSize="12dp"
+            android:textAlignment="center"
+            android:text="By continuing, you agree to our\nTerms of Service, Privacy Policy, Content Policy"/>
+    </RelativeLayout>
+
+
+</LinearLayout>

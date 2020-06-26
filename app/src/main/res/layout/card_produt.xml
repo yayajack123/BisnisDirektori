@@ -1,0 +1,101 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_product"
+    android:layout_width="match_parent"
+    android:layout_height="300dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+            <ImageView
+                android:id="@+id/pic_product"
+                android:layout_width="match_parent"
+                android:layout_height="170dp"
+                android:scaleType="centerCrop"
+                android:src="@drawable/studio_music"/>
+            <TextView
+                android:id="@+id/title_product"
+                style="@style/subheader"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_below="@+id/pic_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="Jack Music Studio"
+                android:textStyle="bold"/>
+
+            <RatingBar
+                android:id="@+id/rating_product"
+                style="?android:attr/ratingBarStyleSmall"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_product"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:numStars="5"
+                android:rating="3"
+                android:stepSize="0.5"
+                android:isIndicator="true"/>
+
+            <TextView
+                android:id="@+id/text_review"
+                android:fontFamily="@font/montserat_regular"
+                android:textColor="#000"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_product"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/rating_product"
+                android:text="3.0"
+                android:textStyle="bold" />
+            <TextView
+                android:id="@+id/total_review"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/title_product"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toRightOf="@id/text_review"
+                android:text="(405 review user)"/>
+
+            <TextView
+                android:id="@+id/cat_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rating_product"
+                android:fontFamily="@font/montserat_regular"
+                android:textColor="#000"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Music"
+                />
+            <TextView
+                android:id="@+id/loc_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:fontFamily="@font/montserat_regular"
+                android:textColor="#000"
+                android:text="1.3 km - Tuban, Bali"
+                android:layout_below="@id/cat_product"
+                />
+            <TextView
+                android:id="@+id/price_product"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/loc_product"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:text="Rp 100000 for two hours"
+                android:fontFamily="@font/montserat_regular"
+                android:textColor="#000"
+                />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>

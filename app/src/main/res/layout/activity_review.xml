@@ -1,0 +1,103 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:background="@color/white"
+    tools:context=".review.ReviewActivity">
+
+    <include android:id="@+id/layout_1" layout="@layout/card_headerreview"/>
+
+    <TextView
+        android:id="@+id/text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/layout_1"
+        style="@style/subheader"
+        android:drawableStart="@drawable/ic_review"
+        android:text="Review"
+        android:layout_marginTop="10dp"
+        android:drawablePadding="10dp"
+        android:padding="5dp"
+        />
+
+    <Button
+        android:layout_below="@id/layout_1"
+        android:layout_alignParentEnd="true"
+        android:id="@+id/btn_writereview"
+        android:layout_width="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_height="35dp"
+        android:background="@drawable/btn_follow"
+        android:textAllCaps="false"
+        android:padding="10dp"
+        android:textSize="12sp"
+        style="@style/btn_follow"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_outline_input_24"
+        android:text="Write a review"/>
+
+    <RatingBar
+        android:id="@+id/rating_product"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_1"
+        android:layout_marginTop="10dp"
+        android:numStars="5"
+        android:rating="3"
+        android:stepSize="0.5"
+        android:isIndicator="true"/>
+
+    <TextView
+        android:layout_toEndOf="@id/rating_product"
+        android:layout_below="@id/text_1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:padding="10dp"
+        style="@style/body"
+        android:text="3.0"/>
+
+    <TextView
+        android:id="@+id/total_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_below="@id/rating_product"
+        android:padding="5dp"
+        android:text="405 REVIEWS"/>
+
+    <Button
+        android:id="@+id/search_review"
+        android:layout_below="@id/total_review"
+        android:layout_marginTop="20dp"
+        android:layout_width="match_parent"
+        android:drawablePadding="20dp"
+        android:padding="10dp"
+        android:layout_height="wrap_content"
+        android:hint="Search in reviews"
+        android:textAlignment="textStart"
+        style="@style/body"
+        android:layout_marginBottom="10dp"
+        android:drawableStart="@drawable/ic_search"
+        android:background="@drawable/input_border"/>
+
+    <View
+        android:id="@+id/batas2"
+        style="@style/view"
+        android:layout_below="@id/search_review"/>
+
+    <LinearLayout
+        android:layout_below="@id/batas2"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+        <include layout="@layout/card_listreview"/>
+        <include layout="@layout/card_listreview"/>
+    </LinearLayout>
+
+</RelativeLayout>

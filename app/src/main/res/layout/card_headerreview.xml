@@ -1,0 +1,45 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical" android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:id="@+id/title_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/subheader"
+        android:layout_marginTop="10dp"
+        android:text="Wiras Music Studio"
+        />
+
+    <TextView
+        android:id="@+id/cat_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:text="Music"/>
+
+    <TextView
+        android:id="@+id/loc_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:text="Tuban, Bali"
+        android:layout_marginBottom="10dp"/>
+
+    <TextView
+        android:id="@+id/open_time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:text="Open now - 12 hours today ( 10.00 - 12.00 )"/>
+    <TextView
+        android:id="@+id/price_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:text="Cost for two hours - Rp100.000"
+        android:layout_marginBottom="20dp"/>
+    <View
+        style="@style/view"/>
+</LinearLayout>

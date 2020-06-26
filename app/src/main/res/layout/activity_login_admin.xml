@@ -1,0 +1,91 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    android:background="#ffffff"
+    tools:context=".admin.LoginAdminActivity">
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login Admin"
+        android:textSize="30dp"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        android:textStyle="bold"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_marginTop="30dp"
+        android:text="Email "
+        android:textColor="#000"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        style="@style/body"
+        android:hint="Input your email address..."
+        android:inputType="text"
+        android:background="@drawable/input_border"
+        android:padding="10dp"/>
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_marginTop="10dp"
+        android:text="Password "
+        android:inputType="text"
+        android:textColor="#000"/>
+    <EditText
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_marginTop="10dp"
+        android:hint="Input your password..."
+        android:inputType="textPassword"
+        android:background="@drawable/input_border"
+        android:padding="10dp"
+        android:autofillHints="" />
+
+    <Button
+        android:id="@+id/login_admin"
+        android:layout_width="match_parent"
+        style="@style/btn_login"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Login"
+        android:textSize="20dp"
+        android:layout_marginBottom="20dp"/>
+
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAlignment="center"
+        android:fontFamily="@font/montserat_regular"
+        android:text="OR"
+        android:textSize="15dp"
+        android:textColor="#000"/>
+    <Button
+        android:id="@+id/login_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Login as User"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="20dp"
+        android:padding="15dp"
+        android:textSize="18dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_border"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        />
+</LinearLayout>

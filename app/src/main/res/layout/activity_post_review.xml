@@ -1,0 +1,89 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_margin="10dp"
+    android:orientation="vertical"
+    tools:context=".review.PostReviewActivity">
+
+    <TextView
+        android:id="@+id/title"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/subheader"
+        android:textAlignment="center"
+        android:text="Add Review"/>
+
+    <TextView
+        android:id="@+id/title_product"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Wiras Music Studios"
+        android:textAlignment="center"/>
+
+    <TextView
+        android:id="@+id/title_2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        style="@style/subheader"
+        android:text="Rate your experience"/>
+    <RatingBar
+        android:id="@+id/rating_product"
+        style="?android:attr/ratingBarStyleIndicator"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/text_1"
+        android:layout_marginBottom="20dp"
+        android:layout_marginTop="5dp"
+        android:numStars="5"
+        android:rating="3"
+        android:stepSize="0.5"
+        android:isIndicator="true"/>
+    <View
+        style="@style/view"/>
+
+    <TextView
+        android:id="@+id/title_3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        style="@style/subheader"
+        android:text="Add photos"/>
+
+    <Button
+        android:id="@+id/add_photos"
+        android:layout_marginTop="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:padding="20dp"
+        android:drawablePadding="10dp"
+        android:drawableStart="@drawable/ic_baseline_add_a_photo_24"
+        android:text="Add"/>
+    <TextView
+        android:id="@+id/title_4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        style="@style/subheader"
+        android:text="Write a review"/>
+
+    <EditText
+        android:id="@+id/add_review"
+        android:layout_width="match_parent"
+        android:layout_marginTop="10dp"
+        style="@style/body"
+        android:layout_height="wrap_content"
+        android:hint="Write detailed review here"/>
+
+    <Button
+        android:id="@+id/submit_btn"
+        android:layout_marginTop="20dp"
+        android:text="Submit review"
+        style="@style/btn_submit"
+        android:textAllCaps="false"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"/>
+</LinearLayout>

@@ -1,0 +1,7 @@
+<resources>
+    <string name="app_name">Bisnis Directori</string>
+    <string name="title_home">Home</string>
+    <string name="title_dashboard">Explore</string>
+    <string name="title_notifications">Profile</string>
+    <string name="_10_photos">10 photos</string>
+</resources>
