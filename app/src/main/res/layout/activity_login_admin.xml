@@ -26,12 +26,13 @@
         android:text="Email "
         android:textColor="#000"/>
     <EditText
+        android:id="@+id/email_admin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         style="@style/body"
         android:hint="Input your email address..."
-        android:inputType="text"
+        android:inputType="textEmailAddress"
         android:background="@drawable/input_border"
         android:padding="10dp"/>
     <TextView
@@ -43,6 +44,7 @@
         android:inputType="text"
         android:textColor="#000"/>
     <EditText
+        android:id="@+id/password_admin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/body"
@@ -72,10 +74,44 @@
         android:textSize="15dp"
         android:textColor="#000"/>
     <Button
+        android:id="@+id/register_admin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register as Admin"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="20dp"
+        android:padding="15dp"
+        android:textSize="18dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_border"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        />
+    <Button
         android:id="@+id/login_user"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login as User"
+        android:drawableStart="@drawable/ic_user"
+        android:drawablePadding="20dp"
+        android:padding="15dp"
+        android:textSize="18dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_border"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        />
+    <Button
+        android:id="@+id/register_user"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register as User"
         android:drawableStart="@drawable/ic_user"
         android:drawablePadding="20dp"
         android:padding="15dp"

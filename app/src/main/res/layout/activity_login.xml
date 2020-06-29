@@ -99,11 +99,29 @@
         android:textAlignment="textStart"
         android:textAllCaps="false"
         />
+
     <Button
         android:id="@+id/btn_loginadmin"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:text="Login as Admin"
+        android:drawableStart="@drawable/ic_admin"
+        android:drawablePadding="20dp"
+        android:textSize="18dp"
+        android:paddingLeft="20dp"
+        android:background="@drawable/input_border"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        android:layout_marginTop="10dp"
+        android:textAlignment="textStart"
+        android:textAllCaps="false"
+        />
+
+    <Button
+        android:id="@+id/btn_registeradmin"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Register as Admin"
         android:drawableStart="@drawable/ic_admin"
         android:drawablePadding="20dp"
         android:textSize="18dp"
