@@ -54,62 +54,11 @@
         android:layout_below="@id/photo_user"
         style="@style/view"
         />
-    <LinearLayout
-        android:id="@+id/layout_btn"
-        android:layout_below="@id/batas"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="15dp"
-        android:layout_marginBottom="10dp">
-        <TextView
-            android:id="@+id/bookmarks"
-            android:layout_weight="1"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Bookmarks"
-            android:textAlignment="center"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
-            android:drawableTop="@drawable/ic_baseline_bookmark_border_24"/>
-        <TextView
-            android:id="@+id/notification"
-            android:textAlignment="center"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            android:text="Notification"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
-            android:drawableTop="@drawable/ic_baseline_notifications_none_24"/>
-        <TextView
-            android:id="@+id/settings"
-            android:textAlignment="center"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
-            android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Setting"
-        android:drawableTop="@drawable/ic_baseline_settings_24"/>
-        <TextView
-            android:id="@+id/payments"
-            android:textAlignment="center"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
-            android:layout_weight="1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="Payments"
-        android:drawableTop="@drawable/ic_baseline_payment_24"/>
-    </LinearLayout>
-    <View
-        android:id="@+id/batas1"
-        android:layout_below="@id/layout_btn"
-        style="@style/view"
-        />
+
+
     <LinearLayout
         android:id="@+id/layout_btn1"
-        android:layout_below="@id/batas1"
+        android:layout_below="@id/batas"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
@@ -118,7 +67,9 @@
             android:id="@+id/top_user"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Top User"
+            android:drawableStart="@drawable/ic_outline_account_circle_24"
+            android:drawablePadding="15dp"
+            android:text="Edit Profile"
             android:fontFamily="@font/montserat_regular"
             android:textColor="#000"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
@@ -128,12 +79,29 @@
         <View
             style="@style/view"
             />
-
+        <Button
+            android:id="@+id/change_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="15dp"
+            android:text="Change Password"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:drawableStart="@drawable/ic_outline_security_24"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"/>
+        <View
+            style="@style/view"
+            />
         <Button
             android:id="@+id/language"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Language"
+            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/ic_outline_language_24"
             android:fontFamily="@font/montserat_regular"
             android:textColor="#000"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
@@ -150,6 +118,8 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="About"
+            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/ic_outline_apps_24"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:textAlignment="viewStart"
@@ -161,10 +131,11 @@
             android:id="@+id/log_out"
             android:fontFamily="@font/montserat_regular"
             android:textColor="#000"
+            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/ic_outline_exit_to_app_24"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:textStyle="normal"
-            android:textSize="12sp"
             android:text="Log out"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
             style="@style/Widget.AppCompat.Button.Borderless"

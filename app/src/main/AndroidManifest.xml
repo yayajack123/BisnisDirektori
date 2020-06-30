@@ -20,12 +20,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.RegisterAdminActivity">
-
-        </activity>
-        <activity android:name=".admin.AdminProfileActivity">
-
-        </activity>
+        <activity android:name=".EditProfileUserActivity"></activity>
+        <activity android:name=".admin.RegisterAdminActivity"></activity>
+        <activity android:name=".admin.AdminProfileActivity"></activity>
         <activity android:name=".admin.HomeAdminActivity" />
         <activity
             android:name=".admin.LoginAdminActivity"
@@ -38,8 +35,7 @@
         </activity>
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
-        </activity>
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"></activity>
         <activity android:name=".review.PostReviewActivity" />
         <activity android:name=".review.ReviewActivity" />
         <activity android:name=".DetailCategory" />
