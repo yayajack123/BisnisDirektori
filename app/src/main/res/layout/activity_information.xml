@@ -1,0 +1,220 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".admin.InformationActivity">
+
+    <Button
+        android:id="@+id/btn_update"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:textAllCaps="false"
+        android:text="Save Change"
+        android:fontFamily="@font/montserrat_semibold"
+        android:background="@color/colorAccent"
+        android:layout_alignParentBottom="true"/>
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@id/layout_2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorAccent">
+                <ImageView
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/studio_2"/>
+
+                <Button
+                    android:id="@+id/change_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="Change Photo"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:drawablePadding="10dp"
+                    android:textAllCaps="false"
+                    style="@style/btn_alpa"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/form"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:layout_below="@id/layout_2"
+                android:layout_width="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Businnes name "
+
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/busines_name"
+                    android:text="Jack Music Studio"
+                    android:layout_width="match_parent"
+                    android:hint="Business name"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone number"
+                    style="@style/body2"/>
+
+                <EditText
+                    android:id="@+id/phone_number"
+                    style="@style/body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_add_ic_call_24"
+                    android:drawablePadding="10dp"
+                    android:hint="Phone number..."
+                    android:inputType="number"
+                    android:text="08999426965"
+                    tools:ignore="TextFields" />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/email_user"
+                    android:text="jack@gmail.com"
+                    android:layout_width="match_parent"
+                    android:hint="Email..."
+                    android:inputType="textEmailAddress"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_email_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Website"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/web_user"
+                    android:text="www.jackstudio.com"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
+                    android:hint="Web..."
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_web_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open time "
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/open_time"
+                    android:text="10.00 AM - 12.00 PM"
+                    android:layout_width="match_parent"
+                    android:hint="Open time.."
+                    android:inputType="time"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_access_time_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price range"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/range_price"
+                    android:text="Rp100.000 for two hours"
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:hint="Price Range"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_monetization_on_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Full Address"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/full_adrress"
+                    android:text="Jl.Raya Tuban No.12 Tuban, Bali"
+                    android:layout_width="match_parent"
+                    android:hint="Full adress.."
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/cat_product"
+                    android:text="Music"
+                    android:layout_width="match_parent"
+                    android:hint="Category.."
+                    style="@style/body"
+                    android:inputType="text"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_category_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other info"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/other"
+                    android:text="Not support online payment"
+                    android:layout_width="match_parent"
+                    android:hint="Other info...."
+                    style="@style/body"
+                    android:inputType="text"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_info_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+            </LinearLayout>
+
+        </RelativeLayout>
+    </ScrollView>
+</RelativeLayout>

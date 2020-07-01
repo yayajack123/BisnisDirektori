@@ -1,0 +1,131 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".admin.OutletDetailsActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/place_name"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Jack Music Studio"
+            android:layout_margin="10dp"/>
+        <TextView
+            android:id="@+id/loc_product"
+            android:layout_width="wrap_content"
+            style="@style/margin"
+            android:layout_below="@id/place_name"
+            android:layout_height="wrap_content"
+            android:text="Tuban, Bali"/>
+        <RatingBar
+            android:id="@+id/rating_product"
+            style="?android:attr/ratingBarStyleSmall"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loc_product"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="20dp"
+            android:numStars="5"
+            android:rating="3"
+            android:stepSize="0.5"
+            android:isIndicator="true"/>
+
+        <TextView
+            android:id="@+id/text_review"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/loc_product"
+            android:layout_marginLeft="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="20dp"
+            android:layout_toRightOf="@id/rating_product"
+            android:text="3.0"
+            android:textStyle="bold" />
+    </RelativeLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        android:orientation="vertical"
+        android:layout_marginTop="20dp">
+
+        <Button
+            android:id="@+id/edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_outline_account_circle_24"
+            android:drawablePadding="15dp"
+            android:text="Edit Profile"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"/>
+        <View
+            style="@style/view"
+            />
+        <Button
+            android:id="@+id/information"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawablePadding="15dp"
+            android:text="Information"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            android:drawableStart="@drawable/ic_outline_info_24"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"/>
+        <View
+            style="@style/view"
+            />
+        <Button
+            android:id="@+id/language"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Price Menu"
+            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/ic_outline_monetization_on_24"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"/>
+        <View
+            style="@style/view"
+            />
+        <Button
+            android:id="@+id/about"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Manages Photos"
+            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/ic_outline_photo_library_24"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"/>
+        <View
+            style="@style/view"
+            />
+
+
+    </LinearLayout>
+
+</LinearLayout>

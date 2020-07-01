@@ -46,7 +46,7 @@
                     android:layout_below="@id/bus"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="Profile"
+                    android:text="Outlet Details"
                     android:textSize="20sp"
                     />
 
@@ -56,7 +56,7 @@
                     android:layout_height="75dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    app:srcCompat="@drawable/ic_admin" />
+                    app:srcCompat="@drawable/ic_shop" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -77,9 +77,8 @@
                     android:layout_below="@id/imageView3"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="Menus"
-                    android:textSize="20sp"
-                     />
+                    android:text="Activity"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:id="@+id/imageView3"
@@ -87,7 +86,7 @@
                     android:layout_height="75dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_product" />
+                    android:src="@drawable/ic_speak" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
     </LinearLayout>
@@ -117,9 +116,8 @@
                     android:layout_below="@id/review"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="Review"
-                    android:textSize="20dp"
-                    />
+                    android:text="Promos"
+                    android:textSize="20dp" />
 
                 <ImageView
                     android:id="@+id/review"
@@ -127,7 +125,7 @@
                     android:layout_height="75dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    app:srcCompat="@drawable/ic_creview" />
+                    app:srcCompat="@drawable/ic_promo" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -148,9 +146,8 @@
                     android:layout_below="@id/etl"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="10dp"
-                    android:text="Photos"
-                    android:textSize="20sp"
-                    />
+                    android:text="Call History"
+                    android:textSize="20sp" />
 
                 <ImageView
                     android:id="@+id/etl"
@@ -158,7 +155,7 @@
                     android:layout_height="75dp"
                     android:layout_centerHorizontal="true"
                     android:layout_marginTop="15dp"
-                    android:src="@drawable/ic_picture" />
+                    android:src="@drawable/ic_phone" />
             </RelativeLayout>
         </androidx.cardview.widget.CardView>
 
@@ -167,13 +164,10 @@
 
     <Button
         android:id="@+id/logout_admin"
-        android:layout_marginLeft="10dp"
-        android:layout_marginRight="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_below="@+id/linearLayout2"
-        android:layout_marginTop="50dp"
         android:textColor="#ffffff"
+        android:layout_alignParentBottom="true"
         android:background="@drawable/btn_login"
         android:text="Logout" />
 

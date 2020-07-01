@@ -39,7 +39,7 @@ public class HomeAdminActivity extends AppCompatActivity {
             @Override
             public void onClick(View v)
             {
-                Intent intent = new Intent(getBaseContext(), AdminProfileActivity.class);
+                Intent intent = new Intent(getBaseContext(), OutletDetailsActivity.class);
                 startActivity(intent);
             }
         });
