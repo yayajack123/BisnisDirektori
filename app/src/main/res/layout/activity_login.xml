@@ -34,15 +34,17 @@
         android:layout_marginTop="30dp"
         android:text="Email "
         android:textColor="#000"/>
+
     <EditText
+        android:id="@+id/txt_email"
+        style="@style/body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
-        style="@style/body"
+        android:background="@drawable/input_border"
         android:hint="Input your email address..."
         android:inputType="text"
-        android:background="@drawable/input_border"
-        android:padding="10dp"/>
+        android:padding="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -51,16 +53,18 @@
         android:text="Password "
         android:inputType="text"
         android:textColor="#000"/>
+
     <EditText
+        android:id="@+id/txt_password"
+        style="@style/body"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        style="@style/body"
         android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:background="@drawable/input_border"
         android:hint="Input your password..."
         android:inputType="textPassword"
-        android:background="@drawable/input_border"
-        android:padding="10dp"
-        android:autofillHints="" />
+        android:padding="10dp" />
 
     <Button
         android:id="@+id/btn_login"

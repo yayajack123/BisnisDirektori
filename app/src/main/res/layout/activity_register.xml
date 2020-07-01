@@ -27,21 +27,41 @@
         android:textAlignment="center"
         android:text="Enter your email and password to register and we will send an email to continue"/>
 
+
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/body"
         android:layout_marginTop="30dp"
-        android:text="Email "
+        android:text="Name "
         android:textColor="#000"/>
+
     <EditText
+        android:id="@+id/txt_fullname"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:background="@drawable/input_border"
+        android:hint="Input your name..."
+        android:inputType="text"
+        android:padding="10dp" />
+    <TextView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_marginTop="10dp"
+        android:text="Email "
+        android:textColor="#000"/>
+
+    <EditText
+        android:id="@+id/txt_email"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/input_border"
         android:hint="Input your email address..."
         android:inputType="text"
-        android:background="@drawable/input_border"
-        android:padding="10dp"/>
+        android:padding="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -50,15 +70,17 @@
         android:text="Password "
         android:inputType="text"
         android:textColor="#000"/>
+
     <EditText
+        android:id="@+id/txt_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:background="@drawable/input_border"
         android:hint="Input your password..."
         android:inputType="textPassword"
-        android:background="@drawable/input_border"
-        android:padding="10dp"
-        android:autofillHints="" />
+        android:padding="10dp" />
     <TextView
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
@@ -67,25 +89,29 @@
         android:text="Confirm password "
         android:inputType="text"
         android:textColor="#000"/>
+
     <EditText
+        android:id="@+id/txt_confirm_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
+        android:autofillHints=""
+        android:background="@drawable/input_border"
         android:hint="Confirm your password..."
         android:inputType="textPassword"
-        android:background="@drawable/input_border"
-        android:padding="10dp"
-        android:autofillHints="" />
+        android:padding="10dp" />
+
     <Button
+        android:id="@+id/btn_register"
         android:layout_width="match_parent"
         android:layout_height="60dp"
         android:layout_marginTop="10dp"
-        android:text="Register"
-        android:textColor="#ffffff"
+        android:layout_marginBottom="20dp"
         android:background="@drawable/btn_login"
+        android:text="Register"
         android:textAllCaps="false"
-        android:textSize="20dp"
-        android:layout_marginBottom="20dp"/>
+        android:textColor="#ffffff"
+        android:textSize="20dp" />
 
     <TextView
         android:layout_width="match_parent"
