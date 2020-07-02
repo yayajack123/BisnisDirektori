@@ -69,6 +69,8 @@ public class LoginAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_admin);
 
+
+        //Button
         Button register_admin = (Button) findViewById(R.id.register_admin);
         register_admin.setOnClickListener(new View.OnClickListener()
         {
@@ -103,6 +105,7 @@ public class LoginAdminActivity extends AppCompatActivity {
         });
 
 
+        //Configuration Connection
         conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
         {
             if (conMgr.getActiveNetworkInfo()!= null
@@ -137,6 +140,7 @@ public class LoginAdminActivity extends AppCompatActivity {
             intent.putExtra(TAG_FULLNAME, fullname);
             intent.putExtra(TAG_PHONENUMBER, phonenumber);
             intent.putExtra(TAG_ADDRESS, address);
+            intent.putExtra(TAG_PASSWORD, password);
             finish();
             startActivity(intent);
         }
@@ -191,6 +195,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                         String fullname = jObj.getString(TAG_FULLNAME);
                         String phonenumber = jObj.getString(TAG_PHONENUMBER);
                         String address = jObj.getString(TAG_ADDRESS);
+                        String password = jObj.getString(TAG_PASSWORD);
 
                         Log.e("Successfully Login!", jObj.toString());
 
@@ -204,6 +209,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                         editor.putString(TAG_FULLNAME, fullname);
                         editor.putString(TAG_PHONENUMBER, phonenumber);
                         editor.putString(TAG_ADDRESS, address);
+                        editor.putString(TAG_PASSWORD, password);
 
                         editor.commit();
 
@@ -214,6 +220,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                         intent.putExtra(TAG_FULLNAME, fullname);
                         intent.putExtra(TAG_PHONENUMBER, phonenumber);
                         intent.putExtra(TAG_ADDRESS, address);
+                        intent.putExtra(TAG_PASSWORD, password);
                         finish();
                         startActivity(intent);
                     } else {

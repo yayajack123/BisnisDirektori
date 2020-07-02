@@ -27,6 +27,7 @@ public class HomeAdminActivity extends AppCompatActivity {
     public static final String TAG_FULLNAME = "fullname";
     public static final String TAG_PHONENUMBER = "phonenumber";
     public static final String TAG_ADDRESS = "address";
+    public static final String TAG_PASSWORD = "password";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -60,6 +61,7 @@ public class HomeAdminActivity extends AppCompatActivity {
                 editor.putString(TAG_FULLNAME, null);
                 editor.putString(TAG_PHONENUMBER, null);
                 editor.putString(TAG_ADDRESS, null);
+                editor.putString(TAG_PASSWORD, null);
                 editor.commit();
                 finish ();
                 startActivity(intent);
