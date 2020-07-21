@@ -128,7 +128,7 @@ public class DetailInformationActivity extends AppCompatActivity {
             // if internet connection and data available show data
             // otherwise, show alert text
             if ((nama_bisnis != null) && IOConnect == 0) {
-                coordinatorLayout.setVisibility(View.VISIBLE);
+//                coordinatorLayout.setVisibility(View.VISIBLE);
                 Picasso.with(getApplicationContext()).load(ADMIN_PANEL_URL + "/" + foto).placeholder(R.drawable.logogeografis).into(imgPreview, new Callback () {
                     @Override
                     public void onSuccess() {

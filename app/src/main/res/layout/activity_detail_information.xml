@@ -1,513 +1,286 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:card_view="http://schemas.android.com/tools"
-    xmlns:fab="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
-    android:layout_height="match_parent">
+    android:layout_height="match_parent"
+    tools:context=".admin.InformationActivity">
 
-    <androidx.coordinatorlayout.widget.CoordinatorLayout
-        android:id="@+id/main_content"
+
+    <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_alignParentStart="true"
-        android:layout_alignParentTop="true"
-        android:background="#e7e7e7"
-        android:layout_alignParentLeft="true">
-        <androidx.core.widget.NestedScrollView
-            android:id="@+id/sclDetail"
+        android:layout_height="wrap_content">
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:fillViewport="true"
-            fab:layout_behavior="@string/appbar_scrolling_view_behavior">
-            <androidx.cardview.widget.CardView
-                android:id="@+id/cv"
+            android:layout_height="wrap_content">
+            <RelativeLayout
+                android:id="@id/layout_2"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
-                card_view:cardBackgroundColor="@android:color/white"
-                card_view:cardElevation="8sp"
-                card_view:cardUseCompatPadding="true">
-
-
-
-                <LinearLayout
-                    android:id="@+id/desc1"
+                android:layout_height="200dp"
+                android:background="@color/colorAccent">
+                <ImageView
+                    android:id="@+id/imgPreview"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
-                    android:background="#fff"
-                    android:orientation="vertical">
-                    <ImageView
-                        android:id="@+id/imgPreview"
-                        android:layout_width="match_parent"
-                        android:layout_height="50dp"
-                        android:fitsSystemWindows="true"
-                        android:scaleType="centerCrop"
-                        android:screenOrientation="landscape"
-                        android:src="@drawable/udayanaprofil"
-                        fab:layout_collapseMode="parallax" />
+                    android:scaleType="centerCrop"
+                    android:src="@drawable/studio_2"/>
+
+                <Button
+                    android:id="@+id/change_photo"
+                    android:layout_width="wrap_content"
+                    android:layout_height="30dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentEnd="true"
+                    android:text="Change Photo"
+                    android:layout_margin="10dp"
+                    android:padding="10dp"
+                    android:drawablePadding="10dp"
+                    android:textAllCaps="false"
+                    style="@style/btn_alpa"/>
+
+            </RelativeLayout>
+
+            <LinearLayout
+                android:id="@+id/form"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:layout_below="@id/layout_2"
+                android:layout_width="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/editTextId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Businnes name "
+
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/businessname_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Business name"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone number"
+                    style="@style/body2"/>
+
+                <EditText
+                    android:id="@+id/phonenumber_admin"
+                    style="@style/body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_add_ic_call_24"
+                    android:drawablePadding="10dp"
+                    android:hint="Phone number..."
+                    android:inputType="number"
+                    tools:ignore="TextFields" />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/email_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Email..."
+                    android:inputType="textEmailAddress"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_email_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Website"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/web_admin"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
+                    android:hint="Website"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_web_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Open time "
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/opentime_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Open time, ex: 10.00 AM - 12.00 PM"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_access_time_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Price range"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/price_admin"
+                    android:layout_width="match_parent"
+                    android:inputType="text"
+                    android:hint="Price Range, ex : Rp100.000 for two hours"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_monetization_on_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Category"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/kategori_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Category.."
+                    style="@style/body"
+                    android:inputType="text"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_category_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Full Address"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/alamat_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Full address"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Latitude"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/latitude_admin"
+                    android:layout_width="0dp"
+                    android:hint="Latitude"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="0dp"
+                    android:layout_height="0dp"/>
+
+                <TextView
+                    android:layout_marginTop="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Longitude"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/longitude_admin"
+                    android:layout_width="0dp"
+                    android:hint="Longitude"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="0dp"
+                    android:layout_height="0dp"/>
+
+                <fragment
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/google_map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment">
+                </fragment>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Other info"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/otherinfo_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Other info, ex : Not support online payment"
+                    style="@style/body"
+                    android:inputType="text"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_info_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Name :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/businessname_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:textColor="@color/colorPrimaryDark"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:inputType="text"/>
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginTop="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="No. Telp : "
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/phonenumber_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:inputType="number"/>
-                    </LinearLayout>
 
 
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Email :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/email_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:inputType="text"/>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Website  :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/web_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:inputType="date"/>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginRight="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Open Time:"
-                            android:textColor="#000"
-                            android:textSize="14sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/opentime_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold"
-                            android:inputType="text"/>
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Price :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/price_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:gravity="top|left"
-                            android:inputType="text"
-                            android:maxLines="5"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Kategori :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/kategori_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:gravity="top|left"
-                            android:inputType="text"
-                            android:maxLines="5"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                    </LinearLayout>
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Alamat :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/alamat_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:gravity="top|left"
-                            android:inputType="text"
-                            android:maxLines="5"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Latitude :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/latitude_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:gravity="top|left"
-                            android:inputType="text"
-                            android:maxLines="5"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Longitude :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/longitude_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:gravity="top|left"
-                            android:inputType="text"
-                            android:maxLines="5"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginTop="10dp"
-                        android:layout_marginLeft="10dp"
-                        android:layout_marginRight="10dp"
-                        android:background="@drawable/back_form">
-
-                        <TextView
-                            android:layout_width="100dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="18dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Other Info :"
-                            android:textColor="#000"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-
-                        <EditText
-                            android:id="@+id/otherinfo_admin"
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="5dp"
-                            android:layout_marginTop="10dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:fontFamily="@font/montserrat_light"
-                            android:gravity="top|left"
-                            android:inputType="text"
-                            android:maxLines="5"
-                            android:textColor="#5e5e5e"
-                            android:textSize="15sp"
-                            android:textStyle="bold" />
-                    </LinearLayout>
-
-
-                    <EditText
-                        android:id="@+id/editTextId"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:visibility="gone" />
-
-
-                    <LinearLayout
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:orientation="horizontal">
-
-                        <Button
-                            android:id="@+id/btn_update"
-                            android:layout_width="180dp"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="10dp"
-                            android:background="@drawable/btn_view"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Update"
-                            android:textColor="#fff"
-                            android:textSize="20sp" />
-
-                        <Button
-                            android:id="@+id/btn_delete"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginLeft="10dp"
-                            android:layout_marginTop="20dp"
-                            android:layout_marginRight="10dp"
-                            android:layout_marginBottom="20dp"
-                            android:background="@drawable/button_rounded"
-                            android:fontFamily="@font/montserrat_semibold"
-                            android:text="Delete"
-                            android:textColor="#fff"
-                            android:textSize="20sp" />
-
-                    </LinearLayout>
-
-
-                </LinearLayout>
-            </androidx.cardview.widget.CardView>
-        </androidx.core.widget.NestedScrollView>
-    </androidx.coordinatorlayout.widget.CoordinatorLayout>
-
-
+            </LinearLayout>
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                >
+                <Button
+                    android:id="@+id/btn_update"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:textAllCaps="false"
+                    android:text="Save Change"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:background="@color/colorAccent"
+                    />
+                <Button
+                    android:id="@+id/btn_delete"
+                    android:layout_weight="1"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:textAllCaps="false"
+                    android:textColor="@color/white"
+                    android:text="Delete"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:background="@color/colorPrimary"
+                    />
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
 </RelativeLayout>
