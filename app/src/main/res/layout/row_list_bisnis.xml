@@ -1,6 +1,90 @@
 <?xml version="1.0" encoding="utf-8"?>
-<androidx.constraintlayout.widget.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    android:id="@+id/card_product"
+    android:layout_width="match_parent"
+    android:layout_height="280dp"
+    android:layout_marginTop="10dp"
+    android:layout_marginBottom="10dp"
+    app:cardCornerRadius="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
-</androidx.constraintlayout.widget.ConstraintLayout>
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <ImageView
+            android:id="@+id/imgThumb"
+            android:layout_width="match_parent"
+            android:layout_height="170dp"
+            android:scaleType="centerCrop"
+            android:src="@drawable/studio_music"/>
+        <TextView
+            android:id="@+id/txtNama"
+            style="@style/subheader"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:layout_below="@+id/imgThumb"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="Nama Bisnis"
+            android:textStyle="bold"/>
+
+
+
+<!--        <TextView-->
+<!--            android:id="@+id/text_review"-->
+<!--            android:fontFamily="@font/montserat_regular"-->
+<!--            android:textColor="#000"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/txtNama"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_toRightOf="@id/rating_product"-->
+<!--            android:text="3.0"-->
+<!--            android:textStyle="bold" />-->
+<!--        <TextView-->
+<!--            android:id="@+id/total_review"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:layout_below="@id/txtNama"-->
+<!--            android:layout_marginLeft="10dp"-->
+<!--            android:layout_marginTop="5dp"-->
+<!--            android:layout_toRightOf="@id/text_review"-->
+<!--            android:text="(405 review user)"/>-->
+
+        <TextView
+            android:id="@+id/txtAlamat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/txtNama"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Alamat"
+            />
+        <TextView
+            android:id="@+id/txtNotelp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:text="1.3 km - Tuban, Bali"
+            android:layout_below="@id/txtAlamat"
+            />
+        <TextView
+            android:id="@+id/txtOtherinfo"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@+id/txtNotelp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
+            android:text="Rp 100000 for two hours"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>

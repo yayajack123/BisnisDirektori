@@ -1,4 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-
+    <string-array name="Kategori">
+        <item>@string/jasa</item>
+        <item>@string/barang</item>
+    </string-array>
 </resources>

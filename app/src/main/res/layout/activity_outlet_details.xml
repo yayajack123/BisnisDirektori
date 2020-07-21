@@ -81,7 +81,7 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:drawablePadding="15dp"
-            android:text="Information"
+            android:text="Create Bisnis"
             android:fontFamily="@font/montserat_regular"
             android:textColor="#000"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
@@ -93,10 +93,10 @@
             style="@style/view"
             />
         <Button
-            android:id="@+id/language"
+            android:id="@+id/listdatabisnis"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="Price Menu"
+            android:text="List Bisnis"
             android:drawablePadding="15dp"
             android:drawableStart="@drawable/ic_outline_monetization_on_24"
             android:fontFamily="@font/montserat_regular"

@@ -37,5 +37,19 @@ public class OutletDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button listbisnis = (Button) findViewById(R.id.listdatabisnis);
+        listbisnis.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getBaseContext(), ListInformationActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
     }
 }

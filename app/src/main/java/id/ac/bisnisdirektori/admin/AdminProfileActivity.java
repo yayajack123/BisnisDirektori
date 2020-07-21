@@ -38,8 +38,6 @@ public class AdminProfileActivity extends AppCompatActivity {
         txt_phonenumber = (TextView) findViewById(R.id.phonenumber_admin);
         txt_password = (TextView) findViewById(R.id.password_admin);
 
-
-
         sharedpreferences = getSharedPreferences(LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
 
         id = getIntent().getStringExtra(TAG_ID);
@@ -48,24 +46,16 @@ public class AdminProfileActivity extends AppCompatActivity {
         phonenumber = getIntent().getStringExtra(TAG_PHONENUMBER);
         password = getIntent().getStringExtra(TAG_PASSWORD);
 
-
         id = sharedpreferences.getString(TAG_ID, null);
         email = sharedpreferences.getString(TAG_EMAIL, null);
         fullname = sharedpreferences.getString(TAG_FULLNAME, null);
         phonenumber = sharedpreferences.getString(TAG_PHONENUMBER, null);
         password = sharedpreferences.getString(TAG_PASSWORD, null);
 
-
         txt_id.setText("" + id);
         txt_email.setText("" + email);
         txt_fullname.setText("" + fullname);
         txt_phonenumber.setText("" + phonenumber);
         txt_password.setText("" + password);
-
-
-
-
-
-
     }
 }

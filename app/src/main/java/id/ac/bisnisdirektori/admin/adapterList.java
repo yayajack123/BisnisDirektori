@@ -1,4 +1,66 @@
 package id.ac.bisnisdirektori.admin;
 
-public class adapterList {
+import android.app.Activity;
+import android.content.Context;
+import android.view.LayoutInflater;
+import android.view.View;
+import android.view.ViewGroup;
+import android.widget.BaseAdapter;
+import android.widget.ImageView;
+import android.widget.TextView;
+import com.squareup.picasso.Picasso;
+
+import id.ac.bisnisdirektori.R;
+
+public class adapterList extends BaseAdapter {
+    public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
+    private Activity activity;
+    public adapterList(Activity act) {
+        this.activity = act;
+    }
+
+
+
+
+    public int getCount() {
+        return ListInformationActivity.id_data.size();
+    }
+    public Object getItem(int position) {
+        return position;
+    }
+    public long getItemId(int position) {
+        return position;
+    }
+    static class ViewHolder {
+        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo ;
+        ImageView imgThumb;
+    }
+    public View getView(int position, View convertView, ViewGroup parent) {
+        ViewHolder holder;
+        if(convertView == null){
+            LayoutInflater inflater = (LayoutInflater) activity
+                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inflater.inflate(R.layout.row_list_admin, null);
+            holder = new ViewHolder();
+            convertView.setTag(holder);
+        }else{
+            holder = (ViewHolder) convertView.getTag();
+        }
+
+        holder.txtNama = (TextView) convertView.findViewById(R.id.txtNama);
+        holder.txtNotelp = (TextView) convertView.findViewById(R.id.txtNotelp);
+        holder.txtAlamat = (TextView) convertView.findViewById(R.id.txtAlamat);
+        holder.txtOtherinfo = (TextView) convertView.findViewById(R.id.txtOtherinfo);
+        holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
+
+
+        holder.txtNama.setText(ListInformationActivity.nama_bisnis.get(position));
+        holder.txtNotelp.setText(ListInformationActivity.no_telp.get(position));
+        holder.txtAlamat.setText(ListInformationActivity.alamat.get(position));
+        holder.txtOtherinfo.setText(ListInformationActivity.otherinfo.get(position));
+        Picasso.with(activity).load(ADMIN_PANEL_URL+"/"+ListInformationActivity.foto.get(position)).placeholder(R.drawable.ic_admin).into(holder.imgThumb);
+        return convertView;
+
+
+    }
 }

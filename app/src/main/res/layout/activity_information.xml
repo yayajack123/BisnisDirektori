@@ -7,7 +7,7 @@
     tools:context=".admin.InformationActivity">
 
     <Button
-        android:id="@+id/btn_update"
+        android:id="@+id/btn_submit"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:textAllCaps="false"
@@ -27,6 +27,7 @@
                 android:layout_height="200dp"
                 android:background="@color/colorAccent">
                 <ImageView
+                    android:id="@+id/imgView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
@@ -64,8 +65,7 @@
 
                     style="@style/body2"/>
                 <EditText
-                    android:id="@+id/busines_name"
-                    android:text="Jack Music Studio"
+                    android:id="@+id/businessname_admin"
                     android:layout_width="match_parent"
                     android:hint="Business name"
                     android:inputType="text"
@@ -82,7 +82,7 @@
                     style="@style/body2"/>
 
                 <EditText
-                    android:id="@+id/phone_number"
+                    android:id="@+id/phonenumber_admin"
                     style="@style/body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
@@ -91,7 +91,6 @@
                     android:drawablePadding="10dp"
                     android:hint="Phone number..."
                     android:inputType="number"
-                    android:text="08999426965"
                     tools:ignore="TextFields" />
 
                 <TextView
@@ -101,8 +100,7 @@
                     android:text="Email"
                     style="@style/body2"/>
                 <EditText
-                    android:id="@+id/email_user"
-                    android:text="jack@gmail.com"
+                    android:id="@+id/email_admin"
                     android:layout_width="match_parent"
                     android:hint="Email..."
                     android:inputType="textEmailAddress"
@@ -118,11 +116,10 @@
                     android:text="Website"
                     style="@style/body2"/>
                 <EditText
-                    android:id="@+id/web_user"
-                    android:text="www.jackstudio.com"
+                    android:id="@+id/web_admin"
                     android:inputType="text"
                     android:layout_width="match_parent"
-                    android:hint="Web..."
+                    android:hint="Website"
                     style="@style/body"
                     android:layout_marginTop="5dp"
                     android:drawableStart="@drawable/ic_outline_web_24"
@@ -135,11 +132,10 @@
                     android:text="Open time "
                     style="@style/body2"/>
                 <EditText
-                    android:id="@+id/open_time"
-                    android:text="10.00 AM - 12.00 PM"
+                    android:id="@+id/opentime_admin"
                     android:layout_width="match_parent"
-                    android:hint="Open time.."
-                    android:inputType="time"
+                    android:hint="Open time, ex: 10.00 AM - 12.00 PM"
+                    android:inputType="text"
                     style="@style/body"
                     android:layout_marginTop="5dp"
                     android:drawableStart="@drawable/ic_outline_access_time_24"
@@ -152,11 +148,10 @@
                     android:text="Price range"
                     style="@style/body2"/>
                 <EditText
-                    android:id="@+id/range_price"
-                    android:text="Rp100.000 for two hours"
+                    android:id="@+id/price_admin"
                     android:layout_width="match_parent"
                     android:inputType="text"
-                    android:hint="Price Range"
+                    android:hint="Price Range, ex : Rp100.000 for two hours"
                     style="@style/body"
                     android:layout_marginTop="5dp"
                     android:drawableStart="@drawable/ic_outline_monetization_on_24"
@@ -166,28 +161,10 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Full Address"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/full_adrress"
-                    android:text="Jl.Raya Tuban No.12 Tuban, Bali"
-                    android:layout_width="match_parent"
-                    android:hint="Full adress.."
-                    android:inputType="text"
-                    style="@style/body"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_place_24"
-                    android:drawablePadding="10dp"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
                     android:text="Category"
                     style="@style/body2"/>
                 <EditText
-                    android:id="@+id/cat_product"
-                    android:text="Music"
+                    android:id="@+id/kategori_admin"
                     android:layout_width="match_parent"
                     android:hint="Category.."
                     style="@style/body"
@@ -200,19 +177,84 @@
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:text="Full Address"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/alamat_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Full address"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+
+                <TextView
+                    android:layout_marginTop="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Latitude"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/latitude_admin"
+                    android:layout_width="0dp"
+                    android:hint="Latitude"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="0dp"
+                    android:layout_height="0dp"/>
+
+                <TextView
+                    android:layout_marginTop="0dp"
+                    android:layout_width="0dp"
+                    android:layout_height="0dp"
+                    android:text="Longitude"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/longitude_admin"
+                    android:layout_width="0dp"
+                    android:hint="Longitude"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="0dp"
+                    android:layout_height="0dp"/>
+
+                <fragment
+                    android:layout_width="match_parent"
+                    android:layout_height="200dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginRight="10dp"
+                    android:layout_marginBottom="10dp"
+                    android:id="@+id/google_map"
+                    android:name="com.google.android.gms.maps.SupportMapFragment">
+                </fragment>
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
                     android:text="Other info"
                     style="@style/body2"/>
                 <EditText
-                    android:id="@+id/other"
-                    android:text="Not support online payment"
+                    android:id="@+id/otherinfo_admin"
                     android:layout_width="match_parent"
-                    android:hint="Other info...."
+                    android:hint="Other info, ex : Not support online payment"
                     style="@style/body"
                     android:inputType="text"
                     android:layout_marginTop="5dp"
                     android:drawableStart="@drawable/ic_outline_info_24"
                     android:drawablePadding="10dp"
                     android:layout_height="wrap_content"/>
+
+
+
+
             </LinearLayout>
 
         </RelativeLayout>
