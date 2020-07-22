@@ -61,7 +61,7 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
     //Initialize Variable
     GoogleMap gMaps;
 
-    ImageView imgView;
+//    ImageView imgView;
     private int GALLERY = 1, CAMERA = 2;
     Bitmap bitmap, decoded;
     ImageView imgPreview;
@@ -135,7 +135,7 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
         id_data = iGet.getStringExtra("ID");
 
         changePhoto = findViewById (R.id.change_photo);
-        imgView = findViewById(R.id.imgPreview);
+        imgPreview = findViewById(R.id.imgPreview);
         changePhoto.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -232,7 +232,7 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
         ByteArrayOutputStream bytes = new ByteArrayOutputStream();
         bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
         decoded = BitmapFactory.decodeStream(new ByteArrayInputStream (bytes.toByteArray()));
-        imgView.setImageBitmap(decoded);
+        imgPreview.setImageBitmap(decoded);
     }
 
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
@@ -279,7 +279,7 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
                 e.printStackTrace();
             }
             decoded = BitmapFactory.decodeStream(new ByteArrayInputStream(bytes.toByteArray()));
-            imgView.setImageBitmap(decoded);
+            imgPreview.setImageBitmap(decoded);
             //Bitmap bitmap = (Bitmap)data.getExtras().get("data");
             //setToImageView(getResizedBitmap(bitmap,1080));
             // imgView.setImageURI(image_uri);
@@ -453,7 +453,7 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
                 hashMap.put(KEY_LATITUDE, latitude);
                 hashMap.put(KEY_LONGITUDE, longitude);
                 hashMap.put(KEY_OTHERINFO, otherinfo);
-//                hashMap.put(KEY_FOTO, foto);
+                hashMap.put(KEY_FOTO, getStringImage(decoded));
                 RequestHandler rh = new RequestHandler();
                 String s = rh.sendPostRequest(URL_UPDATE, hashMap);
                 return s;
