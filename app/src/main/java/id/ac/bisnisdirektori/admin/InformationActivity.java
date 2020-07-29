@@ -5,8 +5,10 @@ import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
@@ -61,6 +63,11 @@ import id.ac.bisnisdirektori.R;
 
 public class InformationActivity extends AppCompatActivity{
 
+    //Shared Preferences from Login Admin
+    public final static String TAG_ID = "id";
+    private String id;
+    SharedPreferences sharedpreferences;
+
     //Initialize Variable
     GoogleMap gMaps;
 
@@ -95,8 +102,6 @@ public class InformationActivity extends AppCompatActivity{
     String tag_json_obj = "json_obj_req";
     String nama_bisnis, no_telp,email, website, opentime, price, kategori, alamat, latitude, longitude, foto, otherinfo, id_admin;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -115,8 +120,14 @@ public class InformationActivity extends AppCompatActivity{
                     new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
         }
 
+        //sharedpreferences
+        sharedpreferences = getSharedPreferences(LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
 
+        //get data
+        id = getIntent().getStringExtra(TAG_ID);
 
+        //set data if data null
+        id = sharedpreferences.getString(TAG_ID, null);
 
         edtNama = findViewById(R.id.businessname_admin);
         edtNotelp = findViewById(R.id.phonenumber_admin);
@@ -129,7 +140,9 @@ public class InformationActivity extends AppCompatActivity{
         edtLatitude = findViewById(R.id.latitude_admin);
         edtLongitude = findViewById(R.id.longitude_admin);
         edtOtherinfo = findViewById(R.id.otherinfo_admin);
+        edtAdmin = findViewById(R.id.id_admin);
 
+        edtAdmin.setText(id);
 
         changePhoto = findViewById (R.id.change_photo);
         imgView = findViewById(R.id.imgView);
@@ -162,7 +175,7 @@ public class InformationActivity extends AppCompatActivity{
                 latitude = edtLatitude.getText().toString();
                 longitude = edtLongitude.getText().toString();
                 otherinfo = edtOtherinfo.getText ().toString ();
-//                id_admin = edtAdmin.getText().toString();
+                id_admin = edtAdmin.getText().toString();
 
                 uploadCRUD();
 
@@ -193,6 +206,39 @@ public class InformationActivity extends AppCompatActivity{
                             MarkerOptions options = new MarkerOptions ().position (latLng).title ("Lokasi Anda");
                             googleMap.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
                             googleMap.addMarker (options);
+
+                            gMaps = googleMap;
+
+                            gMaps.setOnMapClickListener (new GoogleMap.OnMapClickListener () {
+                                @Override
+
+                                public void onMapClick(LatLng latLng) {
+
+                                    //Creating Marker
+                                    MarkerOptions markerOptions = new MarkerOptions ();
+                                    //Set Marker Position
+                                    markerOptions.position (latLng);
+                                    //Set Latitude and Longitude On Marker
+                                    markerOptions.title ("Lat : "+latLng.latitude+ " , " + "Lng : " + latLng.longitude);
+                                    //Clear the previously Click Position
+                                    gMaps.clear ();
+                                    //Zoom the Marker
+                                    gMaps.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
+                                    //Add Marker On Map
+                                    gMaps.addMarker (markerOptions);
+
+                                    //Set Latitude dan Longitude to Edit Text
+                                    edtLatitude.setText("" + latLng.latitude);
+                                    edtLongitude.setText("" + latLng.longitude);
+
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    supportMapFragment.getMapAsync (new OnMapReadyCallback () {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
 
                             gMaps = googleMap;
 
@@ -386,7 +432,7 @@ public class InformationActivity extends AppCompatActivity{
                 params.put(KEY_LATITUDE, edtLatitude.getText().toString().trim());
                 params.put(KEY_LONGITUDE, edtLongitude.getText().toString().trim());
                 params.put(KEY_OTHERINFO, edtOtherinfo.getText().toString().trim());
-//                params.put(KEY_ADMIN, edtAdmin.getText().toString().trim());
+                params.put(KEY_ADMIN, edtAdmin.getText().toString().trim());
                 params.put(KEY_FOTO, getStringImage(decoded));
                 //kembali ke parameters
                 Log.e(TAG, "" + params);

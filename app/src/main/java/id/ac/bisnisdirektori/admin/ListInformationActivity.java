@@ -87,8 +87,12 @@ public class ListInformationActivity extends AppCompatActivity {
 //    DataeventAdapter mAdapter;
     ConnectivityManager conMgr;
     SharedPreferences sharedpreferences;
+
+    String id_member, username;
+
 //    AppDatabase mDb;
 
+    public static final String TAG_ID = "id";
     public static ArrayList<String> id_data = new ArrayList<String>();
     public static ArrayList<String> nama_bisnis = new ArrayList<String>();
     public static ArrayList<String> no_telp = new ArrayList<String>();
@@ -111,6 +115,11 @@ public class ListInformationActivity extends AppCompatActivity {
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
         sharedpreferences = getSharedPreferences(LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+
+
+
+
+
         ConnectivityManager cm;
 //        mDb = AppDatabase.getDatabase(getApplicationContext());
         swipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
@@ -148,6 +157,7 @@ public class ListInformationActivity extends AppCompatActivity {
 
 
         ListEvent.setOnScrollListener(new AbsListView.OnScrollListener() {
+
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
             }

@@ -132,9 +132,6 @@ public class DetailInformationActivity extends AppCompatActivity {
         }
 
 
-
-
-
         coordinatorLayout = (CoordinatorLayout) findViewById (R.id.main_content);
         imgPreview = findViewById (R.id.imgPreview);
         txtNama = findViewById (R.id.businessname_admin);
@@ -203,6 +200,39 @@ public class DetailInformationActivity extends AppCompatActivity {
                             MarkerOptions options = new MarkerOptions ().position (latLng).title ("Lokasi Anda");
                             googleMap.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
                             googleMap.addMarker (options);
+
+                            gMaps = googleMap;
+
+                            gMaps.setOnMapClickListener (new GoogleMap.OnMapClickListener () {
+                                @Override
+
+                                public void onMapClick(LatLng latLng) {
+
+                                    //Creating Marker
+                                    MarkerOptions markerOptions = new MarkerOptions ();
+                                    //Set Marker Position
+                                    markerOptions.position (latLng);
+                                    //Set Latitude and Longitude On Marker
+                                    markerOptions.title ("Lat : "+latLng.latitude+ " , " + "Lng : " + latLng.longitude);
+                                    //Clear the previously Click Position
+                                    gMaps.clear ();
+                                    //Zoom the Marker
+                                    gMaps.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
+                                    //Add Marker On Map
+                                    gMaps.addMarker (markerOptions);
+
+                                    //Set Latitude dan Longitude to Edit Text
+                                    txtLatitude.setText("" + latLng.latitude);
+                                    txtLongitude.setText("" + latLng.longitude);
+
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    supportMapFragment.getMapAsync (new OnMapReadyCallback () {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
 
                             gMaps = googleMap;
 

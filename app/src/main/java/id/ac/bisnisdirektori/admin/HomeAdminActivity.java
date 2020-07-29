@@ -34,7 +34,12 @@ public class HomeAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_home_admin);
 
+
+        //sharedpreferences
         sharedpreferences = getSharedPreferences(LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+
+
+
 
         CardView profile = (CardView) findViewById(R.id.card_profile);
         profile.setOnClickListener(new View.OnClickListener()

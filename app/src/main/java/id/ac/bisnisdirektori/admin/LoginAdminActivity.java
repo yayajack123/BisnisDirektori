@@ -127,20 +127,20 @@ public class LoginAdminActivity extends AppCompatActivity {
         session = sharedpreferences.getBoolean(session_status, false);
 
         id = sharedpreferences.getString(TAG_ID, null);
-//        email = sharedpreferences.getString(TAG_EMAIL, null);
-//        fullname = sharedpreferences.getString(TAG_FULLNAME, null);
-//        phonenumber = sharedpreferences.getString(TAG_PHONENUMBER, null);
-//        address = sharedpreferences.getString(TAG_ADDRESS, null);
-//        password = sharedpreferences.getString (TAG_PASSWORD, null);
+        email = sharedpreferences.getString(TAG_EMAIL, null);
+        fullname = sharedpreferences.getString(TAG_FULLNAME, null);
+        phonenumber = sharedpreferences.getString(TAG_PHONENUMBER, null);
+        address = sharedpreferences.getString(TAG_ADDRESS, null);
+        password = sharedpreferences.getString (TAG_PASSWORD, null);
 
         if (session) {
             Intent intent = new Intent(LoginAdminActivity.this, HomeAdminActivity.class);
             intent.putExtra(TAG_ID, id);
-//            intent.putExtra(TAG_EMAIL, email);
-//            intent.putExtra(TAG_FULLNAME, fullname);
-//            intent.putExtra(TAG_PHONENUMBER, phonenumber);
-//            intent.putExtra(TAG_ADDRESS, address);
-//            intent.putExtra(TAG_PASSWORD, password);
+            intent.putExtra(TAG_EMAIL, email);
+            intent.putExtra(TAG_FULLNAME, fullname);
+            intent.putExtra(TAG_PHONENUMBER, phonenumber);
+            intent.putExtra(TAG_ADDRESS, address);
+            intent.putExtra(TAG_PASSWORD, password);
             finish();
             startActivity(intent);
         }
@@ -192,10 +192,10 @@ public class LoginAdminActivity extends AppCompatActivity {
                     if (success == 1) {
                         String email = jObj.getString(TAG_EMAIL);
                         String id = jObj.getString(TAG_ID);
-//                        String fullname = jObj.getString(TAG_FULLNAME);
-//                        String phonenumber = jObj.getString(TAG_PHONENUMBER);
-//                        String address = jObj.getString(TAG_ADDRESS);
-//                        String password = jObj.getString(TAG_PASSWORD);
+                        String fullname = jObj.getString(TAG_FULLNAME);
+                        String phonenumber = jObj.getString(TAG_PHONENUMBER);
+                        String address = jObj.getString(TAG_ADDRESS);
+                        String password = jObj.getString(TAG_PASSWORD);
 
                         Log.e("Successfully Login!", jObj.toString());
 
@@ -206,10 +206,10 @@ public class LoginAdminActivity extends AppCompatActivity {
                         editor.putBoolean(session_status, true);
                         editor.putString(TAG_ID, id);
                         editor.putString(TAG_EMAIL, email);
-//                        editor.putString(TAG_FULLNAME, fullname);
-//                        editor.putString(TAG_PHONENUMBER, phonenumber);
-//                        editor.putString(TAG_ADDRESS, address);
-//                        editor.putString(TAG_PASSWORD, password);
+                        editor.putString(TAG_FULLNAME, fullname);
+                        editor.putString(TAG_PHONENUMBER, phonenumber);
+                        editor.putString(TAG_ADDRESS, address);
+                        editor.putString(TAG_PASSWORD, password);
 
                         editor.commit();
 
@@ -217,10 +217,10 @@ public class LoginAdminActivity extends AppCompatActivity {
                         Intent intent = new Intent(LoginAdminActivity.this, HomeAdminActivity.class);
                         intent.putExtra(TAG_ID, id);
                         intent.putExtra(TAG_EMAIL, email);
-//                        intent.putExtra(TAG_FULLNAME, fullname);
-//                        intent.putExtra(TAG_PHONENUMBER, phonenumber);
-//                        intent.putExtra(TAG_ADDRESS, address);
-//                        intent.putExtra(TAG_PASSWORD, password);
+                        intent.putExtra(TAG_FULLNAME, fullname);
+                        intent.putExtra(TAG_PHONENUMBER, phonenumber);
+                        intent.putExtra(TAG_ADDRESS, address);
+                        intent.putExtra(TAG_PASSWORD, password);
 //                        finish();
                         startActivity(intent);
                     } else {
