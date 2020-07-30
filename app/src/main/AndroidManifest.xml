@@ -35,12 +35,13 @@
         <activity android:name=".admin.InformationActivity" />
         <activity android:name=".admin.OutletDetailsActivity" />
         <activity android:name=".EditProfileUserActivity" />
-        <activity android:name=".admin.RegisterAdminActivity" />
+        <activity android:name=".admin.RegisterAdminActivity"
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"/>
         <activity android:name=".admin.AdminProfileActivity" />
         <activity android:name=".admin.HomeAdminActivity" />
         <activity
             android:name=".admin.LoginAdminActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar">
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -50,16 +51,16 @@
         </activity>
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".review.PostReviewActivity" />
         <activity android:name=".review.ReviewActivity" />
         <activity android:name=".DetailCategory" />
         <activity
             android:name=".RegisterActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.AppCompat.Light.NoActionBar" />
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".DetailProduct" />
         <activity
             android:name=".MainActivity"

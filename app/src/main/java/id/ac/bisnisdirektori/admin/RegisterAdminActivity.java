@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -60,7 +61,7 @@ public class RegisterAdminActivity extends AppCompatActivity {
             }
         }
 
-        Button login_admin = (Button) findViewById(R.id.login_admin);
+        TextView login_admin = (TextView) findViewById(R.id.login_admin);
         login_admin.setOnClickListener(new View.OnClickListener()
         {
             @Override
@@ -71,27 +72,27 @@ public class RegisterAdminActivity extends AppCompatActivity {
             }
         });
 
-        Button login_user = (Button) findViewById(R.id.login_user);
-        login_user.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
-                startActivity(intent);
-            }
-        });
-
-        Button register_user = (Button) findViewById(R.id.register_user);
-        register_user.setOnClickListener(new View.OnClickListener()
-        {
-            @Override
-            public void onClick(View v)
-            {
-                Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
-                startActivity(intent);
-            }
-        });
+//        Button login_user = (Button) findViewById(R.id.login_user);
+//        login_user.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent intent = new Intent(getBaseContext(), LoginActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+//
+//        Button register_user = (Button) findViewById(R.id.register_user);
+//        register_user.setOnClickListener(new View.OnClickListener()
+//        {
+//            @Override
+//            public void onClick(View v)
+//            {
+//                Intent intent = new Intent(getBaseContext(), RegisterActivity.class);
+//                startActivity(intent);
+//            }
+//        });
 
 
         btn_register = (Button) findViewById(R.id.btn_register);

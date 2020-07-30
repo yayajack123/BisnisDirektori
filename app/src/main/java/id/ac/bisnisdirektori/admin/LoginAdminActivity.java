@@ -18,6 +18,7 @@ import id.ac.bisnisdirektori.LoginActivity;
 import id.ac.bisnisdirektori.R;
 
 import android.widget.ImageView;
+import android.widget.TextView;
 import android.widget.Toast;
 import com.android.volley.Request;
 import com.android.volley.Response;
@@ -69,9 +70,8 @@ public class LoginAdminActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_login_admin);
 
-
         //Button
-        Button register_admin = (Button) findViewById(R.id.register_admin);
+        TextView register_admin = (TextView) findViewById(R.id.register_admin);
         register_admin.setOnClickListener(new View.OnClickListener()
         {
             @Override

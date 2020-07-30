@@ -12,6 +12,7 @@ import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
@@ -76,7 +77,7 @@ public class LoginActivity extends AppCompatActivity {
 //                startActivity(intent);
 //            }
 //        });
-        Button register = (Button) findViewById(R.id.btn_register);
+        TextView register = (TextView) findViewById(R.id.btn_register);
         register.setOnClickListener(new View.OnClickListener()
         {
             @Override
