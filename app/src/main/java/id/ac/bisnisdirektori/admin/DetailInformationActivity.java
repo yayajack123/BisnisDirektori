@@ -19,6 +19,7 @@ import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
@@ -83,6 +84,7 @@ public class DetailInformationActivity extends AppCompatActivity {
     FusedLocationProviderClient client;
 
 
+
     //    ImageView imgView;
     private int GALLERY = 1, CAMERA = 2;
     Bitmap bitmap, decoded;
@@ -118,6 +120,21 @@ public class DetailInformationActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_detail_information);
 
+//        bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
+
+        //Button Change Photo
+//        Button btnChangePhoto = (Button)findViewById(R.id.change_photo);
+//        btnChangePhoto.setOnClickListener(new View.OnClickListener() {
+//            @Override
+//            public void onClick(View view) {
+//                Intent intent = new Intent(DetailInformationActivity.this, EditFotoProfilAdminActivity.class);
+//                startActivity(intent);
+//            }
+//        });
+
+
+
+
         //Obtain the SupportMapFragment
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager ().findFragmentById (R.id.google_map);
         client = LocationServices.getFusedLocationProviderClient (this);
@@ -146,7 +163,6 @@ public class DetailInformationActivity extends AppCompatActivity {
         txtLatitude = findViewById (R.id.latitude_admin);
         txtLongitude = findViewById (R.id.longitude_admin);
         txtOtherinfo = findViewById (R.id.otherinfo_admin);
-        bitmap = BitmapFactory.decodeResource(getResources(), R.id.imgPreview);
 
         update = findViewById (R.id.btn_update);
         delete = findViewById (R.id.btn_delete);
@@ -170,7 +186,7 @@ public class DetailInformationActivity extends AppCompatActivity {
         id_data = iGet.getStringExtra ("ID");
 
         changePhoto = findViewById (R.id.change_photo);
-//        imgPreview = findViewById (R.id.imgPreview);
+        imgPreview = (ImageView) findViewById (R.id.imgPreview);
         changePhoto.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
@@ -309,19 +325,42 @@ public class DetailInformationActivity extends AppCompatActivity {
     }
 
     public String getStringImage(Bitmap bmp) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        return encodedImage;
+
+        if (bmp != null)
+        {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream ();
+            bmp.compress (Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageBytes = baos.toByteArray ();
+            String encodedImage = Base64.encodeToString (imageBytes, Base64.DEFAULT);
+            return encodedImage;
+        }else {
+            bmp = ((BitmapDrawable) imgPreview.getDrawable ()).getBitmap ();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream ();
+            bmp.compress (Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageBytes = baos.toByteArray ();
+            String encodedImage = Base64.encodeToString (imageBytes, Base64.DEFAULT);
+            return encodedImage;
+        }
     }
 
     private void setToImageView(Bitmap bmp) {
         //compress image
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        decoded = BitmapFactory.decodeStream(new ByteArrayInputStream (bytes.toByteArray()));
-        imgPreview.setImageBitmap(decoded);
+
+        if (bmp != null)
+        {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream ();
+            bmp.compress (Bitmap.CompressFormat.JPEG, 100, bytes);
+            decoded = BitmapFactory.decodeStream (new ByteArrayInputStream (bytes.toByteArray ()));
+            imgPreview.setImageBitmap (decoded);
+        }else{
+            bmp = ((BitmapDrawable) imgPreview.getDrawable ()).getBitmap ();
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream ();
+            bmp.compress (Bitmap.CompressFormat.JPEG, 100, bytes);
+            decoded = BitmapFactory.decodeStream (new ByteArrayInputStream (bytes.toByteArray ()));
+            imgPreview.setImageBitmap (decoded);
+        }
+
+
     }
 
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
@@ -344,6 +383,7 @@ public class DetailInformationActivity extends AppCompatActivity {
         if (requestCode == GALLERY && resultCode == RESULT_OK && data != null && data.getData() != null) {
             Uri filePath = data.getData();
             try {
+
                 bitmap = MediaStore.Images.Media.getBitmap(getContentResolver(), filePath);
                 setToImageView(getResizedBitmap(bitmap, 512));
             } catch (IOException e) {
@@ -373,6 +413,7 @@ public class DetailInformationActivity extends AppCompatActivity {
             //setToImageView(getResizedBitmap(bitmap,1080));
             // imgView.setImageURI(image_uri);
         }
+
     }
 
 
@@ -487,6 +528,9 @@ public class DetailInformationActivity extends AppCompatActivity {
     }
 
     private void uploadUpdate() {
+
+        // Create the ParseFile
+
         final String nama_bisnis = txtNama.getText().toString().trim();
         final String no_telp = txtNotelp.getText().toString().trim();
         final String email = txtEmail.getText().toString().trim();
@@ -499,6 +543,8 @@ public class DetailInformationActivity extends AppCompatActivity {
         final String longitude = txtLongitude.getText().toString().trim();
         final String otherinfo = txtOtherinfo.getText().toString().trim();
         final String foto = getStringImage(decoded);
+
+//        final String foto = getStringImage(decoded);
 
         class uploadWorkKnowledge extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;

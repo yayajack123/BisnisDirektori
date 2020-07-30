@@ -153,7 +153,7 @@ public class ListInformationActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 // go to menu detail page
                 Intent iDetail = new Intent(ListInformationActivity.this, DetailInformationActivity.class);
-                iDetail.putExtra("ID", id_data.get(position));
+                iDetail.putExtra("ID", id_data.get (position));
                 startActivity(iDetail);
             }
         });
@@ -201,6 +201,9 @@ public class ListInformationActivity extends AppCompatActivity {
             }
         });
     }
+
+
+
     void clearData(){
         id_data.clear();
         nama_bisnis.clear();

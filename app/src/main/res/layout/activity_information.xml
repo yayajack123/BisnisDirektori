@@ -24,14 +24,13 @@
             <RelativeLayout
                 android:id="@id/layout_2"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@color/colorAccent">
+                android:layout_height="300dp">
                 <ImageView
                     android:id="@+id/imgView"
                     android:layout_width="match_parent"
                     android:layout_height="match_parent"
                     android:scaleType="centerCrop"
-                    android:src="@drawable/studio_2"/>
+                    android:src="@drawable/imgthumb"/>
 
                 <Button
                     android:id="@+id/change_photo"

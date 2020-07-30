@@ -58,7 +58,7 @@ public class adapterList extends BaseAdapter {
         holder.txtNotelp.setText(ListInformationActivity.no_telp.get(position));
         holder.txtAlamat.setText(ListInformationActivity.alamat.get(position));
         holder.txtOtherinfo.setText(ListInformationActivity.otherinfo.get(position));
-        Picasso.with(activity).load(ADMIN_PANEL_URL+"/"+ListInformationActivity.foto.get(position)).placeholder(R.drawable.ic_admin).into(holder.imgThumb);
+        Picasso.with(activity).load(ADMIN_PANEL_URL+"/"+ListInformationActivity.foto.get(position)).placeholder(R.drawable.imgthumb).into(holder.imgThumb);
         return convertView;
 
 
