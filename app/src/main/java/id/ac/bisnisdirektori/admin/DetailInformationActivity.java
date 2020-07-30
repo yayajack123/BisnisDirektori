@@ -86,12 +86,12 @@ public class DetailInformationActivity extends AppCompatActivity {
     //    ImageView imgView;
     private int GALLERY = 1, CAMERA = 2;
     Bitmap bitmap, decoded;
-    ImageView imgPreview;
-    EditText txtNama, txtNotelp, txtEmail, txtWebsite, txtOpentime, txtPrice, txtKategori, txtAlamat, txtLatitude, txtLongitude, txtOtherinfo, txtFoto, editTextId;
+    ImageView imgPreview, imgChange;
+    EditText txtNama, txtNotelp, txtEmail, txtWebsite, txtOpentime, txtPrice, txtKategori, txtAlamat, txtLatitude, txtLongitude, txtOtherinfo,txtFoto,editTextId;
     Button update, delete, changePhoto;
     CoordinatorLayout coordinatorLayout;
     int IOConnect = 0;
-    String nama_bisnis, no_telp, email, website, opentime, price, kategori, alamat, latitude, longitude, otherinfo, foto;
+    String nama_bisnis, no_telp, email, website, opentime, price, kategori, alamat, latitude, longitude, otherinfo, foto, id_admin;
     String DetailAPI;
     private String id_data;
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
@@ -134,6 +134,7 @@ public class DetailInformationActivity extends AppCompatActivity {
 
         coordinatorLayout = (CoordinatorLayout) findViewById (R.id.main_content);
         imgPreview = findViewById (R.id.imgPreview);
+
         txtNama = findViewById (R.id.businessname_admin);
         txtNotelp = findViewById (R.id.phonenumber_admin);
         txtEmail = findViewById (R.id.email_admin);
@@ -145,6 +146,7 @@ public class DetailInformationActivity extends AppCompatActivity {
         txtLatitude = findViewById (R.id.latitude_admin);
         txtLongitude = findViewById (R.id.longitude_admin);
         txtOtherinfo = findViewById (R.id.otherinfo_admin);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.id.imgPreview);
 
         update = findViewById (R.id.btn_update);
         delete = findViewById (R.id.btn_delete);
@@ -168,7 +170,7 @@ public class DetailInformationActivity extends AppCompatActivity {
         id_data = iGet.getStringExtra ("ID");
 
         changePhoto = findViewById (R.id.change_photo);
-        imgPreview = findViewById (R.id.imgPreview);
+//        imgPreview = findViewById (R.id.imgPreview);
         changePhoto.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
@@ -375,14 +377,6 @@ public class DetailInformationActivity extends AppCompatActivity {
 
 
 
-
-
-
-
-
-
-
-
     public class getDataTask extends AsyncTask<Void, Void, Void> {
         // show progressbar first
         @Override
@@ -428,6 +422,8 @@ public class DetailInformationActivity extends AppCompatActivity {
                 txtLongitude.setText(longitude);
                 txtOtherinfo.setText(otherinfo);
 
+
+
             }
         }
     }
@@ -466,7 +462,8 @@ public class DetailInformationActivity extends AppCompatActivity {
                 latitude = detail.getString("latitude");
                 longitude = detail.getString("longitude");
                 otherinfo = detail.getString("otherinfo");
-//                foto = getStringImage(decoded);
+                id_admin = detail.getString ("id_admin");
+                foto = detail.getString ("foto");
 
             }
         } catch (MalformedURLException e) {
@@ -501,7 +498,7 @@ public class DetailInformationActivity extends AppCompatActivity {
         final String latitude = txtLatitude.getText().toString().trim();
         final String longitude = txtLongitude.getText().toString().trim();
         final String otherinfo = txtOtherinfo.getText().toString().trim();
-//        final String foto = getStringImage(decoded);
+        final String foto = getStringImage(decoded);
 
         class uploadWorkKnowledge extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
@@ -540,7 +537,7 @@ public class DetailInformationActivity extends AppCompatActivity {
                 hashMap.put(KEY_LATITUDE, latitude);
                 hashMap.put(KEY_LONGITUDE, longitude);
                 hashMap.put(KEY_OTHERINFO, otherinfo);
-                hashMap.put(KEY_FOTO, getStringImage(decoded));
+                hashMap.put(KEY_FOTO, foto);
                 RequestHandler rh = new RequestHandler();
                 String s = rh.sendPostRequest(URL_UPDATE, hashMap);
                 return s;
@@ -548,6 +545,12 @@ public class DetailInformationActivity extends AppCompatActivity {
         }
         uploadWorkKnowledge ue = new uploadWorkKnowledge();
         ue.execute();
+
+
+
+
+
+
     }
 
     private void delete() {
@@ -581,7 +584,7 @@ public class DetailInformationActivity extends AppCompatActivity {
 
     private void confirmDelete() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Yakin ?");
+        alertDialogBuilder.setMessage("Yakin Ingin Menghapus Data?");
         alertDialogBuilder.setPositiveButton("Ya",
                 new DialogInterface.OnClickListener() {
                     @Override
