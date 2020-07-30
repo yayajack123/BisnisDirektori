@@ -221,7 +221,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                         intent.putExtra(TAG_PHONENUMBER, phonenumber);
                         intent.putExtra(TAG_ADDRESS, address);
                         intent.putExtra(TAG_PASSWORD, password);
-                        finish();
+//                        finish();
                         startActivity(intent);
                     } else {
                         Toast.makeText(getApplicationContext(),

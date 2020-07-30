@@ -1,31 +1,43 @@
 package id.ac.bisnisdirektori.admin;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
+import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -51,25 +63,35 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.HashMap;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
+import androidx.core.app.ActivityCompat;
 import androidx.palette.graphics.Palette;
+import id.ac.bisnisdirektori.MainActivity;
 import id.ac.bisnisdirektori.R;
 
-public class DetailInformationActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class DetailInformationActivity extends AppCompatActivity {
 
     //Initialize Variable
     GoogleMap gMaps;
+    String title;
+    LatLng center, latLng;
+    String tag_json_obj = "json_obj_req";
 
-//    ImageView imgView;
+    SupportMapFragment supportMapFragment;
+    FusedLocationProviderClient client;
+
+
+    //    ImageView imgView;
     private int GALLERY = 1, CAMERA = 2;
     Bitmap bitmap, decoded;
-    ImageView imgPreview;
-    EditText txtNama, txtNotelp, txtEmail, txtWebsite, txtOpentime, txtPrice, txtKategori, txtAlamat, txtLatitude, txtLongitude, txtOtherinfo, txtFoto, editTextId;
+    ImageView imgPreview, imgChange;
+    EditText txtNama, txtNotelp, txtEmail, txtWebsite, txtOpentime, txtPrice, txtKategori, txtAlamat, txtLatitude, txtLongitude, txtOtherinfo,txtFoto,editTextId;
     Button update, delete, changePhoto;
     CoordinatorLayout coordinatorLayout;
     int IOConnect = 0;
-    String nama_bisnis, no_telp, email, website, opentime, price, kategori, alamat, latitude, longitude, otherinfo, foto;
+    String nama_bisnis, no_telp, email, website, opentime, price, kategori, alamat, latitude, longitude, otherinfo, foto, id_admin;
     String DetailAPI;
     private String id_data;
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
@@ -97,93 +119,160 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
         setContentView (R.layout.activity_detail_information);
 
         //Obtain the SupportMapFragment
-        SupportMapFragment supportMapFragment = (SupportMapFragment)
-                getSupportFragmentManager ().findFragmentById (R.id.google_map);
-        supportMapFragment.getMapAsync (this);
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager ().findFragmentById (R.id.google_map);
+        client = LocationServices.getFusedLocationProviderClient (this);
 
-        coordinatorLayout = (CoordinatorLayout) findViewById(R.id.main_content);
-        imgPreview = findViewById(R.id.imgPreview);
-        txtNama = findViewById(R.id.businessname_admin);
-        txtNotelp = findViewById(R.id.phonenumber_admin);
-        txtEmail = findViewById(R.id.email_admin);
-        txtWebsite= findViewById(R.id.web_admin);
-        txtOpentime = findViewById(R.id.opentime_admin);
-        txtPrice = findViewById(R.id.price_admin);
-        txtKategori = findViewById(R.id.kategori_admin);
-        txtAlamat = findViewById(R.id.alamat_admin);
-        txtLatitude = findViewById(R.id.latitude_admin);
-        txtLongitude = findViewById(R.id.longitude_admin);
-        txtOtherinfo = findViewById(R.id.otherinfo_admin);
+        if (ActivityCompat.checkSelfPermission (DetailInformationActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
 
-        update = findViewById(R.id.btn_update);
-        delete = findViewById(R.id.btn_delete);
-        editTextId = findViewById(R.id.editTextId);
-        editTextId.setText(id_data);
-        update.setOnClickListener(new View.OnClickListener() {
+            getCurrentLocation ();
+        } else {
+            ActivityCompat.requestPermissions (DetailInformationActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
+
+
+        coordinatorLayout = (CoordinatorLayout) findViewById (R.id.main_content);
+        imgPreview = findViewById (R.id.imgPreview);
+
+        txtNama = findViewById (R.id.businessname_admin);
+        txtNotelp = findViewById (R.id.phonenumber_admin);
+        txtEmail = findViewById (R.id.email_admin);
+        txtWebsite = findViewById (R.id.web_admin);
+        txtOpentime = findViewById (R.id.opentime_admin);
+        txtPrice = findViewById (R.id.price_admin);
+        txtKategori = findViewById (R.id.kategori_admin);
+        txtAlamat = findViewById (R.id.alamat_admin);
+        txtLatitude = findViewById (R.id.latitude_admin);
+        txtLongitude = findViewById (R.id.longitude_admin);
+        txtOtherinfo = findViewById (R.id.otherinfo_admin);
+        bitmap = BitmapFactory.decodeResource(getResources(), R.id.imgPreview);
+
+        update = findViewById (R.id.btn_update);
+        delete = findViewById (R.id.btn_delete);
+        editTextId = findViewById (R.id.editTextId);
+        editTextId.setText (id_data);
+
+        update.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
-                uploadUpdate();
+                uploadUpdate ();
             }
         });
-        delete.setOnClickListener(new View.OnClickListener() {
+
+        delete.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
-                confirmDelete();
+                confirmDelete ();
             }
         });
-        Intent iGet = getIntent();
-        id_data = iGet.getStringExtra("ID");
+        Intent iGet = getIntent ();
+        id_data = iGet.getStringExtra ("ID");
 
         changePhoto = findViewById (R.id.change_photo);
-        imgPreview = findViewById(R.id.imgPreview);
-        changePhoto.setOnClickListener(new View.OnClickListener() {
+//        imgPreview = findViewById (R.id.imgPreview);
+        changePhoto.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
-                showPictureDialog();
+                showPictureDialog ();
             }
         });
-
-
-
-
 
         DetailAPI = ADMIN_PANEL_URL + "/bd_detail_list.php" + "?accesskey=" + AccessKey + "&ID=" + id_data;
-        new getDataTask().execute();
+        new getDataTask ().execute ();
 
 
     }
 
+    //Get Current Location and Pick Marker Location
+    private void getCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission (this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission (this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        //Assign Variable
-        gMaps = googleMap;
-
-        gMaps.setOnMapClickListener (new GoogleMap.OnMapClickListener () {
+            return;
+        }
+        Task<Location> task = client.getLastLocation ();
+        task.addOnSuccessListener (new OnSuccessListener<Location> () {
             @Override
+            public void onSuccess(final Location location) {
+                if (location !=null){
+                    supportMapFragment.getMapAsync (new OnMapReadyCallback () {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+                            LatLng latLng = new LatLng (location.getLatitude (),location.getLongitude ());
+                            MarkerOptions options = new MarkerOptions ().position (latLng).title ("Lokasi Anda");
+                            googleMap.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
+                            googleMap.addMarker (options);
 
-            public void onMapClick(LatLng latLng) {
+                            gMaps = googleMap;
 
-                //Creating Marker
-                MarkerOptions markerOptions = new MarkerOptions ();
-                //Set Marker Position
-                markerOptions.position (latLng);
-                //Set Latitude and Longitude On Marker
-                markerOptions.title ("Lat : "+latLng.latitude+ " , " + "Lng : " + latLng.longitude);
-                //Clear the previously Click Position
-                gMaps.clear ();
-                //Zoom the Marker
-                gMaps.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
-                //Add Marker On Map
-                gMaps.addMarker (markerOptions);
+                            gMaps.setOnMapClickListener (new GoogleMap.OnMapClickListener () {
+                                @Override
 
-                //Set Latitude dan Longitude to Edit Text
-                txtLatitude.setText("" + latLng.latitude);
-                txtLongitude.setText("" + latLng.longitude);
+                                public void onMapClick(LatLng latLng) {
 
+                                    //Creating Marker
+                                    MarkerOptions markerOptions = new MarkerOptions ();
+                                    //Set Marker Position
+                                    markerOptions.position (latLng);
+                                    //Set Latitude and Longitude On Marker
+                                    markerOptions.title ("Lat : "+latLng.latitude+ " , " + "Lng : " + latLng.longitude);
+                                    //Clear the previously Click Position
+                                    gMaps.clear ();
+                                    //Zoom the Marker
+                                    gMaps.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
+                                    //Add Marker On Map
+                                    gMaps.addMarker (markerOptions);
+
+                                    //Set Latitude dan Longitude to Edit Text
+                                    txtLatitude.setText("" + latLng.latitude);
+                                    txtLongitude.setText("" + latLng.longitude);
+
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    supportMapFragment.getMapAsync (new OnMapReadyCallback () {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+
+                            gMaps = googleMap;
+
+                            gMaps.setOnMapClickListener (new GoogleMap.OnMapClickListener () {
+                                @Override
+
+                                public void onMapClick(LatLng latLng) {
+
+                                    //Creating Marker
+                                    MarkerOptions markerOptions = new MarkerOptions ();
+                                    //Set Marker Position
+                                    markerOptions.position (latLng);
+                                    //Set Latitude and Longitude On Marker
+                                    markerOptions.title ("Lat : "+latLng.latitude+ " , " + "Lng : " + latLng.longitude);
+                                    //Clear the previously Click Position
+                                    gMaps.clear ();
+                                    //Zoom the Marker
+                                    gMaps.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
+                                    //Add Marker On Map
+                                    gMaps.addMarker (markerOptions);
+
+                                    //Set Latitude dan Longitude to Edit Text
+                                    txtLatitude.setText("" + latLng.latitude);
+                                    txtLongitude.setText("" + latLng.longitude);
+
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
     }
+
+
+
+
+
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
@@ -288,14 +377,6 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
 
 
 
-
-
-
-
-
-
-
-
     public class getDataTask extends AsyncTask<Void, Void, Void> {
         // show progressbar first
         @Override
@@ -341,6 +422,8 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
                 txtLongitude.setText(longitude);
                 txtOtherinfo.setText(otherinfo);
 
+
+
             }
         }
     }
@@ -379,7 +462,8 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
                 latitude = detail.getString("latitude");
                 longitude = detail.getString("longitude");
                 otherinfo = detail.getString("otherinfo");
-//                foto = getStringImage(decoded);
+                id_admin = detail.getString ("id_admin");
+                foto = detail.getString ("foto");
 
             }
         } catch (MalformedURLException e) {
@@ -414,7 +498,7 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
         final String latitude = txtLatitude.getText().toString().trim();
         final String longitude = txtLongitude.getText().toString().trim();
         final String otherinfo = txtOtherinfo.getText().toString().trim();
-//        final String foto = getStringImage(decoded);
+        final String foto = getStringImage(decoded);
 
         class uploadWorkKnowledge extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;
@@ -453,7 +537,7 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
                 hashMap.put(KEY_LATITUDE, latitude);
                 hashMap.put(KEY_LONGITUDE, longitude);
                 hashMap.put(KEY_OTHERINFO, otherinfo);
-                hashMap.put(KEY_FOTO, getStringImage(decoded));
+                hashMap.put(KEY_FOTO, foto);
                 RequestHandler rh = new RequestHandler();
                 String s = rh.sendPostRequest(URL_UPDATE, hashMap);
                 return s;
@@ -461,6 +545,12 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
         }
         uploadWorkKnowledge ue = new uploadWorkKnowledge();
         ue.execute();
+
+
+
+
+
+
     }
 
     private void delete() {
@@ -494,7 +584,7 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
 
     private void confirmDelete() {
         AlertDialog.Builder alertDialogBuilder = new AlertDialog.Builder(this);
-        alertDialogBuilder.setMessage("Yakin ?");
+        alertDialogBuilder.setMessage("Yakin Ingin Menghapus Data?");
         alertDialogBuilder.setPositiveButton("Ya",
                 new DialogInterface.OnClickListener() {
                     @Override
@@ -512,6 +602,18 @@ public class DetailInformationActivity extends AppCompatActivity implements OnMa
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
+
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 44){
+            if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                getCurrentLocation ();
+            }
+        }
+    }
+
 
 
 

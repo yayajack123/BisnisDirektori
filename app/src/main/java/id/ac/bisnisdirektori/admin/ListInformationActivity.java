@@ -72,6 +72,14 @@ import java.util.List;
 import java.util.Map;
 
 public class ListInformationActivity extends AppCompatActivity {
+
+    //Shared Preferences from Login Admin
+    public final static String TAG_ID = "id";
+    private String id;
+    SharedPreferences sharedpreferences;
+
+
+
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
     public static String AccessKey = "12345";
     // database path configuration
@@ -86,7 +94,9 @@ public class ListInformationActivity extends AppCompatActivity {
     adapterList cla;
 //    DataeventAdapter mAdapter;
     ConnectivityManager conMgr;
-    SharedPreferences sharedpreferences;
+
+    String id_member, username;
+
 //    AppDatabase mDb;
 
     public static ArrayList<String> id_data = new ArrayList<String>();
@@ -110,7 +120,19 @@ public class ListInformationActivity extends AppCompatActivity {
         setContentView(R.layout.activity_list_information);
         swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
 
+        //sharedpreferences
         sharedpreferences = getSharedPreferences(LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+
+        //get data
+        id = getIntent().getStringExtra(TAG_ID);
+
+        //set data if data null
+        id = sharedpreferences.getString(TAG_ID, null);
+
+
+
+
+
         ConnectivityManager cm;
 //        mDb = AppDatabase.getDatabase(getApplicationContext());
         swipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
@@ -148,6 +170,7 @@ public class ListInformationActivity extends AppCompatActivity {
 
 
         ListEvent.setOnScrollListener(new AbsListView.OnScrollListener() {
+
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
             }
@@ -225,26 +248,11 @@ public class ListInformationActivity extends AppCompatActivity {
             // otherwise, show alert text
             if((id_data.size() > 0) && (IOConnect == 0)){
                 ListEvent.setVisibility(View.VISIBLE);
-//                ListEvent.setAdapter(mAdapter);
                 ListEvent.setAdapter(cla);
             }else{
                 ListEvent.setVisibility(View.VISIBLE);
                 Toast.makeText(getApplicationContext(), "No Internet Connection",
                         Toast.LENGTH_LONG).show();
-//                ListEvent.setAdapter(mAdapter);
-//
-//                AppExecutors.getInstance().diskIO().execute(new Runnable() {
-//                    @Override
-//                    public void run() {
-//                        final List<DataEvent> data = mDb.dataEvent().loadAllEvent();
-//                        runOnUiThread(new Runnable() {
-//                            @Override
-//                            public void run() {
-//                                mAdapter.setTasks(data);
-//                            }
-//                        });
-//                    }
-//                });
                 txtAlert.setVisibility(View.VISIBLE);
 
 
@@ -257,8 +265,6 @@ public class ListInformationActivity extends AppCompatActivity {
     public void parseJSONData(){
         clearData();
 
-
-//        list_topevent = new ArrayList<>();
 
         try {
             // request data from Category API

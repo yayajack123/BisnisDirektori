@@ -1,13 +1,18 @@
 package id.ac.bisnisdirektori.admin;
 
+import android.Manifest;
 import android.app.AlertDialog;
 import android.app.DatePickerDialog;
 import android.app.Dialog;
 import android.app.ProgressDialog;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
+import android.content.SharedPreferences;
+import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.os.Environment;
@@ -26,12 +31,16 @@ import com.android.volley.Request;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.maps.CameraUpdateFactory;
 import com.google.android.gms.maps.GoogleMap;
 import com.google.android.gms.maps.OnMapReadyCallback;
 import com.google.android.gms.maps.SupportMapFragment;
 import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
+import com.google.android.gms.tasks.OnSuccessListener;
+import com.google.android.gms.tasks.Task;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -46,14 +55,25 @@ import java.util.Calendar;
 import java.util.HashMap;
 import java.util.Map;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.DialogFragment;
 import id.ac.bisnisdirektori.R;
 
-public class InformationActivity extends AppCompatActivity implements OnMapReadyCallback {
+public class InformationActivity extends AppCompatActivity{
+
+    //Shared Preferences from Login Admin
+    public final static String TAG_ID = "id";
+    private String id;
+    SharedPreferences sharedpreferences;
 
     //Initialize Variable
     GoogleMap gMaps;
+
+    //Current Location
+    SupportMapFragment supportMapFragment;
+    FusedLocationProviderClient client;
 
     EditText edtNama, edtNotelp, edtEmail, edtWebsite, edtOpentime, edtPrice, edtKategori, edtAlamat, edtLatitude, edtLongitude,edtOtherinfo,edtAdmin;
     Button submit, viewList, changePhoto;
@@ -82,18 +102,32 @@ public class InformationActivity extends AppCompatActivity implements OnMapReady
     String tag_json_obj = "json_obj_req";
     String nama_bisnis, no_telp,email, website, opentime, price, kategori, alamat, latitude, longitude, foto, otherinfo, id_admin;
 
-
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_information);
 
         //Obtain the SupportMapFragment
-        SupportMapFragment supportMapFragment = (SupportMapFragment)
-                getSupportFragmentManager ().findFragmentById (R.id.google_map);
-        supportMapFragment.getMapAsync (this);
+        supportMapFragment = (SupportMapFragment) getSupportFragmentManager ().findFragmentById (R.id.google_map);
+        client = LocationServices.getFusedLocationProviderClient (this);
 
+        if (ActivityCompat.checkSelfPermission (InformationActivity.this,
+                Manifest.permission.ACCESS_FINE_LOCATION) == PackageManager.PERMISSION_GRANTED) {
+
+            getCurrentLocation ();
+        } else {
+            ActivityCompat.requestPermissions (InformationActivity.this,
+                    new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, 44);
+        }
+
+        //sharedpreferences
+        sharedpreferences = getSharedPreferences(LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+
+        //get data
+        id = getIntent().getStringExtra(TAG_ID);
+
+        //set data if data null
+        id = sharedpreferences.getString(TAG_ID, null);
 
         edtNama = findViewById(R.id.businessname_admin);
         edtNotelp = findViewById(R.id.phonenumber_admin);
@@ -106,7 +140,9 @@ public class InformationActivity extends AppCompatActivity implements OnMapReady
         edtLatitude = findViewById(R.id.latitude_admin);
         edtLongitude = findViewById(R.id.longitude_admin);
         edtOtherinfo = findViewById(R.id.otherinfo_admin);
+        edtAdmin = findViewById(R.id.id_admin);
 
+        edtAdmin.setText(id);
 
         changePhoto = findViewById (R.id.change_photo);
         imgView = findViewById(R.id.imgView);
@@ -139,7 +175,7 @@ public class InformationActivity extends AppCompatActivity implements OnMapReady
                 latitude = edtLatitude.getText().toString();
                 longitude = edtLongitude.getText().toString();
                 otherinfo = edtOtherinfo.getText ().toString ();
-//                id_admin = edtAdmin.getText().toString();
+                id_admin = edtAdmin.getText().toString();
 
                 uploadCRUD();
 
@@ -152,36 +188,93 @@ public class InformationActivity extends AppCompatActivity implements OnMapReady
 
 
 
-    @Override
-    public void onMapReady(GoogleMap googleMap) {
-        //Assign Variable
-        gMaps = googleMap;
+    //Get Current Location and Pick Marker Location
+    private void getCurrentLocation() {
+        if (ActivityCompat.checkSelfPermission (this, Manifest.permission.ACCESS_FINE_LOCATION) != PackageManager.PERMISSION_GRANTED && ActivityCompat.checkSelfPermission (this, Manifest.permission.ACCESS_COARSE_LOCATION) != PackageManager.PERMISSION_GRANTED) {
 
-        gMaps.setOnMapClickListener (new GoogleMap.OnMapClickListener () {
+            return;
+        }
+        Task<Location> task = client.getLastLocation ();
+        task.addOnSuccessListener (new OnSuccessListener<Location> () {
             @Override
+            public void onSuccess(final Location location) {
+                if (location !=null){
+                    supportMapFragment.getMapAsync (new OnMapReadyCallback () {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+                            LatLng latLng = new LatLng (location.getLatitude (),location.getLongitude ());
+                            MarkerOptions options = new MarkerOptions ().position (latLng).title ("Lokasi Anda");
+                            googleMap.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
+                            googleMap.addMarker (options);
 
-            public void onMapClick(LatLng latLng) {
+                            gMaps = googleMap;
 
-                //Creating Marker
-                MarkerOptions markerOptions = new MarkerOptions ();
-                //Set Marker Position
-                markerOptions.position (latLng);
-                //Set Latitude and Longitude On Marker
-                markerOptions.title ("Lat : "+latLng.latitude+ " , " + "Lng : " + latLng.longitude);
-                //Clear the previously Click Position
-                gMaps.clear ();
-                //Zoom the Marker
-                gMaps.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
-                //Add Marker On Map
-                gMaps.addMarker (markerOptions);
+                            gMaps.setOnMapClickListener (new GoogleMap.OnMapClickListener () {
+                                @Override
 
-                //Set Latitude dan Longitude to Edit Text
-                edtLatitude.setText("" + latLng.latitude);
-                edtLongitude.setText("" + latLng.longitude);
+                                public void onMapClick(LatLng latLng) {
 
+                                    //Creating Marker
+                                    MarkerOptions markerOptions = new MarkerOptions ();
+                                    //Set Marker Position
+                                    markerOptions.position (latLng);
+                                    //Set Latitude and Longitude On Marker
+                                    markerOptions.title ("Lat : "+latLng.latitude+ " , " + "Lng : " + latLng.longitude);
+                                    //Clear the previously Click Position
+                                    gMaps.clear ();
+                                    //Zoom the Marker
+                                    gMaps.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
+                                    //Add Marker On Map
+                                    gMaps.addMarker (markerOptions);
+
+                                    //Set Latitude dan Longitude to Edit Text
+                                    edtLatitude.setText("" + latLng.latitude);
+                                    edtLongitude.setText("" + latLng.longitude);
+
+                                }
+                            });
+                        }
+                    });
+                }else{
+                    supportMapFragment.getMapAsync (new OnMapReadyCallback () {
+                        @Override
+                        public void onMapReady(GoogleMap googleMap) {
+
+                            gMaps = googleMap;
+
+                            gMaps.setOnMapClickListener (new GoogleMap.OnMapClickListener () {
+                                @Override
+
+                                public void onMapClick(LatLng latLng) {
+
+                                    //Creating Marker
+                                    MarkerOptions markerOptions = new MarkerOptions ();
+                                    //Set Marker Position
+                                    markerOptions.position (latLng);
+                                    //Set Latitude and Longitude On Marker
+                                    markerOptions.title ("Lat : "+latLng.latitude+ " , " + "Lng : " + latLng.longitude);
+                                    //Clear the previously Click Position
+                                    gMaps.clear ();
+                                    //Zoom the Marker
+                                    gMaps.animateCamera (CameraUpdateFactory.newLatLngZoom (latLng, 10));
+                                    //Add Marker On Map
+                                    gMaps.addMarker (markerOptions);
+
+                                    //Set Latitude dan Longitude to Edit Text
+                                    edtLatitude.setText("" + latLng.latitude);
+                                    edtLongitude.setText("" + latLng.longitude);
+
+                                }
+                            });
+                        }
+                    });
+                }
             }
         });
     }
+
+
+
 
 
     private void showPictureDialog() {
@@ -339,7 +432,7 @@ public class InformationActivity extends AppCompatActivity implements OnMapReady
                 params.put(KEY_LATITUDE, edtLatitude.getText().toString().trim());
                 params.put(KEY_LONGITUDE, edtLongitude.getText().toString().trim());
                 params.put(KEY_OTHERINFO, edtOtherinfo.getText().toString().trim());
-//                params.put(KEY_ADMIN, edtAdmin.getText().toString().trim());
+                params.put(KEY_ADMIN, edtAdmin.getText().toString().trim());
                 params.put(KEY_FOTO, getStringImage(decoded));
                 //kembali ke parameters
                 Log.e(TAG, "" + params);
@@ -347,6 +440,15 @@ public class InformationActivity extends AppCompatActivity implements OnMapReady
             }
         };
         AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+    }
+
+    @Override
+    public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
+        if (requestCode == 44){
+            if (grantResults.length>0 && grantResults[0] == PackageManager.PERMISSION_GRANTED){
+                getCurrentLocation ();
+            }
+        }
     }
 
 
