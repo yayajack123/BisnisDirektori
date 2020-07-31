@@ -33,7 +33,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     ProgressDialog pDialog;
     Button btn_register, btn_login;
-    EditText txt_email,txt_fullname, txt_password, txt_confirm_password;
+    EditText txt_email,txt_fullname, txt_password, txt_confirm_password, txt_phonenumber, txt_address;
     Intent intent;
 
     int success;
@@ -66,6 +66,8 @@ public class RegisterActivity extends AppCompatActivity {
         txt_fullname = (EditText) findViewById(R.id.txt_fullname);
         txt_password = (EditText) findViewById(R.id.txt_password);
         txt_confirm_password = (EditText) findViewById(R.id.txt_confirm_password);
+        txt_phonenumber = (EditText) findViewById(R.id.txt_phonenumber);
+        txt_address = (EditText) findViewById(R.id.txt_address);
 
         btn_register.setOnClickListener(new View.OnClickListener() {
 
@@ -76,12 +78,13 @@ public class RegisterActivity extends AppCompatActivity {
                 String fullname = txt_fullname.getText().toString();
                 String password = txt_password.getText().toString();
                 String confirm_password = txt_confirm_password.getText().toString();
-
+                String phonenumber = txt_phonenumber.getText().toString();
+                String address = txt_address.getText().toString();
 
                 if (conMgr.getActiveNetworkInfo() != null
                         && conMgr.getActiveNetworkInfo().isAvailable()
                         && conMgr.getActiveNetworkInfo().isConnected()) {
-                    checkRegister(email,fullname, password, confirm_password);
+                    checkRegister(email,fullname, password, confirm_password, phonenumber, address);
                 } else {
                     Toast.makeText(getApplicationContext(), "No Internet Connection", Toast.LENGTH_SHORT).show();
                 }
@@ -90,7 +93,7 @@ public class RegisterActivity extends AppCompatActivity {
 
     }
 
-    private void checkRegister(final String email,final String fullname , final String password, final String confirm_password) {
+    private void checkRegister(final String email,final String fullname , final String password, final String confirm_password, final String phonenumber, final String address) {
         pDialog = new ProgressDialog(this);
         pDialog.setCancelable(false);
         pDialog.setMessage("Register ...");
@@ -119,6 +122,8 @@ public class RegisterActivity extends AppCompatActivity {
                         txt_fullname.setText("");
                         txt_password.setText("");
                         txt_confirm_password.setText("");
+                        txt_phonenumber.setText("");
+                        txt_address.setText("");
 
                     } else {
                         Toast.makeText(getApplicationContext(),
@@ -155,6 +160,8 @@ public class RegisterActivity extends AppCompatActivity {
                 params.put("fullname",fullname);
                 params.put("password", password);
                 params.put("confirm_password", confirm_password);
+                params.put("phonenumber", phonenumber);
+                params.put("address", address);
 
                 return params;
             }

@@ -74,13 +74,14 @@
                     android:layout_marginBottom="10dp"/>
 
                 <TextView
+                    style="@style/body2"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginBottom="5dp"
-                    android:text="Name"
-                    style="@style/body2"/>
+                    android:text="Name" />
 
                 <EditText
+                    android:id="@+id/txt_fullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     style="@style/body"
@@ -96,11 +97,12 @@
                     style="@style/body2"/>
 
                 <EditText
+                    android:id="@+id/txt_email"
+                    style="@style/body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/body"
                     android:inputType="textEmailAddress"
-                    android:text="juliarta@gmail.com"/>
+                    android:text="juliarta@gmail.com" />
                 <TextView
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
@@ -110,11 +112,12 @@
                     style="@style/body2"/>
 
                 <EditText
+                    android:id="@+id/txt_phonenumber"
+                    style="@style/body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/body"
                     android:inputType="phone"
-                    android:text="08999426953"/>
+                    android:text="08999426953" />
                 <TextView
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
@@ -124,11 +127,12 @@
                     style="@style/body2"/>
 
                 <EditText
+                    android:id="@+id/txt_address"
+                    style="@style/body"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    style="@style/body"
                     android:inputType="text"
-                    android:text="Bali"/>
+                    android:text="Bali" />
                 <TextView
                     android:layout_marginTop="10dp"
                     android:layout_width="wrap_content"
