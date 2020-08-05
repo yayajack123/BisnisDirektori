@@ -155,7 +155,8 @@ public class ListInformationActivity extends AppCompatActivity {
         txtAlert = findViewById (R.id.txtAlert);
         cla = new adapterList (ListInformationActivity.this);
 //        mAdapter = new DataeventAdapter(ListEventSeminar.this);
-        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?=id" + id1;
+        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id_admin=" + id1;
+        Log.d("TAG", "url: "+ListAPI);
 //        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id="+id ;
         new getDataTask ().execute ();
 
