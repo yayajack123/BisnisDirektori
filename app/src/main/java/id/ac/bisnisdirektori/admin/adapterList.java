@@ -20,8 +20,6 @@ public class adapterList extends BaseAdapter {
     }
 
 
-
-
     public int getCount() {
         return ListInformationActivity.id_data.size();
     }
@@ -32,7 +30,7 @@ public class adapterList extends BaseAdapter {
         return position;
     }
     static class ViewHolder {
-        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo ;
+        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin ;
         ImageView imgThumb;
     }
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -51,6 +49,7 @@ public class adapterList extends BaseAdapter {
         holder.txtNotelp = (TextView) convertView.findViewById(R.id.txtNotelp);
         holder.txtAlamat = (TextView) convertView.findViewById(R.id.txtAlamat);
         holder.txtOtherinfo = (TextView) convertView.findViewById(R.id.txtOtherinfo);
+        holder.txtIdAdmin = (TextView) convertView.findViewById(R.id.txtIdAdmin);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
 
@@ -58,6 +57,7 @@ public class adapterList extends BaseAdapter {
         holder.txtNotelp.setText(ListInformationActivity.no_telp.get(position));
         holder.txtAlamat.setText(ListInformationActivity.alamat.get(position));
         holder.txtOtherinfo.setText(ListInformationActivity.otherinfo.get(position));
+        holder.txtIdAdmin.setText(ListInformationActivity.id_admin.get(position));
         Picasso.with(activity).load(ADMIN_PANEL_URL+"/"+ListInformationActivity.foto.get(position)).placeholder(R.drawable.imgthumb).into(holder.imgThumb);
         return convertView;
 

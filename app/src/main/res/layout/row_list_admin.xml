@@ -91,6 +91,17 @@
                 android:fontFamily="@font/montserat_regular"
                 android:textColor="#000"
                 />
+            <TextView
+                android:id="@+id/txtIdAdmin"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp"
+                android:layout_below="@+id/txtOtherinfo"
+                android:layout_marginLeft="10dp"
+                android:text="ID Admin"
+                android:fontFamily="@font/montserat_regular"
+                android:textColor="#000"
+                />
         </RelativeLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

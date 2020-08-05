@@ -20,45 +20,67 @@
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-                <RelativeLayout
-                    android:id="@id/layout_2"
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:background="@color/colorAccent">
-                        <de.hdodenhof.circleimageview.CircleImageView
-                            android:id="@+id/img_profil"
-                            android:layout_width="100dp"
-                            android:layout_height="100dp"
-                            android:layout_centerVertical="true"
-                            android:layout_marginStart="25dp"
-                            android:src="@drawable/ic_admin"
-                            app:civ_border_width="4dp"
-                            app:civ_border_color="#FFFFFF"/>
 
-        <TextView
-            android:id="@+id/name_admin"
-            android:layout_toRightOf="@id/img_profil"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            style="@style/subheader"
-            android:textStyle="bold"
-            android:textSize="25dp"
-            android:textColor="@color/white"
-            android:text="Admin Jack"/>
-        <TextView
-            android:id="@+id/name_product"
-            android:layout_toRightOf="@id/img_profil"
-            android:layout_below="@id/name_admin"
-            android:layout_centerVertical="true"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginStart="10dp"
-            android:textColor="@color/white"
-            android:text="Jack Music Studio" />
+            <RelativeLayout
+                android:id="@id/layout_2"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:background="@color/colorAccent">
 
-    </RelativeLayout>
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgPreview"
+                    android:layout_width="100dp"
+                    android:layout_height="100dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="25dp"
+                    android:src="@drawable/ic_admin"
+                    app:civ_border_color="#FFFFFF"
+                    app:civ_border_width="4dp" />
+
+                <TextView
+                    android:id="@+id/change_photo_admin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgPreview"
+                    android:layout_alignStart="@+id/imgPreview"
+                    android:layout_alignEnd="@+id/imgPreview"
+                    android:layout_alignBottom="@+id/imgPreview"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="7dp"
+                    android:layout_marginEnd="0dp"
+                    android:layout_marginBottom="-36dp"
+                    android:fontFamily="@font/montserrat_semibold"
+                    android:text="Change Profil Photo"
+                    android:textAlignment="center"
+                    android:textColor="@color/white"
+                    android:textSize="10sp" />
+
+                <TextView
+                    android:id="@+id/top_name_admin"
+                    style="@style/subheader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@id/imgPreview"
+                    android:hint="Name Admin"
+                    android:textColor="@color/white"
+                    android:textSize="25dp"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/top_email_admin"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/top_name_admin"
+                    android:layout_centerVertical="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_toRightOf="@id/imgPreview"
+                    android:hint="Email Admin"
+                    android:textColor="@color/white" />
+
+
+            </RelativeLayout>
 
 
     <LinearLayout
@@ -92,14 +114,13 @@
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:text="Username"
+                android:text="Fullname"
 
                 style="@style/body2"/>
         <EditText
             android:id="@+id/fullname_admin"
-            android:text="Admin jack"
             android:layout_width="match_parent"
-            android:hint="Business name"
+            android:hint="Fullname"
             android:inputType="text"
             style="@style/body"
             android:layout_marginTop="5dp"
@@ -114,9 +135,8 @@
             style="@style/body2"/>
         <EditText
             android:id="@+id/phonenumber_admin"
-            android:text="08999426965"
             android:layout_width="match_parent"
-            android:hint="Phone number..."
+            android:hint="Phonenumber"
             android:inputType="number"
             style="@style/body"
             android:layout_marginTop="5dp"
@@ -132,9 +152,8 @@
             style="@style/body2"/>
         <EditText
             android:id="@+id/email_admin"
-            android:text="jack@gmail.com"
             android:layout_width="match_parent"
-            android:hint="Email..."
+            android:hint="Email"
             android:inputType="textEmailAddress"
             style="@style/body"
             android:layout_marginTop="5dp"
@@ -145,17 +164,16 @@
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Password"
+            android:text="Address"
             style="@style/body2"/>
         <EditText
-            android:id="@+id/password_admin"
-            android:text="jack@gmail.com"
+            android:id="@+id/address_admin"
             android:layout_width="match_parent"
-            android:hint="Email..."
-            android:inputType="textPassword"
+            android:hint="Address"
+            android:inputType="text"
             style="@style/body"
             android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_outline_security_24"
+            android:drawableStart="@drawable/ic_outline_place_24"
             android:drawablePadding="10dp"
             android:layout_height="wrap_content"/>
 

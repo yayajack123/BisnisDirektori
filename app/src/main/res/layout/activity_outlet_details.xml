@@ -77,6 +77,27 @@
             style="@style/view"
             />
         <Button
+            android:id="@+id/edit_password"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_outline_security_24"
+            android:drawablePadding="15dp"
+            android:text="Edit Password"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"/>
+        <View
+            style="@style/view"
+            />
+
+
+
+
+
+        <Button
             android:id="@+id/information"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
