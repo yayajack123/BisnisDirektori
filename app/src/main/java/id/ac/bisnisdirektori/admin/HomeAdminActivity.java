@@ -67,6 +67,8 @@ public class HomeAdminActivity extends AppCompatActivity {
                 editor.putString(TAG_PHONENUMBER, null);
                 editor.putString(TAG_ADDRESS, null);
                 editor.putString(TAG_PASSWORD, null);
+                editor.clear();
+                editor.apply();
                 editor.commit();
                 finish ();
                 startActivity(intent);

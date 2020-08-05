@@ -45,6 +45,7 @@ import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -52,6 +53,8 @@ import java.util.Map;
 import androidx.appcompat.widget.SearchView;
 import androidx.core.view.MenuItemCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import id.ac.bisnisdirektori.EditProfileUserActivity;
+import id.ac.bisnisdirektori.LoginActivity;
 import id.ac.bisnisdirektori.R;
 
 import org.apache.http.HttpResponse;
@@ -77,8 +80,18 @@ public class ListInformationActivity extends AppCompatActivity {
 
     //Shared Preferences from Login Admin
     public final static String TAG_ID = "id";
-    private String id;
+    String id;
     SharedPreferences sharedpreferences;
+
+    private RequestQueue requestQueue;
+    private StringRequest stringRequest;
+
+    ArrayList<HashMap<String, String>> list_data;
+
+
+
+
+
 
 
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
@@ -93,141 +106,149 @@ public class ListInformationActivity extends AppCompatActivity {
     ImageButton btnSearch;
     TextView txtAlert;
     adapterList cla;
-//    DataeventAdapter mAdapter;
+    //    DataeventAdapter mAdapter;
     ConnectivityManager conMgr;
 
-    String id_member, username;
 
 //    AppDatabase mDb;
 
-    public static ArrayList<String> id_data = new ArrayList<String>();
-    public static ArrayList<String> nama_bisnis = new ArrayList<String>();
-    public static ArrayList<String> no_telp = new ArrayList<String>();
-    public static ArrayList<String> email = new ArrayList<String>();
-    public static ArrayList<String> website = new ArrayList<String>();
-    public static ArrayList<String> opentime = new ArrayList<String>();
-    public static ArrayList<String> price = new ArrayList<String>();
-    public static ArrayList<String> kategori = new ArrayList<String>();
-    public static ArrayList<String> alamat = new ArrayList<String>();
-    public static ArrayList<String> latitude = new ArrayList<String>();
-    public static ArrayList<String> longitude = new ArrayList<String>();
-    public static ArrayList<String> otherinfo = new ArrayList<String>();
-    public static ArrayList<String> foto = new ArrayList<String>();
+    public static ArrayList<String> id_data = new ArrayList<String> ();
+    public static ArrayList<String> nama_bisnis = new ArrayList<String> ();
+    public static ArrayList<String> no_telp = new ArrayList<String> ();
+    public static ArrayList<String> email = new ArrayList<String> ();
+    public static ArrayList<String> website = new ArrayList<String> ();
+    public static ArrayList<String> opentime = new ArrayList<String> ();
+    public static ArrayList<String> price = new ArrayList<String> ();
+    public static ArrayList<String> kategori = new ArrayList<String> ();
+    public static ArrayList<String> alamat = new ArrayList<String> ();
+    public static ArrayList<String> latitude = new ArrayList<String> ();
+    public static ArrayList<String> longitude = new ArrayList<String> ();
+    public static ArrayList<String> otherinfo = new ArrayList<String> ();
+    public static ArrayList<String> foto = new ArrayList<String> ();
+    public static ArrayList<String> id_admin = new ArrayList<String> ();
     String ListAPI;
     int IOConnect = 0;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_list_information);
-        swipeRefreshLayout = findViewById(R.id.swipeRefreshLayout);
+        super.onCreate (savedInstanceState);
+        setContentView (R.layout.activity_list_information);
+        swipeRefreshLayout = findViewById (R.id.swipeRefreshLayout);
+
 
         //sharedpreferences
-        sharedpreferences = getSharedPreferences(LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
-
+        sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
         //get data
-        id = getIntent().getStringExtra(TAG_ID);
-
-
+        id = getIntent ().getStringExtra (TAG_ID);
         //set data if data null
-        id = sharedpreferences.getString(TAG_ID, null);
-
-        Log.d("admin_id", "id: "+id);
-
-
+        id = sharedpreferences.getString (TAG_ID, null);
+        //convert id to string id1
+        String id1 = id;
 
         ConnectivityManager cm;
 //        mDb = AppDatabase.getDatabase(getApplicationContext());
-        swipeRefreshLayout.setColorSchemeResources(R.color.orange, R.color.green, R.color.blue);
-        prgLoading = findViewById(R.id.prgLoading);
-        ListEvent = findViewById(R.id.ListBisnis);
+        swipeRefreshLayout.setColorSchemeResources (R.color.orange, R.color.green, R.color.blue);
+        prgLoading = findViewById (R.id.prgLoading);
+        ListEvent = findViewById (R.id.ListBisnis);
 //        edtKeyword = findViewById(R.id.edtKeyword);
 //        btnSearch = findViewById(R.id.btnSearch);
-        txtAlert = findViewById(R.id.txtAlert);
-        cla = new adapterList(ListInformationActivity.this);
+        txtAlert = findViewById (R.id.txtAlert);
+        cla = new adapterList (ListInformationActivity.this);
 //        mAdapter = new DataeventAdapter(ListEventSeminar.this);
-        ListAPI = ADMIN_PANEL_URL + "/get_dataadmin.php"+"?id_admin="+id+"?accesskey="+AccessKey;
-        new getDataTask().execute();
+        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?=id" + id1;
+//        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id="+id ;
+        new getDataTask ().execute ();
 
 
-        ListEvent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+        //Click List Event to Detail
+        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
                 // TODO Auto-generated method stub
                 // go to menu detail page
-                Intent iDetail = new Intent(ListInformationActivity.this, DetailInformationActivity.class);
-                iDetail.putExtra("ID", id_data.get (position));
-                startActivity(iDetail);
+                Intent iDetail = new Intent (ListInformationActivity.this, DetailInformationActivity.class);
+                iDetail.putExtra ("ID", id_data.get (position));
+                startActivity (iDetail);
             }
         });
 
-        Button btnDashboard = (Button)findViewById(R.id.btnDashboard);
-        btnDashboard.setOnClickListener(new View.OnClickListener() {
+        //Click Button to Outlet Activity
+        Button btnDashboard = (Button) findViewById (R.id.btnDashboard);
+        btnDashboard.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(ListInformationActivity.this, OutletDetailsActivity.class);
-                startActivity(intent);
+                Intent intent = new Intent (ListInformationActivity.this, OutletDetailsActivity.class);
+                startActivity (intent);
             }
         });
 
 
-
-        ListEvent.setOnScrollListener(new AbsListView.OnScrollListener() {
+        //Get List Data Bisnis Event to Display with Refresh Layout
+        ListEvent.setOnScrollListener (new AbsListView.OnScrollListener () {
 
             @Override
             public void onScrollStateChanged(AbsListView view, int scrollState) {
             }
+
             @Override
             public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
                 boolean enable = false;
-                if (ListEvent != null && ListEvent.getChildCount() > 0) {
-                    boolean firstItemVisible = ListEvent.getFirstVisiblePosition() == 0;
-                    boolean topOfFirstItemVisible = ListEvent.getChildAt(0).getTop() == 0;
+
+                if (ListEvent != null && ListEvent.getChildCount () > 0) {
+                    boolean firstItemVisible = ListEvent.getFirstVisiblePosition () == 0;
+                    boolean topOfFirstItemVisible = ListEvent.getChildAt (0).getTop () == 0;
                     enable = firstItemVisible && topOfFirstItemVisible;
                 }
-                swipeRefreshLayout.setEnabled(enable);
+                swipeRefreshLayout.setEnabled (enable);
             }
         });
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
+
+        //Refreshig List Data Bisnis Event
+        swipeRefreshLayout.setOnRefreshListener (new SwipeRefreshLayout.OnRefreshListener () {
             @Override
             public void onRefresh() {
-                new Handler().postDelayed(new Runnable() {
+                new Handler ().postDelayed (new Runnable () {
                     @Override
                     public void run() {
-                        swipeRefreshLayout.setRefreshing(false);
+                        swipeRefreshLayout.setRefreshing (false);
                         IOConnect = 0;
-                        ListEvent.invalidateViews();
-                        clearData();
-                        new getDataTask().execute();
+                        ListEvent.invalidateViews ();
+                        clearData ();
+                        new getDataTask ().execute ();
                     }
                 }, 3000);
             }
         });
+
+
     }
 
 
-
-    void clearData(){
-        id_data.clear();
-        nama_bisnis.clear();
-        no_telp.clear();
-        email.clear();
-        alamat.clear();
-        website.clear();
-        otherinfo.clear();
-        foto.clear();
+    void clearData() {
+        id_data.clear ();
+        nama_bisnis.clear ();
+        no_telp.clear ();
+        email.clear ();
+        alamat.clear ();
+        website.clear ();
+        otherinfo.clear ();
+        foto.clear ();
+        id_admin.clear ();
     }
+
     // asynctask class to handle parsing json in background
     public class getDataTask extends AsyncTask<Void, Void, Void> {
         // show progressbar first
-        getDataTask(){
-            conMgr = (ConnectivityManager) getSystemService(Context.CONNECTIVITY_SERVICE);
+
+        getDataTask() {
+            conMgr = (ConnectivityManager) getSystemService (Context.CONNECTIVITY_SERVICE);
             {
-                if (conMgr.getActiveNetworkInfo()!= null
-                        && conMgr.getActiveNetworkInfo().isAvailable()
-                        && conMgr.getActiveNetworkInfo().isConnected()) {
-                    if(!prgLoading.isShown()){
-                        prgLoading.setVisibility(View.VISIBLE);
-                        txtAlert.setVisibility(View.GONE);
+                if (conMgr.getActiveNetworkInfo () != null
+                        && conMgr.getActiveNetworkInfo ().isAvailable ()
+                        && conMgr.getActiveNetworkInfo ().isConnected ()) {
+                    if (!prgLoading.isShown ()) {
+                        prgLoading.setVisibility (View.VISIBLE);
+                        txtAlert.setVisibility (View.GONE);
                     }
 
                 } else {
@@ -236,141 +257,218 @@ public class ListInformationActivity extends AppCompatActivity {
             }
 
         }
+
         @Override
         protected Void doInBackground(Void... arg0) {
             // TODO Auto-generated method stub
             // parse json data from server in background
+            sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+            //get data
+            id = getIntent ().getStringExtra (TAG_ID);
+            //set data if data null
+            id = sharedpreferences.getString (TAG_ID, null);
+            //convert id to string id1
+            String id1 = id;
 
-            load_data();
+            parseJSONData ();
             return null;
         }
+
         @Override
         protected void onPostExecute(Void result) {
             // TODO Auto-generated method stub
             // when finish parsing, hide progressbar
-            prgLoading.setVisibility(View.GONE);
+            prgLoading.setVisibility (View.GONE);
             // if internet connection and data available show data on list
             // otherwise, show alert text
-            if((id_data.size() > 0) && (IOConnect == 0)){
-                ListEvent.setVisibility(View.VISIBLE);
-                ListEvent.setAdapter(cla);
-            }else{
-                ListEvent.setVisibility(View.VISIBLE);
-                Toast.makeText(getApplicationContext(), "No Internet Connection",
-                        Toast.LENGTH_LONG).show();
-                txtAlert.setVisibility(View.VISIBLE);
 
+            //sharedpreferences
+            sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+            //get data
+            id = getIntent ().getStringExtra (TAG_ID);
+            //set data if data null
+            id = sharedpreferences.getString (TAG_ID, null);
+            //convert id to string id1
+            String id1 = id;
+
+            if ((id_data.size () > 0) && (IOConnect == 0)) {
+
+
+                Toast.makeText (getApplicationContext (), "Id Admin :" + id1,
+                        Toast.LENGTH_LONG).show ();
+
+                ListEvent.setVisibility (View.VISIBLE);
+                ListEvent.setAdapter (cla);
+
+            } else {
+                ListEvent.setVisibility (View.VISIBLE);
+                Toast.makeText (getApplicationContext (), "No Internet Connection, Id Admin :"+id1,
+                        Toast.LENGTH_LONG).show ();
+                txtAlert.setVisibility (View.VISIBLE);
 
             }
         }
+
     }
 
 
+    public void parseJSONData() {
+        clearData ();
+        //sharedpreferences
+        sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+        //get data
+        id = getIntent ().getStringExtra (TAG_ID);
+        //set data if data null
+        id = sharedpreferences.getString (TAG_ID, null);
+        String url = Server.URL+"bd_get_all_list.php?id="+id;
 
-    public void parseJSONData(){
-        clearData();
+//
+//
+//        requestQueue = Volley.newRequestQueue(ListInformationActivity.this);
+//        list_data = new ArrayList<HashMap<String, String>>();
+//        stringRequest = new StringRequest(Request.Method.GET, ListAPI, new Response.Listener<String>() {
+//            @Override
+//            public void onResponse(String response1) {
+//                try {
+//                    // request data from Category API
+//
+//                    HttpClient client = new DefaultHttpClient ();
+//                    HttpConnectionParams.setConnectionTimeout (client.getParams (), 15000);
+//                    HttpConnectionParams.setSoTimeout (client.getParams (), 15000);
+//                    HttpUriRequest request = new HttpGet (ListAPI);
+//                    HttpResponse response = client.execute (request);
+//                    InputStream atomInputStream = response.getEntity ().getContent ();
+//                    BufferedReader in = new BufferedReader (new InputStreamReader (atomInputStream));
+//                    String line;
+//                    String str = "";
+//                    while ((line = in.readLine ()) != null) {
+//                        str += line;
+//                    }
+//                    // parse json data and store into arraylist variables
+//                    JSONObject json = new JSONObject (response1);
+//                    JSONArray data = json.getJSONArray ("data");
+//
+//                    for (int i = 0; i < data.length (); i++) {
+//                        JSONObject object = data.getJSONObject (i);
+//                        JSONObject staff = object.getJSONObject ("Staff");
+//
+//                        id_data.add (staff.getString ("id_data"));
+//                        nama_bisnis.add (staff.getString ("nama_bisnis"));
+//                        no_telp.add (staff.getString ("no_telp"));
+//                        email.add (staff.getString ("email"));
+//                        alamat.add (staff.getString ("alamat"));
+//                        website.add (staff.getString ("website"));
+//                        otherinfo.add (staff.getString ("otherinfo"));
+//                        foto.add (staff.getString ("foto"));
+//                        id_admin.add (staff.getString ("id_admin"));
+//
+//                    }
+//                }
+//                catch (MalformedURLException e) {
+//                    // TODO Auto-generated catch block
+//                    e.printStackTrace();
+//                }
+//
+//                catch (IOException e) {
+//                    // TODO Auto-generated catch block
+//                    IOConnect = 1;
+//                    e.printStackTrace();
+//                }
+//                catch (JSONException e) {
+//                    e.printStackTrace();
+//                }
+//            }
+//        }, new Response.ErrorListener() {
+//            @Override
+//            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(ListInformationActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
+//            }
+//        });
+//
+//        requestQueue.add(stringRequest);
+
+        //sharedpreferences
+//        sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+//        //get data
+//        id = getIntent ().getStringExtra (TAG_ID);
+//        //set data if data null
+//        id = sharedpreferences.getString (TAG_ID, null);
+//        String id1 = id;
+//        Toast.makeText (getApplicationContext (), "Id Admin :" + id1,
+//                Toast.LENGTH_LONG).show ();
+
+//        sharedpreferences
+//        sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+//        //get data
+//        id = getIntent ().getStringExtra (TAG_ID);
+//        //set data if data null
+//        id = sharedpreferences.getString (TAG_ID, null);
 
 
         try {
             // request data from Category API
 
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
-            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
-            HttpUriRequest request = new HttpGet(ListAPI);
-            HttpResponse response = client.execute(request);
-            InputStream atomInputStream = response.getEntity().getContent();
-            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
+            sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+            //get data
+            id = getIntent ().getStringExtra (TAG_ID);
+            //set data if data null
+            id = sharedpreferences.getString (TAG_ID, null);
+            //convert id to string id1
+            String id1 = id;
+
+            HttpClient client = new DefaultHttpClient ();
+            HttpConnectionParams.setConnectionTimeout (client.getParams (), 15000);
+            HttpConnectionParams.setSoTimeout (client.getParams (), 15000);
+            HttpUriRequest request = new HttpGet (ListAPI);
+            HttpResponse response = client.execute (request);
+            InputStream atomInputStream = response.getEntity ().getContent ();
+            BufferedReader in = new BufferedReader (new InputStreamReader (atomInputStream));
             String line;
-            String str = "";
-            while ((line = in.readLine()) != null){
+            String str ="";
+            while ((line = in.readLine ()) != null) {
                 str += line;
             }
             // parse json data and store into arraylist variables
-            Log.d("TAG", "parseJSONData: "+str);
-            JSONObject json = new JSONObject(str);
-            Log.d("TAG", "parseJSONData: "+json);
-            JSONArray data = json.getJSONArray("data");
-            for (int i = 0; i < data.length(); i++) {
-                JSONObject object = data.getJSONObject(i);
-                JSONObject staff = object.getJSONObject("Staff");
+            JSONObject json = new JSONObject (str);
+            JSONArray data = json.getJSONArray ("data");
 
+            for (int i = 0; i < data.length (); i++) {
+                JSONObject object = data.getJSONObject (i);
+                JSONObject staff = object.getJSONObject ("Staff");
 
-                id_data.add(staff.getString("id_data"));
-                nama_bisnis.add(staff.getString("nama_bisnis"));
-                no_telp.add(staff.getString("no_telp"));
-                email.add(staff.getString("email"));
-                alamat.add(staff.getString("alamat"));
-                website.add(staff.getString("website"));
-                otherinfo.add(staff.getString ("otherinfo"));
-                foto.add(staff.getString("foto"));
+                id_data.add (staff.getString ("id_data"));
+                nama_bisnis.add (staff.getString ("nama_bisnis"));
+                no_telp.add (staff.getString ("no_telp"));
+                email.add (staff.getString ("email"));
+                alamat.add (staff.getString ("alamat"));
+                website.add (staff.getString ("website"));
+                otherinfo.add (staff.getString ("otherinfo"));
+                foto.add (staff.getString ("foto"));
+                id_admin.add (staff.getString ("id_admin"));
 
             }
-        } catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
-        } catch (IOException e) {
-            // TODO Auto-generated catch block
-            IOConnect = 1;
-            e.printStackTrace();
-        } catch (JSONException e) {
+        }
+
+        catch (MalformedURLException e) {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
+
+        catch (IOException e) {
+            // TODO Auto-generated catch block
+            IOConnect = 1;
+            e.printStackTrace();
+        }
+
+        catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
+
+
+
+
     }
-    private void load_data() {
-        clearData();
-        //creating a string request to send request to the url
-        StringRequest stringRequest = new StringRequest(Request.Method.GET, ListAPI,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
 
 
-                        try {
-                            //getting the whole json object from the response
-                            JSONObject obj = new JSONObject(response);
-                            
-                            //we have the array named hero inside the object
-                            //so here we are getting that json array
-                            JSONArray data_array = obj.getJSONArray("data");
-
-                            //now looping through all the elements of the json array
-                            for (int i = 0; i < data_array.length(); i++) {
-                                //getting the json object of the particular index inside the array
-                                JSONObject object = data_array.getJSONObject(i);
-                                JSONObject staff = object.getJSONObject("Staff");
-
-
-                                id_data.add(staff.getString("id_data"));
-                                nama_bisnis.add(staff.getString("nama_bisnis"));
-                                no_telp.add(staff.getString("no_telp"));
-                                email.add(staff.getString("email"));
-                                alamat.add(staff.getString("alamat"));
-                                website.add(staff.getString("website"));
-                                otherinfo.add(staff.getString ("otherinfo"));
-                                foto.add(staff.getString("foto"));
-
-
-                            }
-
-                        } catch (JSONException e) {
-                            e.printStackTrace();
-                        }
-                    }
-                },
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        //displaying the error in toast if occurrs
-                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
-                    }
-                });
-
-        //creating a request queue
-        RequestQueue requestQueue = Volley.newRequestQueue(this);
-
-        //adding the string request to request queue
-        requestQueue.add(stringRequest);
-    }
 }

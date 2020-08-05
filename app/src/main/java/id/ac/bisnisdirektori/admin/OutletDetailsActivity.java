@@ -6,6 +6,7 @@ import androidx.cardview.widget.CardView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.Button;
 
 import id.ac.bisnisdirektori.R;
@@ -48,6 +49,19 @@ public class OutletDetailsActivity extends AppCompatActivity {
                 startActivity(intent);
             }
         });
+
+        Button editpassword = (Button) findViewById(R.id.edit_password);
+        editpassword.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getBaseContext(), AdminPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
 
 
 

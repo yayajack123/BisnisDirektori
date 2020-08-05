@@ -12,6 +12,7 @@ import android.content.SharedPreferences;
 import android.content.pm.PackageManager;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
@@ -312,19 +313,39 @@ public class InformationActivity extends AppCompatActivity{
     }
 
     public String getStringImage(Bitmap bmp) {
-        ByteArrayOutputStream baos = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, baos);
-        byte[] imageBytes = baos.toByteArray();
-        String encodedImage = Base64.encodeToString(imageBytes, Base64.DEFAULT);
-        return encodedImage;
+        if (bmp != null)
+        {
+            ByteArrayOutputStream baos = new ByteArrayOutputStream ();
+            bmp.compress (Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageBytes = baos.toByteArray ();
+            String encodedImage = Base64.encodeToString (imageBytes, Base64.DEFAULT);
+            return encodedImage;
+        }else {
+            bmp = ((BitmapDrawable) imgView.getDrawable ()).getBitmap ();
+            ByteArrayOutputStream baos = new ByteArrayOutputStream ();
+            bmp.compress (Bitmap.CompressFormat.JPEG, 100, baos);
+            byte[] imageBytes = baos.toByteArray ();
+            String encodedImage = Base64.encodeToString (imageBytes, Base64.DEFAULT);
+            return encodedImage;
+        }
     }
 
     private void setToImageView(Bitmap bmp) {
         //compress image
-        ByteArrayOutputStream bytes = new ByteArrayOutputStream();
-        bmp.compress(Bitmap.CompressFormat.JPEG, 100, bytes);
-        decoded = BitmapFactory.decodeStream(new ByteArrayInputStream (bytes.toByteArray()));
-        imgView.setImageBitmap(decoded);
+        if (bmp != null)
+        {
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream ();
+            bmp.compress (Bitmap.CompressFormat.JPEG, 100, bytes);
+            decoded = BitmapFactory.decodeStream (new ByteArrayInputStream (bytes.toByteArray ()));
+            imgView.setImageBitmap (decoded);
+        }else{
+            bmp = ((BitmapDrawable) imgView.getDrawable ()).getBitmap ();
+            ByteArrayOutputStream bytes = new ByteArrayOutputStream ();
+            bmp.compress (Bitmap.CompressFormat.JPEG, 100, bytes);
+            decoded = BitmapFactory.decodeStream (new ByteArrayInputStream (bytes.toByteArray ()));
+            imgView.setImageBitmap (decoded);
+        }
+
     }
 
     public Bitmap getResizedBitmap(Bitmap image, int maxSize) {
