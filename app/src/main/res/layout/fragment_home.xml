@@ -26,7 +26,7 @@
         android:textColor="#000"
         android:text="Tuban"
         android:textSize="20dp"
-        android:drawablePadding="20dp"
+        android:drawablePadding="10dp"
         android:drawableLeft="@drawable/ic_pin"
         android:layout_marginTop="10dp"
         android:layout_marginBottom="10dp"

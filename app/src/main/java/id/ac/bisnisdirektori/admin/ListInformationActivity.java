@@ -27,10 +27,12 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.android.volley.Request;
+import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 
 import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
@@ -79,7 +81,6 @@ public class ListInformationActivity extends AppCompatActivity {
     SharedPreferences sharedpreferences;
 
 
-
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
     public static String AccessKey = "12345";
     // database path configuration
@@ -126,10 +127,11 @@ public class ListInformationActivity extends AppCompatActivity {
         //get data
         id = getIntent().getStringExtra(TAG_ID);
 
+
         //set data if data null
         id = sharedpreferences.getString(TAG_ID, null);
 
-
+        Log.d("admin_id", "id: "+id);
 
 
 
@@ -143,7 +145,7 @@ public class ListInformationActivity extends AppCompatActivity {
         txtAlert = findViewById(R.id.txtAlert);
         cla = new adapterList(ListInformationActivity.this);
 //        mAdapter = new DataeventAdapter(ListEventSeminar.this);
-        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list.php" +"?accesskey="+AccessKey;
+        ListAPI = ADMIN_PANEL_URL + "/get_dataadmin.php"+"?id_admin="+id+"?accesskey="+AccessKey;
         new getDataTask().execute();
 
 
@@ -239,7 +241,7 @@ public class ListInformationActivity extends AppCompatActivity {
             // TODO Auto-generated method stub
             // parse json data from server in background
 
-            parseJSONData();
+            load_data();
             return null;
         }
         @Override
@@ -285,7 +287,9 @@ public class ListInformationActivity extends AppCompatActivity {
                 str += line;
             }
             // parse json data and store into arraylist variables
+            Log.d("TAG", "parseJSONData: "+str);
             JSONObject json = new JSONObject(str);
+            Log.d("TAG", "parseJSONData: "+json);
             JSONArray data = json.getJSONArray("data");
             for (int i = 0; i < data.length(); i++) {
                 JSONObject object = data.getJSONObject(i);
@@ -314,6 +318,59 @@ public class ListInformationActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+    private void load_data() {
+        clearData();
+        //creating a string request to send request to the url
+        StringRequest stringRequest = new StringRequest(Request.Method.GET, ListAPI,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
 
 
+                        try {
+                            //getting the whole json object from the response
+                            JSONObject obj = new JSONObject(response);
+                            
+                            //we have the array named hero inside the object
+                            //so here we are getting that json array
+                            JSONArray data_array = obj.getJSONArray("data");
+
+                            //now looping through all the elements of the json array
+                            for (int i = 0; i < data_array.length(); i++) {
+                                //getting the json object of the particular index inside the array
+                                JSONObject object = data_array.getJSONObject(i);
+                                JSONObject staff = object.getJSONObject("Staff");
+
+
+                                id_data.add(staff.getString("id_data"));
+                                nama_bisnis.add(staff.getString("nama_bisnis"));
+                                no_telp.add(staff.getString("no_telp"));
+                                email.add(staff.getString("email"));
+                                alamat.add(staff.getString("alamat"));
+                                website.add(staff.getString("website"));
+                                otherinfo.add(staff.getString ("otherinfo"));
+                                foto.add(staff.getString("foto"));
+
+
+                            }
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //displaying the error in toast if occurrs
+                        Toast.makeText(getApplicationContext(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                    }
+                });
+
+        //creating a request queue
+        RequestQueue requestQueue = Volley.newRequestQueue(this);
+
+        //adding the string request to request queue
+        requestQueue.add(stringRequest);
+    }
 }
