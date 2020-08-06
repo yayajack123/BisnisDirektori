@@ -128,9 +128,6 @@ public class AdminProfileActivity extends AppCompatActivity {
         });
 
 
-//        Intent iGet = getIntent ();
-//        id_data = iGet.getStringExtra ("ID");
-
         changePhoto = findViewById (R.id.change_photo_admin);
         imgPreview = (ImageView) findViewById (R.id.imgPreview);
         changePhoto.setOnClickListener (new View.OnClickListener () {
@@ -145,6 +142,7 @@ public class AdminProfileActivity extends AppCompatActivity {
 
 
     }
+
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
