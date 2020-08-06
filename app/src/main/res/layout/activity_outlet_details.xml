@@ -12,44 +12,72 @@
         android:layout_height="wrap_content"
         android:background="@color/white">
 
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/imgPreview"
+            android:layout_width="80dp"
+            android:layout_height="80dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:src="@drawable/userthumb"
+            android:layout_centerVertical="true"
+            android:layout_marginStart="10dp"
+            app:civ_border_color="@color/colorAccent"
+            app:civ_border_width="4dp" />
+
         <TextView
-            android:id="@+id/place_name"
+            android:id="@+id/admin_fullname"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="22dp"
+            android:layout_marginEnd="10dp"
+            android:layout_toEndOf="@+id/imgPreview"
+            android:layout_toRightOf="@id/imgPreview"
+            android:fontFamily="@font/montserrat_semibold"
             android:text="Jack Music Studio"
-            android:layout_margin="10dp"/>
+            android:textSize="16sp" />
+
         <TextView
-            android:id="@+id/loc_product"
-            android:layout_width="wrap_content"
+            android:id="@+id/admin_address"
             style="@style/margin"
-            android:layout_below="@id/place_name"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Tuban, Bali"/>
+            android:layout_below="@id/admin_fullname"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="7dp"
+            android:layout_toRightOf="@id/imgPreview"
+            android:text="Tuban, Bali" />
+
         <RatingBar
             android:id="@+id/rating_product"
             style="?android:attr/ratingBarStyleSmall"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/loc_product"
-            android:layout_marginLeft="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_below="@id/admin_address"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="5dp"
+            android:layout_toEndOf="@+id/imgPreview"
+            android:layout_toRightOf="@id/imgPreview"
+            android:isIndicator="true"
             android:numStars="5"
             android:rating="3"
-            android:stepSize="0.5"
-            android:isIndicator="true"/>
+            android:stepSize="0.5" />
 
         <TextView
             android:id="@+id/text_review"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/loc_product"
+            android:layout_below="@id/admin_address"
+            android:layout_marginStart="10dp"
             android:layout_marginLeft="10dp"
+            android:layout_marginTop="5dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
+            android:layout_toEndOf="@+id/rating_product"
             android:layout_toRightOf="@id/rating_product"
+            android:fontFamily="@font/montserat_regular"
             android:text="3.0"
+            android:textColor="#000"
             android:textStyle="bold" />
     </RelativeLayout>
 

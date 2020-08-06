@@ -120,20 +120,6 @@ public class DetailInformationActivity extends AppCompatActivity {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_detail_information);
 
-//        bitmap = ((BitmapDrawable) imgPreview.getDrawable()).getBitmap();
-
-        //Button Change Photo
-//        Button btnChangePhoto = (Button)findViewById(R.id.change_photo);
-//        btnChangePhoto.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                Intent intent = new Intent(DetailInformationActivity.this, EditFotoProfilAdminActivity.class);
-//                startActivity(intent);
-//            }
-//        });
-
-
-
 
         //Obtain the SupportMapFragment
         supportMapFragment = (SupportMapFragment) getSupportFragmentManager ().findFragmentById (R.id.google_map);

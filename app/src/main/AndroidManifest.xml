@@ -22,8 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.AdminPasswordActivity"></activity>
-        <!-- <activity android:name=".admin.EditFotoProfilAdminActivity"></activity> -->
+        <activity android:name=".admin.TestProfilActivity"></activity>
+        <activity android:name=".admin.AdminPasswordActivity" /> <!-- <activity android:name=".admin.EditFotoProfilAdminActivity"></activity> -->
         <activity android:name=".admin.DetailInformationActivity" />
         <activity android:name=".admin.ListInformationActivity" />
 
@@ -60,7 +60,7 @@
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar"></activity>
+            android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
         <activity android:name=".DetailProduct" />
         <activity
             android:name=".MainActivity"

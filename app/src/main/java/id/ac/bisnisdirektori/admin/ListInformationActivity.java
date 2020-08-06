@@ -155,7 +155,8 @@ public class ListInformationActivity extends AppCompatActivity {
         txtAlert = findViewById (R.id.txtAlert);
         cla = new adapterList (ListInformationActivity.this);
 //        mAdapter = new DataeventAdapter(ListEventSeminar.this);
-        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?=id" + id1;
+        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id_admin=" + id1;
+        Log.d("TAG", "url: "+ListAPI);
 //        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id="+id ;
         new getDataTask ().execute ();
 
@@ -293,16 +294,12 @@ public class ListInformationActivity extends AppCompatActivity {
 
             if ((id_data.size () > 0) && (IOConnect == 0)) {
 
-
-                Toast.makeText (getApplicationContext (), "Id Admin :" + id1,
-                        Toast.LENGTH_LONG).show ();
-
                 ListEvent.setVisibility (View.VISIBLE);
                 ListEvent.setAdapter (cla);
 
             } else {
                 ListEvent.setVisibility (View.VISIBLE);
-                Toast.makeText (getApplicationContext (), "No Internet Connection, Id Admin :"+id1,
+                Toast.makeText (getApplicationContext (), "No Internet Connection",
                         Toast.LENGTH_LONG).show ();
                 txtAlert.setVisibility (View.VISIBLE);
 
@@ -321,88 +318,6 @@ public class ListInformationActivity extends AppCompatActivity {
         //set data if data null
         id = sharedpreferences.getString (TAG_ID, null);
         String url = Server.URL+"bd_get_all_list.php?id="+id;
-
-//
-//
-//        requestQueue = Volley.newRequestQueue(ListInformationActivity.this);
-//        list_data = new ArrayList<HashMap<String, String>>();
-//        stringRequest = new StringRequest(Request.Method.GET, ListAPI, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response1) {
-//                try {
-//                    // request data from Category API
-//
-//                    HttpClient client = new DefaultHttpClient ();
-//                    HttpConnectionParams.setConnectionTimeout (client.getParams (), 15000);
-//                    HttpConnectionParams.setSoTimeout (client.getParams (), 15000);
-//                    HttpUriRequest request = new HttpGet (ListAPI);
-//                    HttpResponse response = client.execute (request);
-//                    InputStream atomInputStream = response.getEntity ().getContent ();
-//                    BufferedReader in = new BufferedReader (new InputStreamReader (atomInputStream));
-//                    String line;
-//                    String str = "";
-//                    while ((line = in.readLine ()) != null) {
-//                        str += line;
-//                    }
-//                    // parse json data and store into arraylist variables
-//                    JSONObject json = new JSONObject (response1);
-//                    JSONArray data = json.getJSONArray ("data");
-//
-//                    for (int i = 0; i < data.length (); i++) {
-//                        JSONObject object = data.getJSONObject (i);
-//                        JSONObject staff = object.getJSONObject ("Staff");
-//
-//                        id_data.add (staff.getString ("id_data"));
-//                        nama_bisnis.add (staff.getString ("nama_bisnis"));
-//                        no_telp.add (staff.getString ("no_telp"));
-//                        email.add (staff.getString ("email"));
-//                        alamat.add (staff.getString ("alamat"));
-//                        website.add (staff.getString ("website"));
-//                        otherinfo.add (staff.getString ("otherinfo"));
-//                        foto.add (staff.getString ("foto"));
-//                        id_admin.add (staff.getString ("id_admin"));
-//
-//                    }
-//                }
-//                catch (MalformedURLException e) {
-//                    // TODO Auto-generated catch block
-//                    e.printStackTrace();
-//                }
-//
-//                catch (IOException e) {
-//                    // TODO Auto-generated catch block
-//                    IOConnect = 1;
-//                    e.printStackTrace();
-//                }
-//                catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(ListInformationActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        requestQueue.add(stringRequest);
-
-        //sharedpreferences
-//        sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
-//        //get data
-//        id = getIntent ().getStringExtra (TAG_ID);
-//        //set data if data null
-//        id = sharedpreferences.getString (TAG_ID, null);
-//        String id1 = id;
-//        Toast.makeText (getApplicationContext (), "Id Admin :" + id1,
-//                Toast.LENGTH_LONG).show ();
-
-//        sharedpreferences
-//        sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
-//        //get data
-//        id = getIntent ().getStringExtra (TAG_ID);
-//        //set data if data null
-//        id = sharedpreferences.getString (TAG_ID, null);
 
 
         try {
