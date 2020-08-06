@@ -130,6 +130,22 @@ public class OutletDetailsActivity extends AppCompatActivity {
             }
         });
 
+        Button test = (Button) findViewById(R.id.managephoto);
+        test.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getBaseContext(), ListManagePhotoActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+
 
         //sharedpreferences
         sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);

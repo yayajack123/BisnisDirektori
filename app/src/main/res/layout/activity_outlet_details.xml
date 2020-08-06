@@ -35,8 +35,8 @@
             android:layout_toEndOf="@+id/imgPreview"
             android:layout_toRightOf="@id/imgPreview"
             android:fontFamily="@font/montserrat_semibold"
-            android:text="Jack Music Studio"
-            android:textSize="16sp" />
+            android:hint="Fullname"
+            android:textSize="20sp" />
 
         <TextView
             android:id="@+id/admin_address"
@@ -45,9 +45,9 @@
             android:layout_height="wrap_content"
             android:layout_below="@id/admin_fullname"
             android:layout_marginStart="20dp"
-            android:layout_marginTop="7dp"
+            android:layout_marginTop="5dp"
             android:layout_toRightOf="@id/imgPreview"
-            android:text="Tuban, Bali" />
+            android:hint="Address" />
 
         <RatingBar
             android:id="@+id/rating_product"
@@ -158,7 +158,7 @@
             style="@style/view"
             />
         <Button
-            android:id="@+id/about"
+            android:id="@+id/managephoto"
             android:fontFamily="@font/montserat_regular"
             android:textColor="#000"
             android:layout_width="match_parent"
