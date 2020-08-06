@@ -133,6 +133,8 @@ public class LoginAdminActivity extends AppCompatActivity {
         address = sharedpreferences.getString(TAG_ADDRESS, null);
         password = sharedpreferences.getString (TAG_PASSWORD, null);
 
+
+
         if (session) {
             Intent intent = new Intent(LoginAdminActivity.this, HomeAdminActivity.class);
             intent.putExtra(TAG_ID, id);
@@ -210,8 +212,7 @@ public class LoginAdminActivity extends AppCompatActivity {
                         editor.putString(TAG_PHONENUMBER, phonenumber);
                         editor.putString(TAG_ADDRESS, address);
                         editor.putString(TAG_PASSWORD, password);
-
-                        editor.commit();
+                        editor.apply();
 
                         // Memanggil main activity
                         Intent intent = new Intent(LoginAdminActivity.this, HomeAdminActivity.class);
