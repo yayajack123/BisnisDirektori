@@ -123,10 +123,8 @@ public class InformationActivity extends AppCompatActivity{
 
         //sharedpreferences
         sharedpreferences = getSharedPreferences(LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
-
         //get data
         id = getIntent().getStringExtra(TAG_ID);
-
         //set data if data null
         id = sharedpreferences.getString(TAG_ID, null);
 
@@ -159,6 +157,8 @@ public class InformationActivity extends AppCompatActivity{
                 showPictureDialog();
             }
         });
+
+
 
 
 

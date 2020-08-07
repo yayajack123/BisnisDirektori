@@ -136,8 +136,6 @@ public class ListInformationActivity extends AppCompatActivity {
         //convert id to string id1
         String id1 = id;
 
-        ConnectivityManager cm;
-//        mDb = AppDatabase.getDatabase(getApplicationContext());
         swipeRefreshLayout.setColorSchemeResources (R.color.orange, R.color.green, R.color.blue);
         prgLoading = findViewById (R.id.prgLoading);
         ListEvent = findViewById (R.id.ListBisnis);
@@ -145,7 +143,6 @@ public class ListInformationActivity extends AppCompatActivity {
 //        btnSearch = findViewById(R.id.btnSearch);
         txtAlert = findViewById (R.id.txtAlert);
         cla = new adapterList (ListInformationActivity.this);
-//        mAdapter = new DataeventAdapter(ListEventSeminar.this);
         ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id_admin=" + id1;
         Log.d("TAG", "url: "+ListAPI);
 //        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id="+id ;

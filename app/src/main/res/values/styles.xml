@@ -16,10 +16,11 @@
     </style>
 
     <style name="btn_follow">
-    <item name="android:background">@drawable/btn_follow</item>
-    <item name="fontFamily">@font/montserat_regular</item>
-    <item name="android:textColor">@color/colorPrimary</item>
-</style>
+        <item name="android:background">@drawable/btn_follow</item>
+        <item name="fontFamily">@font/montserat_regular</item>
+        <item name="android:textColor">@color/colorPrimary</item>
+    </style>
+
     <style name="btn_alpa">
         <item name="android:background">@drawable/btn_changephoto</item>
         <item name="alpha">0.80</item>
@@ -60,7 +61,7 @@
         <item name="android:fontFamily">@font/montserat_regular</item>
     </style>
 
-    <style name="margin" >
+    <style name="margin">
         <item name="android:layout_marginStart">10dp</item>
         <item name="android:layout_marginEnd">10dp</item>
     </style>

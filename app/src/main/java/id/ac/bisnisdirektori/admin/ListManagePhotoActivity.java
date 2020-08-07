@@ -121,16 +121,16 @@ public class ListManagePhotoActivity extends AppCompatActivity {
 
 
         //Click List Event to Detail
-//        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-//            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-//                                    long arg3) {
-//                // TODO Auto-generated method stub
-//                // go to menu detail page
-//                Intent iDetail = new Intent (ListManagePhotoActivity.this, TestDetailInformationActivity.class);
-//                iDetail.putExtra ("ID", id_data.get (position));
-//                startActivity (iDetail);
-//            }
-//        });
+        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+                                    long arg3) {
+                // TODO Auto-generated method stub
+                // go to menu detail page
+                Intent iDetail = new Intent (ListManagePhotoActivity.this, ListPhotoActivity.class);
+                iDetail.putExtra ("id_data", id_data.get (position));
+                startActivity (iDetail);
+            }
+        });
 
         //Click Button to Outlet Activity
         Button btnDashboard = (Button) findViewById (R.id.btnDashboard);

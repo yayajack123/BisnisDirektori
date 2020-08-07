@@ -152,6 +152,8 @@ public class DetailInformationActivity extends AppCompatActivity {
 
         update = findViewById (R.id.btn_update);
         delete = findViewById (R.id.btn_delete);
+
+        // Intent to detail with id data
         editTextId = findViewById (R.id.editTextId);
         editTextId.setText (id_data);
 
@@ -161,13 +163,14 @@ public class DetailInformationActivity extends AppCompatActivity {
                 uploadUpdate ();
             }
         });
-
         delete.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View v) {
                 confirmDelete ();
             }
         });
+
+        // Intent to detail with id data
         Intent iGet = getIntent ();
         id_data = iGet.getStringExtra ("ID");
 
@@ -180,6 +183,7 @@ public class DetailInformationActivity extends AppCompatActivity {
             }
         });
 
+        // Intent to detail with id data
         DetailAPI = ADMIN_PANEL_URL + "/bd_detail_list.php" + "?accesskey=" + AccessKey + "&ID=" + id_data;
         new getDataTask ().execute ();
 

@@ -22,7 +22,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.ListManagePhotoActivity"></activity>
+        <activity android:name=".admin.DetailPhotoProductActivity"></activity>
+        <activity android:name=".admin.UploadPhotoProductActivity" />
+        <activity
+            android:name=".admin.ListPhotoActivity"
+            android:label="@string/title_activity_list_photo"
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".admin.ListManagePhotoActivity" />
         <activity android:name=".admin.TestDetailInformationActivity" />
         <activity android:name=".admin.TestProfilActivity" />
         <activity android:name=".admin.AdminPasswordActivity" /> <!-- <activity android:name=".admin.EditFotoProfilAdminActivity"></activity> -->

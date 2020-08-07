@@ -1,0 +1,158 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <LinearLayout
+        android:id="@+id/lytSearch"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        android:visibility="visible">
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <ImageView
+                android:id="@+id/upload_photo"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="5dp"
+                android:src="@drawable/imgcamera">
+            </ImageView>
+
+            <ImageView
+                android:id="@+id/imgPreview"
+                android:layout_width="100dp"
+                android:layout_height="100dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginRight="10dp">
+            </ImageView>
+
+        </LinearLayout>
+
+
+<!--        <Button-->
+<!--            android:id="@+id/upload_photo"-->
+<!--            style="@style/btn_alpa"-->
+<!--            android:layout_width="wrap_content"-->
+<!--            android:layout_height="30dp"-->
+<!--            android:layout_marginStart="210dp"-->
+<!--            android:layout_marginTop="-40dp"-->
+<!--            android:layout_marginEnd="10dp"-->
+<!--            android:layout_marginBottom="19dp"-->
+<!--            android:drawablePadding="10dp"-->
+<!--            android:padding="10dp"-->
+<!--            android:text="Upload Photo"-->
+<!--            android:textAllCaps="false" />-->
+
+        <EditText
+            android:id="@+id/idDataProduct"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginRight="10dp"
+            android:hint="Id Data"
+            android:textColor="@android:color/tab_indicator_text"
+            android:textSize="18sp" />
+
+
+        <Button
+            android:id="@+id/btnSubmit"
+            android:layout_width="100dp"
+            android:layout_height="50dp"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="0dp"
+            android:layout_marginRight="10dp"
+            android:layout_marginBottom="5dp"
+            android:backgroundTint="@color/colorAccent"
+            android:text="Submit"
+            android:textSize="14sp" />
+
+        <Button
+            android:id="@+id/edit_profile"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:drawableStart="@drawable/ic_picture"
+            android:layout_marginBottom="10dp"
+            android:layout_marginTop="5dp"
+            android:drawablePadding="15dp"
+            android:text="Photo Product"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"/>
+        <View style="@style/view" />
+    </LinearLayout>
+
+
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/lytSearch"
+        android:padding="3dp"
+        android:layout_marginBottom="60dp">
+
+        <GridLayout
+            android:layout_width="match_parent"
+            android:layout_height="400dp"
+            android:layout_below="@+id/layout_1"
+            android:layout_marginTop="20dp"
+            android:orientation="horizontal">
+            <GridView
+                android:id="@+id/ListPhoto"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginBottom="10dp">
+            </GridView>
+        </GridLayout>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <ProgressBar
+        android:id="@+id/prgLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+    <TextView
+        android:id="@+id/txtAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="not found"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+
+
+<!--    <Button-->
+<!--        android:id="@+id/btnDashboard"-->
+<!--        android:layout_width="match_parent"-->
+<!--        android:layout_height="50dp"-->
+<!--        android:layout_alignParentBottom="true"-->
+<!--        android:layout_marginLeft="10dp"-->
+<!--        android:layout_marginRight="10dp"-->
+<!--        android:layout_marginBottom="10dp"-->
+<!--        android:background="@drawable/btn_login"-->
+<!--        android:fontFamily="@font/montserrat_semibold"-->
+<!--        android:text="Dashboard"-->
+<!--        android:textAlignment="center"-->
+<!--        android:textColor="@color/white"-->
+<!--        android:textSize="18sp">-->
+<!--    </Button>-->
+
+
+
+
+
+
+</RelativeLayout>
