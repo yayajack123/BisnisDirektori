@@ -3,20 +3,16 @@ package id.ac.bisnisdirektori.admin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
-import android.app.ProgressDialog;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.icu.text.IDNA;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
-import android.widget.Adapter;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
@@ -26,36 +22,8 @@ import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.android.volley.Request;
 import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.VolleyLog;
 import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.apache.http.params.HttpConnectionParams;
-import org.json.JSONArray;
-import org.json.JSONException;
-import org.json.JSONObject;
-
-import java.io.BufferedReader;
-import java.io.IOException;
-import java.io.InputStream;
-import java.io.InputStreamReader;
-import java.net.MalformedURLException;
-import java.util.ArrayList;
-import java.util.Arrays;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
-
-import androidx.appcompat.widget.SearchView;
-import androidx.core.view.MenuItemCompat;
-import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
-import id.ac.bisnisdirektori.EditProfileUserActivity;
-import id.ac.bisnisdirektori.LoginActivity;
-import id.ac.bisnisdirektori.R;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -66,6 +34,7 @@ import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStream;
@@ -73,10 +42,11 @@ import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
 
-public class ListInformationActivity extends AppCompatActivity {
+import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
+import id.ac.bisnisdirektori.R;
+
+public class ListManagePhotoActivity extends AppCompatActivity {
 
     //Shared Preferences from Login Admin
     public final static String TAG_ID = "id";
@@ -99,7 +69,7 @@ public class ListInformationActivity extends AppCompatActivity {
     EditText edtKeyword;
     ImageButton btnSearch;
     TextView txtAlert;
-    adapterList cla;
+    adapterListPhoto cla;
     ConnectivityManager conMgr;
 
     public static ArrayList<String> id_data = new ArrayList<String> ();
@@ -122,9 +92,7 @@ public class ListInformationActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_list_information);
-
-
+        setContentView (R.layout.activity_list_manage_photo);
 
         swipeRefreshLayout = findViewById (R.id.swipeRefreshLayout);
         //sharedpreferences
@@ -144,32 +112,32 @@ public class ListInformationActivity extends AppCompatActivity {
 //        edtKeyword = findViewById(R.id.edtKeyword);
 //        btnSearch = findViewById(R.id.btnSearch);
         txtAlert = findViewById (R.id.txtAlert);
-        cla = new adapterList (ListInformationActivity.this);
+        cla = new adapterListPhoto (ListManagePhotoActivity.this);
 //        mAdapter = new DataeventAdapter(ListEventSeminar.this);
-        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id_admin=" + id1;
+        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_photo.php?id_admin=" + id1;
         Log.d("TAG", "url: "+ListAPI);
 //        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id="+id ;
         new getDataTask ().execute ();
 
 
         //Click List Event to Detail
-        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-                // TODO Auto-generated method stub
-                // go to menu detail page
-                Intent iDetail = new Intent (ListInformationActivity.this, DetailInformationActivity.class);
-                iDetail.putExtra ("ID", id_data.get (position));
-                startActivity (iDetail);
-            }
-        });
+//        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+//            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+//                                    long arg3) {
+//                // TODO Auto-generated method stub
+//                // go to menu detail page
+//                Intent iDetail = new Intent (ListManagePhotoActivity.this, TestDetailInformationActivity.class);
+//                iDetail.putExtra ("ID", id_data.get (position));
+//                startActivity (iDetail);
+//            }
+//        });
 
         //Click Button to Outlet Activity
         Button btnDashboard = (Button) findViewById (R.id.btnDashboard);
         btnDashboard.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (ListInformationActivity.this, OutletDetailsActivity.class);
+                Intent intent = new Intent (ListManagePhotoActivity.this, OutletDetailsActivity.class);
                 startActivity (intent);
             }
         });
@@ -212,9 +180,7 @@ public class ListInformationActivity extends AppCompatActivity {
             }
         });
 
-
     }
-
 
     void clearData() {
         id_data.clear ();
@@ -375,6 +341,10 @@ public class ListInformationActivity extends AppCompatActivity {
 
 
     }
+
+
+
+
 
 
 }

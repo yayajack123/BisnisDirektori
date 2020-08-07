@@ -6,34 +6,25 @@
     android:layout_height="match_parent"
     tools:context=".admin.AdminProfileActivity">
 
-    <Button
-        android:id="@+id/btn_update"
-        android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:text="UPDATE"
-        android:fontFamily="@font/montserrat_semibold"
-        android:background="@color/colorAccent"
-        android:layout_alignParentBottom="true"/>
+
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content">
-
             <RelativeLayout
                 android:id="@id/layout_2"
                 android:layout_width="match_parent"
                 android:layout_height="200dp"
                 android:background="@color/colorAccent">
-
                 <de.hdodenhof.circleimageview.CircleImageView
                     android:id="@+id/imgPreview"
                     android:layout_width="100dp"
                     android:layout_height="100dp"
+                    android:src="@drawable/userthumb"
                     android:layout_centerVertical="true"
                     android:layout_marginStart="25dp"
-                    android:src="@drawable/ic_admin"
                     app:civ_border_color="#FFFFFF"
                     app:civ_border_width="4dp" />
 
@@ -79,106 +70,110 @@
                     android:hint="Email Admin"
                     android:textColor="@color/white" />
 
-
             </RelativeLayout>
 
+            <LinearLayout
+                android:id="@+id/form"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="50dp"
+                android:layout_below="@id/layout_2"
+                android:layout_width="match_parent"
+                android:layout_marginStart="25dp"
+                android:layout_marginEnd="25dp"
+                android:orientation="vertical"
+                android:layout_height="wrap_content">
+                <EditText
+                    android:id="@+id/editTextId"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone"
+                    />
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Fullname "
 
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/fullname_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Fullname"
+                    android:inputType="text"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_account_circle_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Phone number"
+                    style="@style/body2"/>
+
+                <EditText
+                    android:id="@+id/phonenumber_admin"
+                    style="@style/body"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_add_ic_call_24"
+                    android:drawablePadding="10dp"
+                    android:hint="Phone number..."
+                    android:inputType="number"
+                    tools:ignore="TextFields" />
+
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Email"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/email_admin"
+                    android:layout_width="match_parent"
+                    android:hint="Email..."
+                    android:inputType="textEmailAddress"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_email_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+                <TextView
+                    android:layout_marginTop="10dp"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="Address"
+                    style="@style/body2"/>
+                <EditText
+                    android:id="@+id/address_admin"
+                    android:inputType="text"
+                    android:layout_width="match_parent"
+                    android:hint="Address"
+                    style="@style/body"
+                    android:layout_marginTop="5dp"
+                    android:drawableStart="@drawable/ic_outline_place_24"
+                    android:drawablePadding="10dp"
+                    android:layout_height="wrap_content"/>
+
+
+            </LinearLayout>
+        </RelativeLayout>
+    </ScrollView>
     <LinearLayout
-        android:id="@+id/form"
-        android:layout_marginTop="10dp"
-        android:layout_marginBottom="50dp"
-        android:layout_below="@id/layout_2"
         android:layout_width="match_parent"
-        android:layout_marginStart="25dp"
-        android:layout_marginEnd="25dp"
-        android:orientation="vertical"
-        android:layout_height="wrap_content">
-        <TextView
-            android:layout_width="0dp"
-            android:layout_height="0dp"
-            android:text="Id"
-            style="@style/body2"/>
-        <EditText
-            android:id="@+id/id_admin"
-            android:text="Id. Admin"
-            android:layout_width="0dp"
-            android:hint="Business name"
-            android:inputType="text"
-            style="@style/body"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_outline_account_circle_24"
-            android:drawablePadding="0dp"
-            android:layout_height="0dp"/>
-
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="Fullname"
-
-                style="@style/body2"/>
-        <EditText
-            android:id="@+id/fullname_admin"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:layout_alignParentBottom="true">
+        <Button
+            android:id="@+id/btn_update"
             android:layout_width="match_parent"
-            android:hint="Fullname"
-            android:inputType="text"
-            style="@style/body"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_outline_account_circle_24"
-            android:drawablePadding="10dp"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="Phone number"
-            style="@style/body2"/>
-        <EditText
-            android:id="@+id/phonenumber_admin"
-            android:layout_width="match_parent"
-            android:hint="Phonenumber"
-            android:inputType="number"
-            style="@style/body"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_outline_add_ic_call_24"
-            android:drawablePadding="10dp"
-            android:layout_height="wrap_content"
-            tools:ignore="TextFields" />
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Email"
-            style="@style/body2"/>
-        <EditText
-            android:id="@+id/email_admin"
-            android:layout_width="match_parent"
-            android:hint="Email"
-            android:inputType="textEmailAddress"
-            style="@style/body"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_outline_email_24"
-            android:drawablePadding="10dp"
-            android:layout_height="wrap_content"/>
-        <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="Address"
-            style="@style/body2"/>
-        <EditText
-            android:id="@+id/address_admin"
-            android:layout_width="match_parent"
-            android:hint="Address"
-            android:inputType="text"
-            style="@style/body"
-            android:layout_marginTop="5dp"
-            android:drawableStart="@drawable/ic_outline_place_24"
-            android:drawablePadding="10dp"
-            android:layout_height="wrap_content"/>
+            android:layout_weight="1"
+            android:textAllCaps="false"
+            android:text="Save Change"
+            android:fontFamily="@font/montserrat_semibold"
+            android:background="@color/colorAccent" />
 
     </LinearLayout>
-
-</RelativeLayout>
-    </ScrollView>
 </RelativeLayout>
