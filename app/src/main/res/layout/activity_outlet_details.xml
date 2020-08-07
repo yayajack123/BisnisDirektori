@@ -11,46 +11,33 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white">
-
+<de.hdodenhof.circleimageview.CircleImageView
+    android:id="@+id/profil_admin"
+    android:layout_width="50dp"
+    android:layout_height="50dp"
+    android:layout_marginLeft="10dp"
+    android:layout_marginTop="20dp"
+    android:layout_marginBottom="10dp"
+    android:src="@drawable/ic_user"/>
         <TextView
-            android:id="@+id/place_name"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Jack Music Studio"
-            android:layout_margin="10dp"/>
-        <TextView
-            android:id="@+id/loc_product"
-            android:layout_width="wrap_content"
-            style="@style/margin"
-            android:layout_below="@id/place_name"
-            android:layout_height="wrap_content"
-            android:text="Tuban, Bali"/>
-        <RatingBar
-            android:id="@+id/rating_product"
-            style="?android:attr/ratingBarStyleSmall"
+            android:id="@+id/username_admin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/loc_product"
+            android:text="Juliarta"
+            android:textSize="16dp"
+            android:textStyle="bold"
             android:layout_marginLeft="10dp"
             android:layout_marginTop="20dp"
-            android:numStars="5"
-            android:rating="3"
-            android:stepSize="0.5"
-            android:isIndicator="true"/>
-
+            android:layout_toEndOf="@id/profil_admin"/>
         <TextView
-            android:id="@+id/text_review"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
+            android:layout_toEndOf="@id/profil_admin"
+            android:layout_below="@id/username_admin"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/loc_product"
-            android:layout_marginLeft="10dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginTop="20dp"
-            android:layout_toRightOf="@id/rating_product"
-            android:text="3.0"
-            android:textStyle="bold" />
+            android:layout_marginTop="5dp"
+            android:layout_marginStart="10dp"
+            android:text="total bisnis : 2"
+            />
     </RelativeLayout>
 
     <LinearLayout
