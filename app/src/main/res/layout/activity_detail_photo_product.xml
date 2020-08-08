@@ -103,7 +103,7 @@
             android:textColor="@color/white"
             android:text="Delete"
             android:fontFamily="@font/montserrat_semibold"
-            android:background="@color/colorPrimary"
+            android:background="@color/red"
             />
     </LinearLayout>
 </RelativeLayout>

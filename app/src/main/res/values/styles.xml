@@ -1,18 +1,19 @@
 <resources>
 
     <!-- Base application theme. -->
-    <style name="AppTheme" parent="Theme.MaterialComponents.Light.Bridge">
+    <style name="AppTheme" parent="Theme.MaterialComponents.Light.DarkActionBar.Bridge">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FF1744</item>
-        <item name="colorPrimaryDark">#F50057</item>
+        <item name="colorPrimary">#234f9c</item>
+        <item name="colorPrimaryDark">#234f9c</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
     <style name="loginregister" parent="Theme.MaterialComponents.Light.NoActionBar">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#FF1744</item>
-        <item name="colorPrimaryDark">#F50057</item>
+        <item name="colorPrimary">@color/colorPrimary</item>
+        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
+
 
     <style name="view">
         <item name="android:layout_width">match_parent</item>
@@ -23,13 +24,13 @@
     <style name="btn_follow">
         <item name="android:background">@drawable/btn_follow</item>
         <item name="fontFamily">@font/montserat_regular</item>
-        <item name="android:textColor">@color/colorPrimary</item>
+        <item name="android:textColor">@color/white</item>
     </style>
 
     <style name="btn_alpa">
         <item name="android:background">@drawable/btn_changephoto</item>
         <item name="alpha">0.80</item>
-        <item name="fontFamily">@font/montserat_regular</item>
+
         <item name="android:textColor">#000</item>
         <item name="android:textSize">8sp</item>
     </style>

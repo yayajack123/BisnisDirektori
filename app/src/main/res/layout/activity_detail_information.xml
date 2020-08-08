@@ -281,7 +281,7 @@
             android:layout_weight="1"
             android:textAllCaps="false"
             android:text="Save Change"
-            android:fontFamily="@font/montserrat_semibold"
+
             android:background="@color/colorAccent"
             />
         <Button
@@ -292,8 +292,7 @@
             android:textAllCaps="false"
             android:textColor="@color/white"
             android:text="Delete"
-            android:fontFamily="@font/montserrat_semibold"
-            android:background="@color/colorPrimary"
+            android:background="@color/red"
             />
     </LinearLayout>
 </RelativeLayout>
