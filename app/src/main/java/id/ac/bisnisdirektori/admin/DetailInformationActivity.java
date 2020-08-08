@@ -534,7 +534,6 @@ public class DetailInformationActivity extends AppCompatActivity {
         final String otherinfo = txtOtherinfo.getText().toString().trim();
         final String foto = getStringImage(decoded);
 
-//        final String foto = getStringImage(decoded);
 
         class uploadWorkKnowledge extends AsyncTask<Void, Void, String> {
             ProgressDialog loading;

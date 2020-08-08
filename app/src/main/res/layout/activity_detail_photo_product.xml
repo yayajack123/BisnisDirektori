@@ -16,8 +16,8 @@
             <RelativeLayout
                 android:id="@id/layout_2"
                 android:layout_width="match_parent"
-                android:layout_height="200dp"
-                android:background="@color/colorAccent">
+                android:layout_height="400dp"
+                android:background="@color/white">
                 <ImageView
                     android:id="@+id/imgPreview"
                     android:layout_width="match_parent"
@@ -53,133 +53,17 @@
                     android:id="@+id/editTextId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
-                    android:visibility="gone"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="Businnes name "
+                    android:text="Id Data "
 
                     style="@style/body2"/>
                 <EditText
-                    android:id="@+id/businessname_admin"
+                    android:id="@+id/id_data"
                     android:layout_width="match_parent"
-                    android:hint="Business name"
-                    android:inputType="text"
-                    style="@style/body"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_place_24"
-                    android:drawablePadding="10dp"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Phone number"
-                    style="@style/body2"/>
-
-                <EditText
-                    android:id="@+id/phonenumber_admin"
-                    style="@style/body"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_add_ic_call_24"
-                    android:drawablePadding="10dp"
-                    android:hint="Phone number..."
-                    android:inputType="number"
-                    tools:ignore="TextFields" />
-
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Email"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/email_admin"
-                    android:layout_width="match_parent"
-                    android:hint="Email..."
-                    android:inputType="textEmailAddress"
-                    style="@style/body"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_email_24"
-                    android:drawablePadding="10dp"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Website"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/web_admin"
-                    android:inputType="text"
-                    android:layout_width="match_parent"
-                    android:hint="Website"
-                    style="@style/body"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_web_24"
-                    android:drawablePadding="10dp"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Open time "
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/opentime_admin"
-                    android:layout_width="match_parent"
-                    android:hint="Open time, ex: 10.00 AM - 12.00 PM"
-                    android:inputType="text"
-                    style="@style/body"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_access_time_24"
-                    android:drawablePadding="10dp"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Price range"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/price_admin"
-                    android:layout_width="match_parent"
-                    android:inputType="text"
-                    android:hint="Price Range, ex : Rp100.000 for two hours"
-                    style="@style/body"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_monetization_on_24"
-                    android:drawablePadding="10dp"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Category"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/kategori_admin"
-                    android:layout_width="match_parent"
-                    android:hint="Category.."
-                    style="@style/body"
-                    android:inputType="text"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_category_24"
-                    android:drawablePadding="10dp"
-                    android:layout_height="wrap_content"/>
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Full Address"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/alamat_admin"
-                    android:layout_width="match_parent"
-                    android:hint="Full address"
+                    android:hint="Id Data"
                     android:inputType="text"
                     style="@style/body"
                     android:layout_marginTop="5dp"
@@ -187,84 +71,6 @@
                     android:drawablePadding="10dp"
                     android:layout_height="wrap_content"/>
 
-                <TextView
-                    android:layout_marginTop="0dp"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:text="Latitude"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/latitude_admin"
-                    android:layout_width="0dp"
-                    android:hint="Latitude"
-                    android:inputType="text"
-                    style="@style/body"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_place_24"
-                    android:drawablePadding="0dp"
-                    android:layout_height="0dp"/>
-
-                <TextView
-                    android:layout_marginTop="0dp"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:text="Longitude"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/longitude_admin"
-                    android:layout_width="0dp"
-                    android:hint="Longitude"
-                    android:inputType="text"
-                    style="@style/body"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_place_24"
-                    android:drawablePadding="0dp"
-                    android:layout_height="0dp"/>
-
-                <fragment
-                    android:layout_width="match_parent"
-                    android:layout_height="200dp"
-                    android:layout_marginTop="10dp"
-                    android:layout_marginLeft="10dp"
-                    android:layout_marginRight="10dp"
-                    android:layout_marginBottom="10dp"
-                    android:id="@+id/google_map"
-                    android:name="com.google.android.gms.maps.SupportMapFragment">
-                </fragment>
-
-                <TextView
-                    android:layout_marginTop="10dp"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:text="Other info"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/otherinfo_admin"
-                    android:layout_width="match_parent"
-                    android:hint="Other info, ex : Not support online payment"
-                    style="@style/body"
-                    android:inputType="text"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_info_24"
-                    android:drawablePadding="10dp"
-                    android:layout_height="wrap_content"/>
-
-                <TextView
-                    android:layout_marginTop="0dp"
-                    android:layout_width="0dp"
-                    android:layout_height="0dp"
-                    android:text="Id Admin"
-                    style="@style/body2"/>
-                <EditText
-                    android:id="@+id/id_admin"
-                    android:layout_width="0dp"
-                    android:hint="Id Admin"
-                    style="@style/body"
-                    android:inputType="text"
-                    android:layout_marginTop="5dp"
-                    android:drawableStart="@drawable/ic_outline_info_24"
-                    android:drawablePadding="0dp"
-                    android:layout_height="0dp"/>
             </LinearLayout>
         </RelativeLayout>
     </ScrollView>

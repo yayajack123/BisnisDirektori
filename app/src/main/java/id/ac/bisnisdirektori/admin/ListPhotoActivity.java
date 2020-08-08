@@ -222,11 +222,12 @@ public class ListPhotoActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 // go to menu detail page
 
-//                Intent iDetail = new Intent (ListPhotoActivity.this, ListPhotoActivity.class);
-//                iDetail.putExtra ("id_foto", id_foto.get (position));
-//                startActivity (iDetail);
-                Toast.makeText (getApplicationContext (), "Id Data",
-                        Toast.LENGTH_LONG).show ();
+                Intent iDetail = new Intent (ListPhotoActivity.this, DetailPhotoProductActivity.class);
+                iDetail.putExtra ("id_foto", id_foto.get (position));
+                iDetail.putExtra ("id_data", id_data.get (position));
+                startActivity (iDetail);
+//                Toast.makeText (getApplicationContext (), "Id Data",
+//                        Toast.LENGTH_LONG).show ();
 
             }
         });
