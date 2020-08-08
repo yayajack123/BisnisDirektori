@@ -14,7 +14,7 @@
 
         <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="131dp">
+            android:layout_height="wrap_content">
 
 
             <!--        <TextView-->
@@ -43,7 +43,6 @@
                 android:id="@+id/imgThumb"
                 android:layout_width="92dp"
                 android:layout_height="92dp"
-                android:layout_centerVertical="true"
                 android:layout_marginStart="10dp"
                 android:layout_marginTop="10dp"
                 android:layout_marginBottom="5dp"
@@ -99,7 +98,7 @@
                 android:layout_marginStart="20dp"
                 android:layout_marginLeft="10dp"
                 android:layout_marginTop="5dp"
-                android:layout_marginBottom="10dp"
+                android:layout_marginBottom="13dp"
                 android:layout_toEndOf="@+id/imgThumb"
                 android:fontFamily="@font/montserat_regular"
                 android:hint="Other Info"
