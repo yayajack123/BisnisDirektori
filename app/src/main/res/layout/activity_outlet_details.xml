@@ -92,13 +92,12 @@
             android:id="@+id/edit_profile"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:textColor="#000"
             android:drawableStart="@drawable/ic_outline_account_circle_24"
             android:drawablePadding="15dp"
             android:text="Edit Profile"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:textAlignment="viewStart"
             android:textAllCaps="false"/>
         <View
@@ -111,10 +110,9 @@
             android:drawableStart="@drawable/ic_outline_security_24"
             android:drawablePadding="15dp"
             android:text="Edit Password"
-            android:fontFamily="@font/montserat_regular"
             android:textColor="#000"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:textAlignment="viewStart"
             android:textAllCaps="false"/>
         <View
@@ -131,11 +129,10 @@
             android:layout_height="wrap_content"
             android:drawablePadding="15dp"
             android:text="Create Bisnis"
-            android:fontFamily="@font/montserat_regular"
             android:textColor="#000"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
             android:drawableStart="@drawable/ic_outline_info_24"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:textAlignment="viewStart"
             android:textAllCaps="false"/>
         <View
@@ -146,12 +143,11 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="List Bisnis"
+            android:textColor="#000"
             android:drawablePadding="15dp"
             android:drawableStart="@drawable/ic_outline_monetization_on_24"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-            style="@style/Widget.AppCompat.Button.Borderless"
             android:textAlignment="viewStart"
             android:textAllCaps="false"/>
         <View
@@ -159,15 +155,14 @@
             />
         <Button
             android:id="@+id/managephoto"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:text="Manages Photos"
             android:drawablePadding="15dp"
+            android:textColor="#000"
             android:drawableStart="@drawable/ic_outline_photo_library_24"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-            style="@style/Widget.AppCompat.Button.Borderless"
+            style="@style/Widget.MaterialComponents.Button.OutlinedButton.Icon"
             android:textAlignment="viewStart"
             android:textAllCaps="false"/>
         <View
