@@ -79,7 +79,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
     CoordinatorLayout coordinatorLayout;
     int IOConnect = 0;
     String foto, id_data;
-    String DetailAPI;
+    String DetailAPI, DetailUpdate, DetailDelete;
     private String id_foto;
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
     public static String AccessKey = "12345";
@@ -100,23 +100,15 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
 //        id_data1 = iGet.getStringExtra ("id_data");
 //        String idData = id_data1;
 
+        DetailUpdate = ADMIN_PANEL_URL + "/bd_update_photo_product.php";
+        DetailDelete = ADMIN_PANEL_URL + "/bd_delete_photo_product.php?id_foto=";
+
 
         coordinatorLayout = (CoordinatorLayout) findViewById (R.id.main_content);
         imgPreview = findViewById (R.id.imgPreview);
 
 
-//        update.setOnClickListener (new View.OnClickListener () {
-//            @Override
-//            public void onClick(View v) {
-//                uploadUpdate ();
-//            }
-//        });
-//        delete.setOnClickListener (new View.OnClickListener () {
-//            @Override
-//            public void onClick(View v) {
-//                confirmDelete ();
-//            }
-//        });
+
 
         // Intent to detail with id data
         Intent iGet = getIntent ();
@@ -145,6 +137,20 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
         // Intent to detail with id data
         DetailAPI = ADMIN_PANEL_URL + "/bd_detail_list_photo.php?id_foto="+ id_foto;
         new getDataTask ().execute ();
+
+        update.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                uploadUpdate ();
+            }
+        });
+        delete.setOnClickListener (new View.OnClickListener () {
+            @Override
+            public void onClick(View v) {
+                confirmDelete ();
+            }
+        });
+
 
     }
 
@@ -293,7 +299,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
             // when finish parsing, hide progressbar
             // if internet connection and data available show data
             // otherwise, show alert text
-            if ((foto != null) && IOConnect == 0) {
+            if ((id_foto != null) && IOConnect == 0) {
 //                coordinatorLayout.setVisibility(View.VISIBLE);
                 Picasso.with(getApplicationContext()).load(ADMIN_PANEL_URL + "/" + foto).placeholder(R.drawable.logogeografis).into(imgPreview, new Callback () {
                     @Override
@@ -371,6 +377,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
 
     private void uploadUpdate() {
 
+
         // Create the ParseFile
         final String foto = getStringImage(decoded);
 
@@ -390,7 +397,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
                 loading.dismiss();
                 if (s != null) {
                     Toast.makeText(DetailPhotoProductActivity.this, "Success", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(DetailPhotoProductActivity.this, ListPhotoActivity.class));
+                    startActivity(new Intent(DetailPhotoProductActivity.this, ListManagePhotoActivity.class));
 
                 } else {
                     Toast.makeText(DetailPhotoProductActivity.this, "Error", Toast.LENGTH_LONG).show();
@@ -399,11 +406,15 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
 
             @Override
             protected String doInBackground(Void... params) {
+
+                Intent iGet = getIntent ();
+                id_foto = iGet.getStringExtra ("id_foto");
+
                 HashMap<String, String> hashMap = new HashMap<>();
                 hashMap.put(KEY_IDFOTO, id_foto);
                 hashMap.put(KEY_FOTO, foto);
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendPostRequest(URL_UPDATE, hashMap);
+                String s = rh.sendPostRequest(DetailUpdate, hashMap);
                 return s;
             }
         }
@@ -437,7 +448,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequestParam(URL_DELETE, id_foto);
+                String s = rh.sendGetRequestParam(DetailDelete, id_foto);
                 return s;
             }
         }
@@ -454,7 +465,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         delete();
-                        startActivity(new Intent(DetailPhotoProductActivity.this, ListPhotoActivity.class));
+                        startActivity(new Intent(DetailPhotoProductActivity.this, ListManagePhotoActivity.class));
                     }
                 });
         alertDialogBuilder.setNegativeButton("Tidak",

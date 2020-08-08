@@ -15,6 +15,7 @@
             android:layout_height="wrap_content">
             <RelativeLayout
                 android:id="@id/layout_2"
+                android:layout_marginTop="80dp"
                 android:layout_width="match_parent"
                 android:layout_height="400dp"
                 android:background="@color/white">
@@ -53,11 +54,13 @@
                     android:id="@+id/editTextId"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:visibility="gone"
                     />
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:text="Id Data "
+                    android:visibility="gone"
 
                     style="@style/body2"/>
                 <EditText
@@ -69,6 +72,7 @@
                     android:layout_marginTop="5dp"
                     android:drawableStart="@drawable/ic_outline_place_24"
                     android:drawablePadding="10dp"
+                    android:visibility="gone"
                     android:layout_height="wrap_content"/>
 
             </LinearLayout>
