@@ -99,20 +99,23 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_below="@+id/lytSearch"
-        android:padding="3dp"
-        android:layout_marginBottom="60dp">
+        android:padding="3dp">
 
         <GridLayout
             android:layout_width="match_parent"
-            android:layout_height="400dp"
+            android:layout_height="wrap_content"
             android:layout_below="@+id/layout_1"
-            android:layout_marginTop="20dp"
+            android:layout_margin="10dp"
             android:orientation="horizontal">
             <GridView
                 android:id="@+id/ListPhoto"
-                android:layout_width="wrap_content"
+                android:layout_width="fill_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginBottom="10dp">
+                android:background="#FFF5F5F5"
+                android:columnWidth="110dp"
+                android:gravity="center"
+                android:numColumns="3"
+                android:stretchMode="columnWidth">
             </GridView>
         </GridLayout>
 

@@ -3,8 +3,14 @@
     <!-- Base application theme. -->
     <style name="AppTheme" parent="Theme.MaterialComponents.Light.Bridge">
         <!-- Customize your theme here. -->
-        <item name="colorPrimary">#F50057</item>
-        <item name="colorPrimaryDark">@color/colorPrimaryDark</item>
+        <item name="colorPrimary">#FF1744</item>
+        <item name="colorPrimaryDark">#F50057</item>
+        <item name="colorAccent">@color/colorAccent</item>
+    </style>
+    <style name="loginregister" parent="Theme.MaterialComponents.Light.NoActionBar">
+        <!-- Customize your theme here. -->
+        <item name="colorPrimary">#FF1744</item>
+        <item name="colorPrimaryDark">#F50057</item>
         <item name="colorAccent">@color/colorAccent</item>
     </style>
 

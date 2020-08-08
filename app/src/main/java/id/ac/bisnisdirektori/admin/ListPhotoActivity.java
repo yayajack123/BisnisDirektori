@@ -152,6 +152,18 @@ public class ListPhotoActivity extends AppCompatActivity {
         Log.d("TAG", "url: "+ListAPI);
         new getDataTask ().execute ();
 
+        ListEvent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
+            @Override
+            public void onItemClick(AdapterView<?> parent, View v,
+                                    int position, long id) {
+
+                // Sending image id to FullScreenActivity
+                Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
+                // passing array index
+                i.putExtra("id", position);
+                startActivity(i);
+            }
+        });
 
         //Get List Data Bisnis Event to Display with Refresh Layout
         ListEvent.setOnScrollListener (new AbsListView.OnScrollListener () {
