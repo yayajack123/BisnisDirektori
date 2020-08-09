@@ -19,6 +19,8 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.provider.MediaStore;
 import android.util.Base64;
+import android.view.Menu;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.Button;
@@ -170,58 +172,34 @@ public class OutletDetailsActivity extends AppCompatActivity {
 
     }
 
-    private void showPictureDialog() {
-        AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
-        pictureDialog.setTitle("Select Image");
-        String[] pictureDialogItems = {
-                "From gallery",
-                "From camera"};
-        pictureDialog.setItems(pictureDialogItems,
-                new DialogInterface.OnClickListener() {
-                    @Override
-                    public void onClick(DialogInterface dialog, int which) {
-                        switch (which) {
-                            case 0:
-                                choosePhotoFromGallery();
-                                break;
-                            case 1:
-                                takePhotoFromCamera();
-                                break;
-                        }
-                    }
-                });
-        pictureDialog.show();
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        // Inflate the menu; this adds items to the action bar if it is present.
+        getMenuInflater().inflate(R.menu.home, menu);
+        return true;
     }
 
-    public void choosePhotoFromGallery() {
-        Intent galleryIntent = new Intent(Intent.ACTION_PICK,
-                android.provider.MediaStore.Images.Media.EXTERNAL_CONTENT_URI);
-        startActivityForResult(galleryIntent, GALLERY);
-    }
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        // Handle action bar item clicks here. The action bar will
+        // automatically handle clicks on the Home/Up button, so long
+        // as you specify a parent activity in AndroidManifest.xml.
+        int id = item.getItemId();
 
-    private void takePhotoFromCamera() {
-        Intent intent = new Intent(MediaStore.ACTION_IMAGE_CAPTURE);
-        startActivityForResult(intent, CAMERA);
-    }
+        //noinspection SimplifiableIfStatement
+        if (id == R.id.action_home) {
 
-    public String getStringImage(Bitmap bmp) {
-
-        if (bmp != null)
-        {
-            ByteArrayOutputStream baso = new ByteArrayOutputStream ();
-            bmp.compress (Bitmap.CompressFormat.JPEG, 100, baso);
-            byte[] imageBytes = baso.toByteArray ();
-            String encodedImage = Base64.encodeToString (imageBytes, Base64.DEFAULT);
-            return encodedImage;
-        }else {
-            bmp = ((BitmapDrawable) imgPreview.getDrawable ()).getBitmap ();
-            ByteArrayOutputStream baso = new ByteArrayOutputStream ();
-            bmp.compress (Bitmap.CompressFormat.JPEG, 100, baso);
-            byte[] imageBytes = baso.toByteArray ();
-            String encodedImage = Base64.encodeToString (imageBytes, Base64.DEFAULT);
-            return encodedImage;
+            // Do something
+            Intent intent = new Intent(getBaseContext(), HomeAdminActivity.class);
+            startActivity(intent);
+            return true;
         }
+
+        return super.onOptionsItemSelected(item);
     }
+
+
+
 
     private void setToImageView(Bitmap bmp) {
         //compress image

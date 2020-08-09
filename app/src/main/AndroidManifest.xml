@@ -22,7 +22,10 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.FullImageActivity"></activity>
+        <activity android:name=".admin.DetailPromosiProductActivity"></activity>
+        <activity android:name=".admin.ListPromosiActivity" />
+        <activity android:name=".admin.ListManagePromosiActivity" />
+        <activity android:name=".admin.FullImageActivity" />
         <activity android:name=".admin.DetailPhotoProductActivity" /> <!-- <activity android:name=".admin.UploadPhotoProductActivity" /> -->
         <activity
             android:name=".admin.ListPhotoActivity"

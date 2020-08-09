@@ -1,19 +1,15 @@
 package id.ac.bisnisdirektori.admin;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 
-import android.Manifest;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
 import android.content.DialogInterface;
 import android.content.Intent;
-import android.content.pm.PackageManager;
 import android.content.res.Configuration;
 import android.graphics.Bitmap;
 import android.graphics.BitmapFactory;
 import android.graphics.drawable.BitmapDrawable;
-import android.location.Location;
 import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -26,16 +22,6 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.maps.CameraUpdateFactory;
-import com.google.android.gms.maps.GoogleMap;
-import com.google.android.gms.maps.OnMapReadyCallback;
-import com.google.android.gms.maps.SupportMapFragment;
-import com.google.android.gms.maps.model.LatLng;
-import com.google.android.gms.maps.model.MarkerOptions;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -62,11 +48,10 @@ import java.net.MalformedURLException;
 import java.util.HashMap;
 
 import androidx.coordinatorlayout.widget.CoordinatorLayout;
-import androidx.core.app.ActivityCompat;
 import androidx.palette.graphics.Palette;
 import id.ac.bisnisdirektori.R;
 
-public class DetailPhotoProductActivity extends AppCompatActivity {
+public class DetailPromosiProductActivity extends AppCompatActivity {
 
     private String id_data1;
 
@@ -74,36 +59,39 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
     private int GALLERY = 1, CAMERA = 2;
     Bitmap bitmap, decoded;
     ImageView imgPreview, imgChange;
-    EditText txtFoto,editTextId, editIdData;
+    EditText txtFoto,editTextId, editIdData, edtKeterangan;
     Button update, delete, changePhoto;
     CoordinatorLayout coordinatorLayout;
     int IOConnect = 0;
-    String foto, id_data;
+    String foto, id_data, keterangan;
     String DetailAPI, DetailUpdate, DetailDelete;
-    private String id_foto;
+    private String id_foto, id_promosi_product;
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
     public static String AccessKey = "12345";
-    public static final String KEY_IDFOTO = "id_foto";
+    public static final String KEY_IDPROMOSI = "id_promosi_product";
     public static final String KEY_FOTO = "foto";
+    public static final String KEY_KETERANGAN = "keterangan";
     public static final String KEY_IDDATA = "id_data";
-    public static final String URL_UPDATE = "https://www.pantaucovid19.net/bd_update_photo_product.php";
-    public static final String URL_DELETE = "https://www.pantaucovid19.net/bd_delete_photo_product.php?id_foto=";
+    public static final String URL_UPDATE = "https://www.pantaucovid19.net/bd_update_promosi_product.php";
+    public static final String URL_DELETE = "https://www.pantaucovid19.net/bd_delete_promosi_product.php?id_promosi_product=";
     public static final String EMP_ID = "emp_id";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_detail_photo_product);
+        setContentView (R.layout.activity_detail_promosi_product);
 
-        DetailUpdate = ADMIN_PANEL_URL + "/bd_update_photo_product.php";
-        DetailDelete = ADMIN_PANEL_URL + "/bd_delete_photo_product.php?id_foto=";
+        DetailUpdate = ADMIN_PANEL_URL + "/bd_update_promosi_product.php";
+        DetailDelete = ADMIN_PANEL_URL + "/bd_delete_promosi_product.php?id_promosi_product=";
 
         coordinatorLayout = (CoordinatorLayout) findViewById (R.id.main_content);
         imgPreview = findViewById (R.id.imgPreview);
 
+        edtKeterangan = findViewById (R.id.keterangan);
+
         // Intent to detail with id data
         Intent iGet = getIntent ();
-        id_foto = iGet.getStringExtra ("id_foto");
+        id_promosi_product = iGet.getStringExtra ("id_promosi_product");
         id_data = iGet.getStringExtra ("id_data");
 
         changePhoto = findViewById (R.id.change_photo);
@@ -120,13 +108,13 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
 
         // Intent to detail with id data
         editTextId = findViewById (R.id.editTextId);
-        editTextId.setText (id_foto);
+        editTextId.setText (id_promosi_product);
 
         editIdData = findViewById (R.id.id_data);
         editIdData.setText (id_data);
 
         // Intent to detail with id data
-        DetailAPI = ADMIN_PANEL_URL + "/bd_detail_list_photo.php?id_foto="+ id_foto;
+        DetailAPI = ADMIN_PANEL_URL + "/bd_detail_list_promosi.php?id_promosi_product="+ id_promosi_product;
         new getDataTask ().execute ();
 
         update.setOnClickListener (new View.OnClickListener () {
@@ -290,7 +278,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
             // when finish parsing, hide progressbar
             // if internet connection and data available show data
             // otherwise, show alert text
-            if ((id_foto != null) && IOConnect == 0) {
+            if ((id_promosi_product != null) && IOConnect == 0) {
 //                coordinatorLayout.setVisibility(View.VISIBLE);
                 Picasso.with(getApplicationContext()).load(ADMIN_PANEL_URL + "/" + foto).placeholder(R.drawable.logogeografis).into(imgPreview, new Callback () {
                     @Override
@@ -307,6 +295,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
                     public void onError() {
                     }
                 });
+                edtKeterangan.setText(keterangan);
 
 
 
@@ -337,6 +326,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
                 JSONObject object = data.getJSONObject(i);
                 JSONObject detail = object.getJSONObject("Staff_detail");
                 foto = detail.getString("foto");
+                keterangan = detail.getString("keterangan");
                 id_data = detail.getString ("id_data");
                 foto = detail.getString ("foto");
 
@@ -370,6 +360,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
 
 
         // Create the ParseFile
+        final String keterangan = edtKeterangan.getText().toString().trim();
         final String foto = getStringImage(decoded);
 
 
@@ -379,7 +370,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(DetailPhotoProductActivity.this, "Updating...", "Wait...", false, false);
+                loading = ProgressDialog.show(DetailPromosiProductActivity.this, "Updating...", "Wait...", false, false);
             }
 
             @Override
@@ -387,11 +378,11 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
                 super.onPostExecute(s);
                 loading.dismiss();
                 if (s != null) {
-                    Toast.makeText(DetailPhotoProductActivity.this, "Success Updating Photo", Toast.LENGTH_LONG).show();
-                    startActivity(new Intent(DetailPhotoProductActivity.this, ListManagePhotoActivity.class));
+                    Toast.makeText(DetailPromosiProductActivity.this, "Success Updating Promotion", Toast.LENGTH_LONG).show();
+                    startActivity(new Intent(DetailPromosiProductActivity.this, ListManagePromosiActivity.class));
 
                 } else {
-                    Toast.makeText(DetailPhotoProductActivity.this, "Error", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailPromosiProductActivity.this, "Error", Toast.LENGTH_LONG).show();
                 }
             }
 
@@ -399,10 +390,11 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
             protected String doInBackground(Void... params) {
 
                 Intent iGet = getIntent ();
-                id_foto = iGet.getStringExtra ("id_foto");
+                id_promosi_product = iGet.getStringExtra ("id_promosi_product");
 
                 HashMap<String, String> hashMap = new HashMap<>();
-                hashMap.put(KEY_IDFOTO, id_foto);
+                hashMap.put(KEY_IDPROMOSI, id_promosi_product);
+                hashMap.put(KEY_KETERANGAN, keterangan);
                 hashMap.put(KEY_FOTO, foto);
                 RequestHandler rh = new RequestHandler();
                 String s = rh.sendPostRequest(DetailUpdate, hashMap);
@@ -426,20 +418,20 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
             @Override
             protected void onPreExecute() {
                 super.onPreExecute();
-                loading = ProgressDialog.show(DetailPhotoProductActivity.this, "Updating...", "Wait...", false, false);
+                loading = ProgressDialog.show(DetailPromosiProductActivity.this, "Updating...", "Wait...", false, false);
             }
 
             @Override
             protected void onPostExecute(String s) {
                 super.onPostExecute(s);
                 loading.dismiss();
-                Toast.makeText(DetailPhotoProductActivity.this, s, Toast.LENGTH_LONG).show();
+                Toast.makeText(DetailPromosiProductActivity.this, s, Toast.LENGTH_LONG).show();
             }
 
             @Override
             protected String doInBackground(Void... params) {
                 RequestHandler rh = new RequestHandler();
-                String s = rh.sendGetRequestParam(DetailDelete, id_foto);
+                String s = rh.sendGetRequestParam(DetailDelete, id_promosi_product);
                 return s;
             }
         }
@@ -456,7 +448,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
                     @Override
                     public void onClick(DialogInterface arg0, int arg1) {
                         delete();
-                        startActivity(new Intent(DetailPhotoProductActivity.this, ListManagePhotoActivity.class));
+                        startActivity(new Intent(DetailPromosiProductActivity.this, ListManagePromosiActivity.class));
                     }
                 });
         alertDialogBuilder.setNegativeButton("Tidak",
@@ -468,6 +460,7 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
         AlertDialog alertDialog = alertDialogBuilder.create();
         alertDialog.show();
     }
+
 
 
 }

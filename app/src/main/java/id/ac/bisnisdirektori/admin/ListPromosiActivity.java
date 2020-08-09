@@ -68,25 +68,26 @@ import java.util.Map;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import id.ac.bisnisdirektori.R;
 
-public class ListPhotoActivity extends AppCompatActivity {
+public class ListPromosiActivity extends AppCompatActivity {
 
     private String id_data1, id_foto1;
-    EditText edtIdData;
+    EditText edtIdData, edtKeterangan;
     Button submit;
     ImageView imgView, uploadPhoto;
     private int GALLERY = 1, CAMERA = 2;
     Bitmap bitmap, decoded;
-    private String UPLOAD_URL = "https://www.pantaucovid19.net/bd_upload_photo_product.php";
+    private String UPLOAD_URL = "https://www.pantaucovid19.net/bd_upload_promosi_product.php";
     public static final String URL_DELETE = "https://www.pantaucovid19.net/bd_delete_product.php?id_foto=";
     int success;
     private static final String TAG = InformationActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
     private static final String TAG_MESSAGE = "message";
     private String KEY_FOTO = "foto";
+    private String KEY_KETERANGAN = "keterangan";
     private String KEY_IDDATA = "id_data";
     private static final String KEY_EMPTY = "";
     String tag_json_obj = "json_obj_req";
-    String strFoto, strIdData;
+    String strFoto, strIdData, strKeterangan;
 
 
 
@@ -105,18 +106,19 @@ public class ListPhotoActivity extends AppCompatActivity {
     // database path configuration
     @SuppressLint("SdCardPath")
     public static String DBPath = "/data/data/com.devatapixel.crud/databases/";
-    GridView ListEvent;
+    ListView ListEvent;
     ProgressBar prgLoading;
     SwipeRefreshLayout swipeRefreshLayout = null;
     EditText edtKeyword;
     ImageButton btnSearch;
     TextView txtAlert;
     FloatingActionButton addImage;
-    adapterListDetailPhoto cla;
+    adapterListDetailPromosi cla;
     ConnectivityManager conMgr;
 
-    public static ArrayList<String> id_foto = new ArrayList<String> ();
+    public static ArrayList<String> id_promosi_product = new ArrayList<String> ();
     public static ArrayList<String> foto = new ArrayList<String> ();
+    public static ArrayList<String> keterangan = new ArrayList<String> ();
     public static ArrayList<String> id_data = new ArrayList<String> ();
     String ListAPI;
     int IOConnect = 0;
@@ -124,7 +126,7 @@ public class ListPhotoActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_list_photo);
+        setContentView (R.layout.activity_list_promosi);
 
         // Intent to detail with id data
         Intent iGet = getIntent ();
@@ -145,25 +147,15 @@ public class ListPhotoActivity extends AppCompatActivity {
 
         swipeRefreshLayout.setColorSchemeResources (R.color.orange, R.color.green, R.color.blue);
         prgLoading = findViewById (R.id.prgLoading);
-        ListEvent = findViewById (R.id.ListPhoto);
+        ListEvent = findViewById (R.id.ListPromosi);
         txtAlert = findViewById (R.id.txtAlert);
-        cla = new adapterListDetailPhoto (ListPhotoActivity.this);
-        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_photo_product.php?id_data="+idData;
+        edtKeterangan = findViewById (R.id.txt_keterangan);
+        cla = new adapterListDetailPromosi (ListPromosiActivity.this);
+        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_promosi_product.php?id_data="+idData;
         Log.d("TAG", "url: "+ListAPI);
         new getDataTask ().execute ();
 
-//        ListEvent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View v,
-//                                    int position, long id) {
-//
-//                // Sending image id to FullScreenActivity
-//                Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
-//                // passing array index
-//                i.putExtra("id", position);
-//                startActivity(i);
-//            }
-//        });
+
 
         //Get List Data Bisnis Event to Display with Refresh Layout
         ListEvent.setOnScrollListener (new AbsListView.OnScrollListener () {
@@ -220,7 +212,9 @@ public class ListPhotoActivity extends AppCompatActivity {
         submit.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
+                strKeterangan = edtKeterangan.getText().toString();
                 strIdData = edtIdData.getText().toString();
+
 
                 uploadCRUD();
 
@@ -234,8 +228,8 @@ public class ListPhotoActivity extends AppCompatActivity {
                 // TODO Auto-generated method stub
                 // go to menu detail page
 
-                Intent iDetail = new Intent (ListPhotoActivity.this, DetailPhotoProductActivity.class);
-                iDetail.putExtra ("id_foto", id_foto.get (position));
+                Intent iDetail = new Intent (ListPromosiActivity.this, DetailPromosiProductActivity.class);
+                iDetail.putExtra ("id_promosi_product", id_promosi_product.get (position));
                 iDetail.putExtra ("id_data", id_data.get (position));
                 startActivity (iDetail);
 //                Toast.makeText (getApplicationContext (), "Id Data",
@@ -245,8 +239,9 @@ public class ListPhotoActivity extends AppCompatActivity {
         });
 
 
-    }
 
+
+    }
 
     private void showPictureDialog() {
         AlertDialog.Builder pictureDialog = new AlertDialog.Builder(this);
@@ -382,11 +377,11 @@ public class ListPhotoActivity extends AppCompatActivity {
                             success = jObj.getInt(TAG_SUCCESS);
                             if (success == 1) {
                                 Log.e("v Add", jObj.toString());
-                                Toast.makeText(ListPhotoActivity.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                Toast.makeText(ListPromosiActivity.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
                                 finish();
                                 startActivity(getIntent());
                             } else {
-                                Toast.makeText(ListPhotoActivity.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                Toast.makeText(ListPromosiActivity.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
                             }
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -401,7 +396,7 @@ public class ListPhotoActivity extends AppCompatActivity {
                         //menghilangkan progress dialog
                         loading.dismiss();
                         //menampilkan toast
-                        Toast.makeText(ListPhotoActivity.this, "Please Complete Image".toString(), Toast.LENGTH_LONG).show();
+                        Toast.makeText(ListPromosiActivity.this, "Please Complete Image".toString(), Toast.LENGTH_LONG).show();
                         Log.e(TAG, error.getMessage());
                     }
                 }) {
@@ -411,6 +406,7 @@ public class ListPhotoActivity extends AppCompatActivity {
                 Map<String, String> params = new HashMap<String, String> ();
                 //menambah parameter yang di kirim ke web servis
                 params.put(KEY_IDDATA, edtIdData.getText().toString().trim());
+                params.put(KEY_KETERANGAN, edtKeterangan.getText().toString().trim());
                 params.put(KEY_FOTO, getStringImage(decoded));
                 //kembali ke parameters
                 Log.e(TAG, "" + params);
@@ -421,8 +417,9 @@ public class ListPhotoActivity extends AppCompatActivity {
     }
 
     void clearData() {
-        id_foto.clear ();
+        id_promosi_product.clear ();
         foto.clear ();
+        keterangan.clear ();
         id_data.clear ();
     }
 
@@ -538,8 +535,9 @@ public class ListPhotoActivity extends AppCompatActivity {
                 JSONObject object = data.getJSONObject (i);
                 JSONObject staff = object.getJSONObject ("Staff");
 
-                id_foto.add (staff.getString ("id_foto"));
+                id_promosi_product.add (staff.getString ("id_promosi_product"));
                 foto.add (staff.getString ("foto"));
+                keterangan.add (staff.getString ("keterangan"));
                 id_data.add (staff.getString ("id_data"));
 
             }
@@ -561,4 +559,12 @@ public class ListPhotoActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+
+
+
+
+
+
 }

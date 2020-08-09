@@ -52,6 +52,22 @@ public class HomeAdminActivity extends AppCompatActivity {
             }
         });
 
+        CardView promosi = (CardView) findViewById(R.id.card_promosi);
+        promosi.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getBaseContext(), ListManagePromosiActivity.class);
+                startActivity(intent);
+            }
+        });
+
+
+
+
+
+
         Button logout_admin = (Button) findViewById(R.id.logout_admin);
         logout_admin.setOnClickListener(new View.OnClickListener()
         {
@@ -78,6 +94,8 @@ public class HomeAdminActivity extends AppCompatActivity {
 
 
     }
+
+
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {
         // Inflate the menu; this adds items to the action bar if it is present.
@@ -101,4 +119,7 @@ public class HomeAdminActivity extends AppCompatActivity {
 
         return super.onOptionsItemSelected(item);
     }
+
+
+
 }
