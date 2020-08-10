@@ -19,7 +19,7 @@
             android:layout_marginRight="10dp"
             android:layout_weight="1"
             android:background="#ffffff"
-            android:hint="search"
+            android:hint="Search Business Name"
             android:inputType="text"
             android:padding="7dp"
             android:singleLine="true"
@@ -31,7 +31,7 @@
             android:layout_height="wrap_content"
             android:layout_weight="3"
             android:background="@color/colorPrimary"
-            android:src="@drawable/ic_search" />
+            android:src="@drawable/ic_baseline_search_24" />
 
     </LinearLayout>
     <androidx.swiperefreshlayout.widget.SwipeRefreshLayout

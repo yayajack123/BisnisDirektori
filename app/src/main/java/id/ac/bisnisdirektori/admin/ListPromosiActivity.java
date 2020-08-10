@@ -120,7 +120,7 @@ public class ListPromosiActivity extends AppCompatActivity {
     public static ArrayList<String> foto = new ArrayList<String> ();
     public static ArrayList<String> keterangan = new ArrayList<String> ();
     public static ArrayList<String> id_data = new ArrayList<String> ();
-    String ListAPI;
+    String ListAPI, ListAPI2;
     int IOConnect = 0;
 
     @Override
@@ -154,6 +154,8 @@ public class ListPromosiActivity extends AppCompatActivity {
         ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_promosi_product.php?id_data="+idData;
         Log.d("TAG", "url: "+ListAPI);
         new getDataTask ().execute ();
+
+
 
 
 

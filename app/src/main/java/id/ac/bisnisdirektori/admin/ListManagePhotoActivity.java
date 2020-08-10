@@ -86,7 +86,7 @@ public class ListManagePhotoActivity extends AppCompatActivity {
     public static ArrayList<String> otherinfo = new ArrayList<String> ();
     public static ArrayList<String> foto = new ArrayList<String> ();
     public static ArrayList<String> id_admin = new ArrayList<String> ();
-    String ListAPI;
+    String ListAPI, ListAPI2;
     int IOConnect = 0;
 
     @Override
@@ -104,20 +104,45 @@ public class ListManagePhotoActivity extends AppCompatActivity {
         //convert id to string id1
         String id1 = id;
 
-        ConnectivityManager cm;
-//        mDb = AppDatabase.getDatabase(getApplicationContext());
         swipeRefreshLayout.setColorSchemeResources (R.color.orange, R.color.green, R.color.blue);
         prgLoading = findViewById (R.id.prgLoading);
         ListEvent = findViewById (R.id.ListBisnis);
-//        edtKeyword = findViewById(R.id.edtKeyword);
-//        btnSearch = findViewById(R.id.btnSearch);
+        edtKeyword = findViewById(R.id.edtKeyword);
+        btnSearch = findViewById(R.id.btnSearch);
         txtAlert = findViewById (R.id.txtAlert);
         cla = new adapterListPhoto (ListManagePhotoActivity.this);
-//        mAdapter = new DataeventAdapter(ListEventSeminar.this);
-        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_photo.php?id_admin=" + id1;
+//        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_photo.php?id_admin=" + id1;
+        ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_photo3.php"+"?id_admin="+id1;
         Log.d("TAG", "url: "+ListAPI);
-//        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list2.php?id="+id ;
         new getDataTask ().execute ();
+
+
+
+        btnSearch.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //sharedpreferences
+                sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
+                //get data
+                id = getIntent ().getStringExtra (TAG_ID);
+                //set data if data null
+                id = sharedpreferences.getString (TAG_ID, null);
+                //convert id to string id1
+                String id1 = id;
+
+                String keyword = edtKeyword.getText().toString();
+                cla = new adapterListPhoto (ListManagePhotoActivity.this);
+                new getDataTask ().execute ();
+
+                ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_photo3.php"+"?keyword="+keyword+"&&id_admin="+id1;
+                ListEvent.setVisibility (View.VISIBLE);
+                ListEvent.setAdapter (cla);
+
+            }
+        });
+
+
+
 
 
         //Click List Event to Detail
@@ -291,7 +316,7 @@ public class ListManagePhotoActivity extends AppCompatActivity {
             HttpClient client = new DefaultHttpClient ();
             HttpConnectionParams.setConnectionTimeout (client.getParams (), 15000);
             HttpConnectionParams.setSoTimeout (client.getParams (), 15000);
-            HttpUriRequest request = new HttpGet (ListAPI);
+            HttpUriRequest request = new HttpGet (ListAPI2);
             HttpResponse response = client.execute (request);
             InputStream atomInputStream = response.getEntity ().getContent ();
             BufferedReader in = new BufferedReader (new InputStreamReader (atomInputStream));
