@@ -6,13 +6,17 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseAdapter;
+import android.widget.Filter;
+import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 import com.squareup.picasso.Picasso;
 
+import java.util.Locale;
+
 import id.ac.bisnisdirektori.R;
 
-public class adapterList extends BaseAdapter {
+public class adapterList extends BaseAdapter implements Filterable {
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
     private Activity activity;
     public adapterList(Activity act) {
@@ -29,6 +33,12 @@ public class adapterList extends BaseAdapter {
     public long getItemId(int position) {
         return position;
     }
+
+    @Override
+    public Filter getFilter() {
+        return null;
+    }
+
     static class ViewHolder {
         TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin ;
         ImageView imgThumb;
@@ -64,5 +74,6 @@ public class adapterList extends BaseAdapter {
 
     }
 
+    
 
 }

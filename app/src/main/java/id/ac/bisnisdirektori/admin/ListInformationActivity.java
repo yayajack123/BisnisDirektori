@@ -12,7 +12,10 @@ import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.text.TextUtils;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuInflater;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
@@ -51,6 +54,7 @@ import java.util.List;
 import java.util.Map;
 
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.MenuItemCompat;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import id.ac.bisnisdirektori.EditProfileUserActivity;
@@ -75,6 +79,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 
 public class ListInformationActivity extends AppCompatActivity {
 
@@ -123,6 +128,8 @@ public class ListInformationActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
         setContentView (R.layout.activity_list_information);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
 
         swipeRefreshLayout = findViewById (R.id.swipeRefreshLayout);
         //sharedpreferences
@@ -397,6 +404,35 @@ public class ListInformationActivity extends AppCompatActivity {
 
 
     }
+
+
+    //Code Program pada Method dibawah ini akan Berjalan saat Option Menu Dibuat
+//    @Override
+//    public boolean onCreateOptionsMenu(Menu menu) {
+//        //Memanggil/Memasang menu item pada toolbar dari layout menu_bar.xml
+//        MenuInflater inflater = getMenuInflater();
+//        inflater.inflate(R.menu.search, menu);
+//        MenuItem searchIem = menu.findItem(R.id.search);
+//        final SearchView searchView = (SearchView) searchIem.getActionView();
+//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+//            @SuppressLint("SetTextI18n")
+//            @Override
+//            public boolean onQueryTextSubmit(String query) {
+//                //Untuk memfilter data dari ArrayAdapter
+//
+//                searchView.clearFocus();
+//                return true;
+//            }
+//
+//            @Override
+//            public boolean onQueryTextChange(String nextText) {
+//                //Data akan berubah saat user menginputkan text/kata kunci pada SearchView
+//
+//                return false;
+//            }
+//        });
+//        return true;
+//    }
 
 
 }
