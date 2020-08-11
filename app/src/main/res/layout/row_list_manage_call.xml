@@ -1,0 +1,97 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:foreground="?android:attr/selectableItemBackground"
+        app:cardCornerRadius="10dp"
+        card_view:cardElevation="3sp"
+        card_view:cardUseCompatPadding="true">
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <de.hdodenhof.circleimageview.CircleImageView
+                android:id="@+id/imgThumb"
+                android:layout_width="92dp"
+                android:layout_height="92dp"
+                android:layout_marginStart="10dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginBottom="5dp"
+                android:src="@drawable/userthumb"
+                app:civ_border_color="@color/colorAccent"
+                app:civ_border_width="4dp" />
+
+            <TextView
+                android:id="@+id/txtNama"
+                style="@style/subheader"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/imgThumb"
+                android:layout_marginStart="18dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="-91dp"
+                android:layout_toEndOf="@+id/imgThumb"
+                android:hint="Business Name"
+                android:textColor="#000"
+                android:textStyle="bold" />
+
+            <TextView
+                android:id="@+id/txtAlamat"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtNama"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/imgThumb"
+                android:fontFamily="@font/montserat_regular"
+                android:hint="Address"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/txtNotelp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/txtAlamat"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_toEndOf="@+id/imgThumb"
+                android:fontFamily="@font/montserat_regular"
+                android:hint="Phonenumber"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/txtOtherinfo"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@+id/txtNotelp"
+                android:layout_marginStart="20dp"
+                android:layout_marginLeft="10dp"
+                android:layout_marginTop="5dp"
+                android:layout_marginBottom="10dp"
+                android:layout_toEndOf="@+id/imgThumb"
+                android:fontFamily="@font/montserat_regular"
+                android:hint="Other Info"
+                android:textColor="#000" />
+
+            <TextView
+                android:id="@+id/txtIdAdmin"
+                android:layout_width="0dp"
+                android:layout_height="0dp"
+                android:layout_below="@+id/txtOtherinfo"
+                android:layout_marginLeft="10dp"
+                android:layout_marginBottom="0dp"
+                android:fontFamily="@font/montserat_regular"
+                android:text="ID Admin"
+                android:textColor="#000" />
+        </RelativeLayout>
+    </androidx.cardview.widget.CardView>
+</RelativeLayout>

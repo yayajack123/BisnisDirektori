@@ -22,7 +22,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.DetailPromosiProductActivity"></activity>
+        <activity android:name=".admin.ListManageCallActivity"></activity>
+        <activity android:name=".admin.ListManageUlasanActivity" />
+        <activity android:name=".admin.DetailPromosiProductActivity" />
         <activity android:name=".admin.ListPromosiActivity" />
         <activity android:name=".admin.ListManagePromosiActivity" />
         <activity android:name=".admin.FullImageActivity" />
@@ -31,11 +33,15 @@
             android:name=".admin.ListPhotoActivity"
             android:label="@string/title_activity_list_photo"
             android:theme="@style/AppTheme.NoActionBar" />
-        <activity android:name=".admin.ListManagePhotoActivity" android:parentActivityName=".admin.OutletDetailsActivity" />
+        <activity
+            android:name=".admin.ListManagePhotoActivity"
+            android:parentActivityName=".admin.OutletDetailsActivity" />
         <activity android:name=".admin.TestDetailInformationActivity" />
         <activity android:name=".admin.AdminPasswordActivity" /> <!-- <activity android:name=".admin.EditFotoProfilAdminActivity"></activity> -->
         <activity android:name=".admin.DetailInformationActivity" />
-        <activity android:name=".admin.ListInformationActivity" android:parentActivityName=".admin.OutletDetailsActivity" />
+        <activity
+            android:name=".admin.ListInformationActivity"
+            android:parentActivityName=".admin.OutletDetailsActivity" />
 
         <meta-data
             android:name="com.google.android.geo.API_KEY"

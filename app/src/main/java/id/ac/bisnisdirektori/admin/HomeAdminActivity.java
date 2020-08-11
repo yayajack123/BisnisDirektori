@@ -63,6 +63,28 @@ public class HomeAdminActivity extends AppCompatActivity {
             }
         });
 
+        CardView ulasan = (CardView) findViewById(R.id.card_ulasan);
+        ulasan.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getBaseContext(), ListManageUlasanActivity.class);
+                startActivity(intent);
+            }
+        });
+
+        CardView call = (CardView) findViewById(R.id.card_call);
+        call.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getBaseContext(), ListManageCallActivity.class);
+                startActivity(intent);
+            }
+        });
+
 
 
 

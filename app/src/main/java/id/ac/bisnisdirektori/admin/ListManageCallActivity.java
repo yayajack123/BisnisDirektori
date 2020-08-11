@@ -46,7 +46,7 @@ import java.util.HashMap;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import id.ac.bisnisdirektori.R;
 
-public class ListManagePromosiActivity extends AppCompatActivity {
+public class ListManageCallActivity extends AppCompatActivity {
 
     //Shared Preferences from Login Admin
     public final static String TAG_ID = "id";
@@ -69,7 +69,7 @@ public class ListManagePromosiActivity extends AppCompatActivity {
     EditText edtKeyword;
     ImageButton btnSearch;
     TextView txtAlert;
-    adapterListPromosi cla;
+    adapterListCall cla;
     ConnectivityManager conMgr;
 
     public static ArrayList<String> id_data = new ArrayList<String> ();
@@ -92,7 +92,7 @@ public class ListManagePromosiActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_list_manage_promosi);
+        setContentView (R.layout.activity_list_manage_call);
 
         swipeRefreshLayout = findViewById (R.id.swipeRefreshLayout);
         //sharedpreferences
@@ -110,9 +110,9 @@ public class ListManagePromosiActivity extends AppCompatActivity {
         edtKeyword = findViewById(R.id.edtKeyword);
         btnSearch = findViewById(R.id.btnSearch);
         txtAlert = findViewById (R.id.txtAlert);
-        cla = new adapterListPromosi (ListManagePromosiActivity.this);
+        cla = new adapterListCall (ListManageCallActivity.this);
 //        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_promosi.php?id_admin=" + id1;
-        ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_promosi3.php"+"?id_admin="+id1;
+        ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_call3.php"+"?id_admin="+id1;
         Log.d("TAG", "url: "+ListAPI);
         new getDataTask ().execute ();
 
@@ -129,10 +129,10 @@ public class ListManagePromosiActivity extends AppCompatActivity {
                 String id1 = id;
 
                 String keyword = edtKeyword.getText().toString();
-                cla = new adapterListPromosi (ListManagePromosiActivity.this);
+                cla = new adapterListCall (ListManageCallActivity.this);
                 new getDataTask ().execute ();
 
-                ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_promosi3.php"+"?keyword="+keyword+"&&id_admin="+id1;
+                ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_call3.php"+"?keyword="+keyword+"&&id_admin="+id1;
                 ListEvent.setVisibility (View.VISIBLE);
                 ListEvent.setAdapter (cla);
 
@@ -141,23 +141,23 @@ public class ListManagePromosiActivity extends AppCompatActivity {
 
 
         //Click List Event to Detail
-        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-                // TODO Auto-generated method stub
-                // go to menu detail page
-                Intent iDetail = new Intent (ListManagePromosiActivity.this, ListPromosiActivity.class);
-                iDetail.putExtra ("id_data", id_data.get (position));
-                startActivity (iDetail);
-            }
-        });
+//        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+//            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+//                                    long arg3) {
+//                // TODO Auto-generated method stub
+//                // go to menu detail page
+//                Intent iDetail = new Intent (ListManageCallActivity.this, ListPromosiActivity.class);
+//                iDetail.putExtra ("id_data", id_data.get (position));
+//                startActivity (iDetail);
+//            }
+//        });
 
         //Click Button to Outlet Activity
         Button btnDashboard = (Button) findViewById (R.id.btnDashboard);
         btnDashboard.setOnClickListener (new View.OnClickListener () {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent (ListManagePromosiActivity.this, HomeAdminActivity.class);
+                Intent intent = new Intent (ListManageCallActivity.this, HomeAdminActivity.class);
                 startActivity (intent);
             }
         });
