@@ -50,7 +50,6 @@
             android:scrollbars="none"
             android:layout_marginBottom="60dp">
 
-
         </ListView>
 
     </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>

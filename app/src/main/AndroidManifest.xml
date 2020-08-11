@@ -22,7 +22,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.ListManageCallActivity"></activity>
+        <activity android:name=".admin.ListCallActivity"></activity>
+        <activity android:name=".admin.ListManageCallActivity" />
         <activity android:name=".admin.ListManageUlasanActivity" />
         <activity android:name=".admin.DetailPromosiProductActivity" />
         <activity android:name=".admin.ListPromosiActivity" />
