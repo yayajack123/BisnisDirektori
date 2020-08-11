@@ -76,10 +76,11 @@
         android:layout_marginLeft="10dp"
         android:layout_marginRight="10dp"
         android:layout_marginBottom="10dp"
-        android:background="@drawable/btn_login"
+        android:background="@drawable/button_rounded"
         android:fontFamily="@font/montserrat_semibold"
         android:text="Dashboard"
         android:textAlignment="center"
+        android:textAllCaps="false"
         android:textColor="@color/white"
         android:textSize="18sp">
 
