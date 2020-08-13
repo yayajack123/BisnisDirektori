@@ -581,11 +581,6 @@ public class DetailInformationActivity extends AppCompatActivity {
         uploadWorkKnowledge ue = new uploadWorkKnowledge();
         ue.execute();
 
-
-
-
-
-
     }
 
     private void delete() {

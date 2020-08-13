@@ -70,25 +70,9 @@ import id.ac.bisnisdirektori.R;
 
 public class ListCallActivity extends AppCompatActivity {
 
-    private String id_data1, id_foto1;
-    EditText edtIdData;
-    Button submit;
-    ImageView imgView, uploadPhoto;
-    private int GALLERY = 1, CAMERA = 2;
-    Bitmap bitmap, decoded;
-    private String UPLOAD_URL = "https://www.pantaucovid19.net/bd_upload_photo_product.php";
-    public static final String URL_DELETE = "https://www.pantaucovid19.net/bd_delete_product.php?id_foto=";
-    int success;
-    private static final String TAG = InformationActivity.class.getSimpleName();
-    private static final String TAG_SUCCESS = "success";
-    private static final String TAG_MESSAGE = "message";
-    private String KEY_FOTO = "foto";
-    private String KEY_FULLNAME= "fullname";
-    private String KEY_IDDATA = "id_data";
-    private static final String KEY_EMPTY = "";
-    String tag_json_obj = "json_obj_req";
-    String strFoto, strIdData;
+    private String id_data1, id_foto1, phonenumber1;
 
+    private static final String TAG = ListCallActivity.class.getSimpleName();
 
 
     //Shared Preferences from Login Admin
@@ -126,6 +110,8 @@ public class ListCallActivity extends AppCompatActivity {
     public static ArrayList<String> time = new ArrayList<String> ();
     String ListAPI;
     int IOConnect = 0;
+
+    public static final String URL_USER = "https://www.pantaucovid19.net/bd_call_user.php?id_user=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -199,21 +185,26 @@ public class ListCallActivity extends AppCompatActivity {
 
 
 
-//        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-//            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-//                                    long arg3) {
-//                // TODO Auto-generated method stub
-//                // go to menu detail page
-//
-//                Intent iDetail = new Intent (ListPhotoActivity.this, DetailPhotoProductActivity.class);
-//                iDetail.putExtra ("id_foto", id_foto.get (position));
-//                iDetail.putExtra ("id_data", id_data.get (position));
-//                startActivity (iDetail);
-////                Toast.makeText (getApplicationContext (), "Id Data",
-////                        Toast.LENGTH_LONG).show ();
-//
-//            }
-//        });
+        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
+            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
+                                    long arg3) {
+                // TODO Auto-generated method stub
+
+                String call_phone = phonenumber.get (position);
+                String phoneNumber = String.format("tel: %s", call_phone);
+                // Create the intent.
+                Intent dialIntent = new Intent(Intent.ACTION_DIAL);
+                // Set the data for the intent as the phone number.
+                dialIntent.setData(Uri.parse(phoneNumber));
+                // If package resolves to an app, send intent.
+                if (dialIntent.resolveActivity(getPackageManager()) != null) {
+                    startActivity(dialIntent);
+                } else {
+                    Log.e(TAG, "Can't resolve app for ACTION_DIAL Intent.");
+                }
+
+            }
+        });
 
 
 
@@ -232,6 +223,7 @@ public class ListCallActivity extends AppCompatActivity {
         foto.clear ();
         time.clear ();
     }
+
 
     // asynctask class to handle parsing json in background
     public class getDataTask extends AsyncTask<Void, Void, Void> {
@@ -317,14 +309,6 @@ public class ListCallActivity extends AppCompatActivity {
         try {
             // request data from Category API
 
-            sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
-            //get data
-            id = getIntent ().getStringExtra (TAG_ID);
-            //set data if data null
-            id = sharedpreferences.getString (TAG_ID, null);
-            //convert id to string id1
-            String id1 = id;
-
             HttpClient client = new DefaultHttpClient ();
             HttpConnectionParams.setConnectionTimeout (client.getParams (), 15000);
             HttpConnectionParams.setSoTimeout (client.getParams (), 15000);
@@ -354,6 +338,7 @@ public class ListCallActivity extends AppCompatActivity {
                 foto.add (staff.getString ("foto"));
                 time.add (staff.getString ("time"));
 
+
             }
         }
 
@@ -373,10 +358,5 @@ public class ListCallActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
-
-
 
 }
