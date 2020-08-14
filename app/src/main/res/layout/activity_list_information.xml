@@ -25,6 +25,7 @@
             android:singleLine="true"
             android:textColor="#000"
             android:textSize="14sp" />
+
         <ImageButton
             android:id="@+id/btnSearch"
             android:layout_width="150dp"

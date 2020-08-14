@@ -6,6 +6,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 
+import id.ac.bisnisdirektori.admin.LoginAdminActivity;
+
 public class SplashScreenActivity extends AppCompatActivity {
     private int waktu_loading=4000;
     @Override
@@ -18,7 +20,7 @@ public class SplashScreenActivity extends AppCompatActivity {
             public void run() {
 
                 //setelah loading maka akan langsung berpindah ke home activity
-                Intent home=new Intent(SplashScreenActivity.this, LoginActivity.class);
+                Intent home=new Intent(SplashScreenActivity.this, LoginAdminActivity.class);
                 startActivity(home);
                 finish();
 

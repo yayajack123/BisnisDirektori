@@ -88,7 +88,8 @@ public class OutletDetailsActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_outlet_details);
-
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+        getSupportActionBar().setDisplayShowHomeEnabled(true);
         Button profile = (Button) findViewById(R.id.edit_profile);
         profile.setOnClickListener(new View.OnClickListener()
         {

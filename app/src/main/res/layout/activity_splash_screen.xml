@@ -4,17 +4,29 @@
     android:id="@+id/activity_main"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="#FFFFFF"
+    android:background="@color/colorPrimary"
     tools:context=".SplashScreenActivity">
 
     <ImageView
-        android:layout_width="120dp"
-        android:layout_height="120dp"
+        android:layout_width="150dp"
+        android:layout_height="150dp"
+        android:visibility="gone"
         android:id="@+id/logo"
-        android:src="@drawable/ic_brands_and_logotypes"
+        android:src="@drawable/logotext"
         android:layout_centerInParent="true"
         android:layout_centerVertical="true"
         />
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textStyle="bold"
+        android:text="BALIDARI."
+        android:textSize="25dp"
+        android:fontFamily="@font/robotomedium"
+        android:layout_centerInParent="true"
+        android:layout_centerVertical="true"
+        android:textColor="@color/white"/>
 
 
 </RelativeLayout>
