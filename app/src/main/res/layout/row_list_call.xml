@@ -57,7 +57,7 @@
                 android:textSize="12sp" />
 
             <TextView
-                android:id="@+id/txtAddress"
+                android:id="@+id/txtKeterangan"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_below="@id/txtPhonenumber"
@@ -66,7 +66,7 @@
                 android:layout_marginTop="2dp"
                 android:layout_toEndOf="@+id/imgThumb"
                 android:fontFamily="@font/montserat_regular"
-                android:hint="Address"
+                android:hint="Keterangan"
                 android:textColor="#000"
                 android:textSize="12sp" />
 
@@ -100,7 +100,7 @@
                 android:id="@+id/textTime"
                 android:layout_width="129dp"
                 android:layout_height="wrap_content"
-                android:layout_alignBottom="@+id/txtAddress"
+                android:layout_alignBottom="@+id/txtKeterangan"
                 android:layout_marginStart="34dp"
                 android:layout_marginBottom="15dp"
                 android:layout_toEndOf="@+id/txtPhonenumber"
@@ -114,7 +114,7 @@
                 android:id="@+id/imageView4"
                 android:layout_width="43dp"
                 android:layout_height="34dp"
-                android:layout_alignBottom="@+id/txtAddress"
+                android:layout_alignBottom="@+id/txtKeterangan"
                 android:layout_alignParentEnd="true"
                 android:layout_marginStart="8dp"
                 android:layout_marginEnd="13dp"

@@ -32,7 +32,7 @@ public class adapterListDetailCall extends BaseAdapter {
         return position;
     }
     static class ViewHolder {
-        TextView txtIdData, txtFullname, txtPhonenumber, txtAddress, txtTime ;
+        TextView txtIdData, txtFullname, txtPhonenumber, txtKeterangan, txtTime ;
         ImageView imgThumb;
     }
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -50,13 +50,13 @@ public class adapterListDetailCall extends BaseAdapter {
         holder.txtIdData = (TextView) convertView.findViewById(R.id.idData);
         holder.txtFullname = (TextView) convertView.findViewById (R.id.txtNama);
         holder.txtPhonenumber = (TextView) convertView.findViewById (R.id.txtPhonenumber);
-        holder.txtAddress = (TextView) convertView.findViewById (R.id.txtAddress);
+        holder.txtKeterangan = (TextView) convertView.findViewById (R.id.txtKeterangan);
         holder.txtTime = (TextView) convertView.findViewById (R.id.textTime);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
 
         holder.txtFullname.setText (ListCallActivity.fullname.get(position));
         holder.txtPhonenumber.setText (ListCallActivity.phonenumber.get(position));
-        holder.txtAddress.setText (ListCallActivity.address.get(position));
+        holder.txtKeterangan.setText (ListCallActivity.keterangan.get(position));
         holder.txtTime.setText (ListCallActivity.time.get(position));
         holder.txtIdData.setText(ListCallActivity.id_data.get(position));
         Picasso.with(activity).load(ADMIN_PANEL_URL+"/"+ListCallActivity.foto.get(position)).placeholder(R.drawable.imgthumb).into(holder.imgThumb);

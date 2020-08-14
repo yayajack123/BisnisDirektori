@@ -85,6 +85,17 @@ public class ListCallActivity extends AppCompatActivity {
 
     ArrayList<HashMap<String, String>> list_data;
 
+    private String UPLOAD_URL = "https://www.pantaucovid19.net/bd_upload_call_admin.php";
+
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+    String tag_json_obj = "json_obj_req";
+    int success;
+
+    private String KEY_IDUSER = "id_user_call";
+    private String KEY_IDDATA = "id_data_call";
+    private  String KEY_KETERANGAN = "keterangan";
+
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
     public static String AccessKey = "12345";
     // database path configuration
@@ -104,7 +115,7 @@ public class ListCallActivity extends AppCompatActivity {
     public static ArrayList<String> id_user = new ArrayList<String> ();
     public static ArrayList<String> fullname = new ArrayList<String> ();
     public static ArrayList<String> phonenumber = new ArrayList<String> ();
-    public static ArrayList<String> address= new ArrayList<String> ();
+    public static ArrayList<String> keterangan= new ArrayList<String> ();
     public static ArrayList<String> id_data = new ArrayList<String> ();
     public static ArrayList<String> foto = new ArrayList<String> ();
     public static ArrayList<String> time = new ArrayList<String> ();
@@ -185,12 +196,67 @@ public class ListCallActivity extends AppCompatActivity {
 
 
 
+        //Click Call User
         ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
             public void onItemClick(AdapterView<?> arg0, View arg1, int position,
                                     long arg3) {
                 // TODO Auto-generated method stub
 
+                final String keterangan = "Panggilan Keluar";
                 String call_phone = phonenumber.get (position);
+                final String id_user_call = id_user.get (position);
+                final String id_data_call = id_data.get (position);
+
+                //menampilkan progress dialog
+                final ProgressDialog loading = ProgressDialog.show(ListCallActivity.this, "Uploading...", "Please wait...", false, false);
+                StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL,
+                        new Response.Listener<String>() {
+                            @Override
+                            public void onResponse(String response) {
+                                Log.e(TAG, "Response: " + response.toString());
+                                try {
+                                    JSONObject jObj = new JSONObject(response);
+                                    success = jObj.getInt(TAG_SUCCESS);
+                                    if (success == 1) {
+                                        Log.e("v Add", jObj.toString());
+                                        Toast.makeText(ListCallActivity.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+
+                                    } else {
+                                        Toast.makeText(ListCallActivity.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                    }
+                                } catch (JSONException e) {
+                                    e.printStackTrace();
+                                }
+                                //menghilangkan progress dialog
+                                loading.dismiss();
+                            }
+                        },
+                        new Response.ErrorListener() {
+                            @Override
+                            public void onErrorResponse(VolleyError error) {
+                                //menghilangkan progress dialog
+                                loading.dismiss();
+                                //menampilkan toast
+                                Toast.makeText(ListCallActivity.this, "Please Complete Form".toString(), Toast.LENGTH_LONG).show();
+                                Log.e(TAG, error.getMessage());
+                            }
+                        }) {
+                    @Override
+                    protected Map<String, String> getParams() {
+                        //membuat parameters
+                        Map<String, String> params = new HashMap<String, String> ();
+                        //menambah parameter yang di kirim ke web servis
+                        params.put(KEY_IDUSER, id_user_call.trim());
+                        params.put(KEY_IDDATA, id_data_call.trim());
+                        params.put(KEY_KETERANGAN, keterangan.trim());
+                        //kembali ke parameters
+                        Log.e(TAG, "" + params);
+                        return params;
+                    }
+                };
+                AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+
+
                 String phoneNumber = String.format("tel: %s", call_phone);
                 // Create the intent.
                 Intent dialIntent = new Intent(Intent.ACTION_DIAL);
@@ -218,7 +284,7 @@ public class ListCallActivity extends AppCompatActivity {
         id_user.clear ();
         fullname.clear();
         phonenumber.clear();
-        address.clear();
+        keterangan.clear();
         id_data.clear ();
         foto.clear ();
         time.clear ();
@@ -333,7 +399,7 @@ public class ListCallActivity extends AppCompatActivity {
                 id_user.add (staff.getString ("id_user"));
                 fullname.add(staff.getString ("fullname"));
                 phonenumber.add(staff.getString ("phonenumber"));
-                address.add(staff.getString ("address"));
+                keterangan.add(staff.getString ("keterangan"));
                 id_data.add (staff.getString ("id_data"));
                 foto.add (staff.getString ("foto"));
                 time.add (staff.getString ("time"));
@@ -358,5 +424,62 @@ public class ListCallActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
+
+
+    private void uploadCallAdmin() {
+        //menampilkan progress dialog
+        final ProgressDialog loading = ProgressDialog.show(this, "Uploading...", "Please wait...", false, false);
+        StringRequest stringRequest = new StringRequest(Request.Method.POST, UPLOAD_URL,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        Log.e(TAG, "Response: " + response.toString());
+                        try {
+                            JSONObject jObj = new JSONObject(response);
+                            success = jObj.getInt(TAG_SUCCESS);
+                            if (success == 1) {
+                                Log.e("v Add", jObj.toString());
+                                Toast.makeText(ListCallActivity.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                                finish();
+                                startActivity(getIntent());
+                            } else {
+                                Toast.makeText(ListCallActivity.this, jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+                            }
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        //menghilangkan progress dialog
+                        loading.dismiss();
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        //menghilangkan progress dialog
+                        loading.dismiss();
+                        //menampilkan toast
+                        Toast.makeText(ListCallActivity.this, "Please Complete Form & Image".toString(), Toast.LENGTH_LONG).show();
+                        Log.e(TAG, error.getMessage());
+                    }
+                }) {
+            @Override
+            protected Map<String, String> getParams() {
+                //membuat parameters
+                Map<String, String> params = new HashMap<String, String> ();
+                //menambah parameter yang di kirim ke web servis
+                params.put(KEY_IDDATA, id_data.toString().trim());
+                params.put(KEY_IDUSER, id_user.toString().trim());
+                //kembali ke parameters
+                Log.e(TAG, "" + params);
+                Toast.makeText(ListCallActivity.this, "Data Call : "+id_data+","+id_user, Toast.LENGTH_LONG).show();
+                return params;
+            }
+        };
+        AppController.getInstance().addToRequestQueue(stringRequest, tag_json_obj);
+    }
+
+
+
+
 
 }
