@@ -52,7 +52,7 @@ public class adapterListPromosi extends BaseAdapter {
         holder.txtOtherinfo = (TextView) convertView.findViewById(R.id.txtOtherinfo);
         holder.txtIdAdmin = (TextView) convertView.findViewById(R.id.txtIdAdmin);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
-
+        holder.txtPrice = (TextView) convertView.findViewById(R.id.txtPrice);
 
         holder.txtNama.setText(ListManagePromosiActivity.nama_bisnis.get(position));
         holder.txtNotelp.setText(ListManagePromosiActivity.no_telp.get(position));

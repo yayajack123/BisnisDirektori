@@ -40,7 +40,7 @@ public class adapterList extends BaseAdapter implements Filterable {
     }
 
     static class ViewHolder {
-        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin ;
+        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin, txtPrice ;
         ImageView imgThumb;
     }
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -61,10 +61,12 @@ public class adapterList extends BaseAdapter implements Filterable {
         holder.txtOtherinfo = (TextView) convertView.findViewById(R.id.txtOtherinfo);
         holder.txtIdAdmin = (TextView) convertView.findViewById(R.id.txtIdAdmin);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
+        holder.txtPrice = (TextView) convertView.findViewById(R.id.txtPrice);
 
 
         holder.txtNama.setText(ListInformationActivity.nama_bisnis.get(position));
         holder.txtNotelp.setText(ListInformationActivity.no_telp.get(position));
+        holder.txtPrice.setText(ListInformationActivity.price.get(position));
         holder.txtAlamat.setText(ListInformationActivity.alamat.get(position));
         holder.txtOtherinfo.setText(ListInformationActivity.otherinfo.get(position));
         holder.txtIdAdmin.setText(ListInformationActivity.id_admin.get(position));

@@ -208,6 +208,7 @@ public class ListManageUlasanActivity extends AppCompatActivity {
         nama_bisnis.clear ();
         no_telp.clear ();
         email.clear ();
+        price.clear();
         alamat.clear ();
         website.clear ();
         otherinfo.clear ();
@@ -334,6 +335,7 @@ public class ListManageUlasanActivity extends AppCompatActivity {
                 no_telp.add (staff.getString ("no_telp"));
                 email.add (staff.getString ("email"));
                 alamat.add (staff.getString ("alamat"));
+                price.add(staff.getString("price"));
                 website.add (staff.getString ("website"));
                 otherinfo.add (staff.getString ("otherinfo"));
                 foto.add (staff.getString ("foto"));

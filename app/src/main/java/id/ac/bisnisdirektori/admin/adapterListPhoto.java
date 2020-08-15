@@ -30,7 +30,7 @@ public class adapterListPhoto extends BaseAdapter {
         return position;
     }
     static class ViewHolder {
-        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin ;
+        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin, txtPrice ;
         ImageView imgThumb;
     }
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -51,6 +51,7 @@ public class adapterListPhoto extends BaseAdapter {
         holder.txtOtherinfo = (TextView) convertView.findViewById(R.id.txtOtherinfo);
         holder.txtIdAdmin = (TextView) convertView.findViewById(R.id.txtIdAdmin);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
+        holder.txtPrice = (TextView) convertView.findViewById(R.id.txtPrice);
 
 
         holder.txtNama.setText(ListManagePhotoActivity.nama_bisnis.get(position));

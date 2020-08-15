@@ -250,6 +250,8 @@ public class ListInformationActivity extends AppCompatActivity {
         nama_bisnis.clear ();
         no_telp.clear ();
         email.clear ();
+        price.clear();
+
         alamat.clear ();
         website.clear ();
         otherinfo.clear ();
@@ -375,6 +377,7 @@ public class ListInformationActivity extends AppCompatActivity {
                 nama_bisnis.add (staff.getString ("nama_bisnis"));
                 no_telp.add (staff.getString ("no_telp"));
                 email.add (staff.getString ("email"));
+                price.add(staff.getString("price"));
                 alamat.add (staff.getString ("alamat"));
                 website.add (staff.getString ("website"));
                 otherinfo.add (staff.getString ("otherinfo"));

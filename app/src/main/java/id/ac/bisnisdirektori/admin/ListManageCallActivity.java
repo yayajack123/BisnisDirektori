@@ -208,6 +208,7 @@ public class ListManageCallActivity extends AppCompatActivity {
         no_telp.clear ();
         email.clear ();
         alamat.clear ();
+        price.clear();
         website.clear ();
         otherinfo.clear ();
         foto.clear ();
@@ -333,6 +334,7 @@ public class ListManageCallActivity extends AppCompatActivity {
                 no_telp.add (staff.getString ("no_telp"));
                 email.add (staff.getString ("email"));
                 alamat.add (staff.getString ("alamat"));
+                price.add(staff.getString("price"));
                 website.add (staff.getString ("website"));
                 otherinfo.add (staff.getString ("otherinfo"));
                 foto.add (staff.getString ("foto"));

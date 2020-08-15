@@ -12,80 +12,75 @@
         card_view:cardElevation="3sp"
         card_view:cardUseCompatPadding="true">
 
-        <RelativeLayout
+        <LinearLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
 
-
-            <!--        <TextView-->
-            <!--            android:id="@+id/text_review"-->
-            <!--            android:fontFamily="@font/montserat_regular"-->
-            <!--            android:textColor="#000"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_below="@id/txtNama"-->
-            <!--            android:layout_marginLeft="10dp"-->
-            <!--            android:layout_marginTop="5dp"-->
-            <!--            android:layout_toRightOf="@id/rating_product"-->
-            <!--            android:text="3.0"-->
-            <!--            android:textStyle="bold" />-->
-            <!--        <TextView-->
-            <!--            android:id="@+id/total_review"-->
-            <!--            android:layout_width="wrap_content"-->
-            <!--            android:layout_height="wrap_content"-->
-            <!--            android:layout_below="@id/txtNama"-->
-            <!--            android:layout_marginLeft="10dp"-->
-            <!--            android:layout_marginTop="5dp"-->
-            <!--            android:layout_toRightOf="@id/text_review"-->
-            <!--            android:text="(405 review user)"/>-->
-
-            <de.hdodenhof.circleimageview.CircleImageView
+            <ImageView
                 android:id="@+id/imgThumb"
-                android:layout_width="92dp"
-                android:layout_height="92dp"
-                android:layout_marginStart="10dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginBottom="5dp"
+                android:layout_width="match_parent"
+                android:layout_height="150dp"
+                android:scaleType="centerCrop"
+                android:layout_marginBottom="10dp"
                 android:src="@drawable/userthumb"
-                app:civ_border_color="@color/colorAccent"
-                app:civ_border_width="4dp" />
-
-            <TextView
-                android:id="@+id/txtNama"
-                style="@style/subheader"
-                android:layout_width="wrap_content"
+                 />
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/imgThumb"
-                android:layout_marginStart="18dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="-91dp"
-                android:layout_toEndOf="@+id/imgThumb"
-                android:hint="Business Name"
-                android:textColor="#000"
-                android:textStyle="bold" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtNama"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    style="@style/subheader"
+                    android:layout_weight="1"
+                    android:textSize="20dp"
+                    android:hint="Business Name"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
 
-            <TextView
-                android:id="@+id/txtAlamat"
-                android:layout_width="wrap_content"
+                <TextView
+                    android:id="@+id/txtPrice"
+                    android:layout_width="wrap_content"
+                    android:textSize="12sp"
+                    android:layout_marginEnd="10dp"
+                    android:layout_weight="1"
+                    android:textAlignment="textEnd"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    android:fontFamily="@font/montserat_regular"
+                    android:hint="Rp100000 for two"
+                     />
+            </LinearLayout>
+
+
+            <LinearLayout
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtNama"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/imgThumb"
-                android:fontFamily="@font/montserat_regular"
-                android:hint="Address"
-                android:textColor="#000" />
+                android:orientation="horizontal">
+                <TextView
+                    android:id="@+id/txtAlamat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="10dp"
+                    style="@style/body"
+                    android:textSize="12sp"
+                    android:layout_weight="1"
+                    android:hint="Address"
+                    android:textColor="#000" />
+
+            </LinearLayout>
+
+
 
             <TextView
                 android:id="@+id/txtNotelp"
+                android:visibility="gone"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@id/txtAlamat"
-                android:layout_marginStart="20dp"
                 android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_toEndOf="@+id/imgThumb"
                 android:fontFamily="@font/montserat_regular"
                 android:hint="Phonenumber"
                 android:textColor="#000" />
@@ -94,26 +89,22 @@
                 android:id="@+id/txtOtherinfo"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_below="@+id/txtNotelp"
-                android:layout_marginStart="20dp"
-                android:layout_marginLeft="10dp"
-                android:layout_marginTop="5dp"
-                android:layout_marginBottom="13dp"
-                android:layout_toEndOf="@+id/imgThumb"
+                android:layout_marginStart="10dp"
+                android:layout_marginBottom="15dp"
                 android:fontFamily="@font/montserat_regular"
+                android:textSize="10dp"
                 android:hint="Other Info"
-                android:textColor="#000" />
+                 />
 
             <TextView
                 android:id="@+id/txtIdAdmin"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
-                android:layout_below="@+id/txtOtherinfo"
                 android:layout_marginLeft="10dp"
                 android:layout_marginBottom="0dp"
                 android:fontFamily="@font/montserat_regular"
                 android:text="ID Admin"
                 android:textColor="#000" />
-        </RelativeLayout>
+        </LinearLayout>
     </androidx.cardview.widget.CardView>
 </RelativeLayout>

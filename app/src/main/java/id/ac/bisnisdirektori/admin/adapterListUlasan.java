@@ -52,7 +52,7 @@ public class adapterListUlasan extends BaseAdapter {
         holder.txtOtherinfo = (TextView) convertView.findViewById(R.id.txtOtherinfo);
         holder.txtIdAdmin = (TextView) convertView.findViewById(R.id.txtIdAdmin);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
-
+        holder.txtPrice = (TextView) convertView.findViewById(R.id.txtPrice);
 
         holder.txtNama.setText(ListManageUlasanActivity.nama_bisnis.get(position));
         holder.txtNotelp.setText(ListManageUlasanActivity.no_telp.get(position));
