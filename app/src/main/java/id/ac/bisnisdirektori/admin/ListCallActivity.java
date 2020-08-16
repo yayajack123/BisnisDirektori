@@ -115,7 +115,6 @@ public class ListCallActivity extends AppCompatActivity {
     public static ArrayList<String> id_user = new ArrayList<String> ();
     public static ArrayList<String> fullname = new ArrayList<String> ();
     public static ArrayList<String> phonenumber = new ArrayList<String> ();
-    public static ArrayList<String> price = new ArrayList<String> ();
     public static ArrayList<String> keterangan= new ArrayList<String> ();
     public static ArrayList<String> id_data = new ArrayList<String> ();
     public static ArrayList<String> foto = new ArrayList<String> ();
@@ -285,7 +284,6 @@ public class ListCallActivity extends AppCompatActivity {
         id_user.clear ();
         fullname.clear();
         phonenumber.clear();
-        price.clear();
         keterangan.clear();
         id_data.clear ();
         foto.clear ();
@@ -401,7 +399,6 @@ public class ListCallActivity extends AppCompatActivity {
                 id_user.add (staff.getString ("id_user"));
                 fullname.add(staff.getString ("fullname"));
                 phonenumber.add(staff.getString ("phonenumber"));
-                price.add(staff.getString("price"));
                 keterangan.add(staff.getString ("keterangan"));
                 id_data.add (staff.getString ("id_data"));
                 foto.add (staff.getString ("foto"));
