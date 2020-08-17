@@ -36,6 +36,7 @@ import com.google.android.gms.maps.model.LatLng;
 import com.google.android.gms.maps.model.MarkerOptions;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.gms.tasks.Task;
+import com.google.android.material.button.MaterialButton;
 import com.squareup.picasso.Callback;
 import com.squareup.picasso.Picasso;
 
@@ -75,7 +76,8 @@ public class DetailPhotoProductActivity extends AppCompatActivity {
     Bitmap bitmap, decoded;
     ImageView imgPreview, imgChange;
     EditText txtFoto,editTextId, editIdData;
-    Button update, delete, changePhoto;
+    Button update, changePhoto;
+    MaterialButton delete;
     CoordinatorLayout coordinatorLayout;
     int IOConnect = 0;
     String foto, id_data;

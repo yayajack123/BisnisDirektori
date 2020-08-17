@@ -33,7 +33,7 @@
         <activity
             android:name=".admin.ListPhotoActivity"
             android:label="@string/title_activity_list_photo"
-            android:theme="@style/AppTheme.NoActionBar" />
+            />
         <activity
             android:name=".admin.ListManagePhotoActivity"
             android:parentActivityName=".admin.OutletDetailsActivity" />
