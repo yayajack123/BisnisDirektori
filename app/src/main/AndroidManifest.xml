@@ -65,11 +65,7 @@
         <activity
             android:name=".SplashScreenActivity"
             android:theme="@style/loginregister" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".review.PostReviewActivity" />
         <activity android:name=".review.ReviewActivity" />
@@ -79,7 +75,13 @@
             android:theme="@style/loginregister" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/loginregister" />
+            android:theme="@style/loginregister" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".DetailProduct" />
         <activity
             android:name=".MainActivity"

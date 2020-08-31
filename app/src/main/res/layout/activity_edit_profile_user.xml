@@ -6,9 +6,20 @@
     android:layout_height="match_parent"
     tools:context=".EditProfileUserActivity">
     <Button
+        android:id="@+id/editProfile"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         style="@style/btn_login"
+        android:textAllCaps="false"
+        android:fontFamily="@font/montserat_regular"
+        android:text="Edit"
+        android:layout_alignParentBottom="true"/>
+    <Button
+        android:id="@+id/updateProfile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        style="@style/btn_login"
+        android:visibility="gone"
         android:textAllCaps="false"
         android:fontFamily="@font/montserat_regular"
         android:text="Save Changes"
@@ -84,6 +95,7 @@
                     android:id="@+id/txt_fullname"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
+                    android:enabled="false"
                     style="@style/body"
                     android:inputType="text"
                     android:text="Juliarta"/>
@@ -102,6 +114,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="textEmailAddress"
+                    android:enabled="false"
                     android:text="juliarta@gmail.com" />
                 <TextView
                     android:layout_marginTop="10dp"
@@ -117,6 +130,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="phone"
+                    android:enabled="false"
                     android:text="08999426953" />
                 <TextView
                     android:layout_marginTop="10dp"
@@ -132,6 +146,7 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:inputType="text"
+                    android:enabled="false"
                     android:text="Bali" />
                 <TextView
                     android:layout_marginTop="10dp"
@@ -146,6 +161,7 @@
                     android:layout_height="wrap_content"
                     style="@style/body"
                     android:inputType="text"
+                    android:enabled="false"
                     android:layout_marginBottom="50dp"
                     android:hint="Tell us a little something"/>
             </LinearLayout>

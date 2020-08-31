@@ -5,6 +5,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import android.content.Context;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -22,7 +24,9 @@ import org.json.JSONObject;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
+import id.ac.bisnisdirektori.admin.AppController;
 import id.ac.bisnisdirektori.admin.Server;
 
 import static id.ac.bisnisdirektori.admin.Server.URL;
@@ -47,6 +51,11 @@ public class EditProfileUserActivity extends AppCompatActivity {
 
     Boolean session = false;
 
+    private static final String TAG = EditProfileUserActivity.class.getSimpleName();
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+    String tag_json_obj = "json_obj_req";
+
     public static final String TAG_ID = "id";
     public static final String TAG_EMAIL = "email";
     public static final String TAG_FULLNAME = "fullname";
@@ -62,7 +71,7 @@ public class EditProfileUserActivity extends AppCompatActivity {
 
         id = sharedpreferences.getString("id", "null");
         String url = Server.URL+"profileuser.php?id="+id;
-//        url_update = Server.URL+"updatedataprofile.php?id="+id;
+        url_update = Server.URL+"updateprofileuser.php?id="+id;
 
         fullname = (EditText) findViewById(R.id.txt_fullname);
         email = (EditText) findViewById(R.id.txt_email);
@@ -106,6 +115,108 @@ public class EditProfileUserActivity extends AppCompatActivity {
 
         requestQueue.add(stringRequest);
 
+        edit = findViewById(R.id.editProfile);
+        update = findViewById(R.id.updateProfile);
+        // fungsi floating action button memanggil form biodata
+        edit.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fullname.setEnabled(true);
+                email.setEnabled(true);
+                phonenumber.setEnabled(true);
+                address.setEnabled(true);
+
+                edit.setVisibility(View.GONE);
+                update.setVisibility(View.VISIBLE);
+            }
+        });
+        update.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                fullname.setEnabled(true);
+                email.setEnabled(true);
+                phonenumber.setEnabled(true);
+                address.setEnabled(true);
+
+                String fn = fullname.getText().toString();
+                String em = email.getText().toString();
+                String np = phonenumber.getText().toString();
+                String ad = address.getText().toString();
+
+                checkUpdate(id, fn, em, np, ad);
+
+                fullname.setEnabled(false);
+                email.setEnabled(false);
+                phonenumber.setEnabled(false);
+                address.setEnabled(false);
+
+                edit.setVisibility(View.VISIBLE);
+                update.setVisibility(View.GONE);
+            }
+        });
+
+    }
+    private void checkUpdate(final String id_member, final String fn, final String em, final String np, final String ad){
+
+        StringRequest strReq = new StringRequest(Request.Method.POST, url_update, new Response.Listener<String>() {
+
+            @Override
+            public void onResponse(String response) {
+                Log.e(TAG, "Register Response: " + response.toString());
+
+                try {
+                    JSONObject jObj = new JSONObject(response);
+                    success = jObj.getInt(TAG_SUCCESS);
+
+                    // Check for error node in json
+                    if (success == 1) {
+
+                        Log.e("Successfully Register!", jObj.toString());
+
+//                        Toast.makeText(getActivity().getApplicationContext(),
+//                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+
+
+                    } else {
+//                        Toast.makeText(getActivity().getApplicationContext(),
+//                                jObj.getString(TAG_MESSAGE), Toast.LENGTH_LONG).show();
+
+                    }
+                } catch (JSONException e) {
+                    // JSON error
+                    e.printStackTrace();
+                }
+
+            }
+        }, new Response.ErrorListener() {
+
+            @Override
+            public void onErrorResponse(VolleyError error) {
+                Log.e(TAG, "Login Error: " + error.getMessage());
+//                Toast.makeText(getActivity().getApplicationContext(),
+//                        error.getMessage(), Toast.LENGTH_LONG).show();
+
+            }
+        }) {
+
+            @Override
+            protected Map<String, String> getParams() {
+                // Posting parameters to login url
+                Map<String, String> params = new HashMap<String, String>();
+                params.put("id", id);
+                params.put("fullname", fn);
+                params.put("email", em);
+                params.put("phonenumber", np);
+                params.put("address", ad);
+
+
+                return params;
+            }
+
+        };
+
+        // Adding request to request queue
+        AppController.getInstance().addToRequestQueue(strReq, tag_json_obj);
 
     }
 }
