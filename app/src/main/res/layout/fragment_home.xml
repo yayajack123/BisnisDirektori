@@ -8,7 +8,7 @@
     android:background="#ffffff"
     tools:context=".ui.home.HomeFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:fillViewport="true">
@@ -86,23 +86,22 @@
                     </HorizontalScrollView>
 
 
-                    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+                    <LinearLayout
                         android:id="@+id/swipeRefreshLayout"
                         android:layout_width="match_parent"
                         android:layout_height="wrap_content"
                         android:padding="3dp"
+                        android:orientation="vertical"
                         android:layout_below="@id/hsv"
                         android:layout_marginBottom="60dp">
 
-                        <ListView
+                        <androidx.recyclerview.widget.RecyclerView
                             android:id="@+id/ListTop"
-                            android:layout_width="fill_parent"
+                            android:layout_width="match_parent"
                             android:layout_height="wrap_content"
                             android:divider="@null"
-                            android:nestedScrollingEnabled="true"
                              />
-                    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
-
+                    </LinearLayout>
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/recyclercat"-->
 <!--        android:layout_width="match_parent"-->
@@ -119,6 +118,6 @@
 <!--        android:layout_below="@id/recyclercat"/>-->
 
         </RelativeLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
 </RelativeLayout>

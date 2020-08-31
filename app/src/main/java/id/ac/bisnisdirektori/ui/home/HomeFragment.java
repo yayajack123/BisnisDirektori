@@ -5,11 +5,14 @@ import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
+import android.view.GestureDetector;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AbsListView;
@@ -91,6 +94,7 @@ public class HomeFragment extends Fragment {
     @SuppressLint("SdCardPath")
     public static String DBPath = "/data/data/com.devatapixel.crud/databases/";
     ListView ListTop;
+    ArrayList<HashMap<String, String>> list_top;
     ProgressBar prgLoading;
     SwipeRefreshLayout swipeRefreshLayout = null;
     EditText edtKeyword;
@@ -141,213 +145,137 @@ public class HomeFragment extends Fragment {
             }
         });
         sharedpreferences = getContext().getSharedPreferences(LoginActivity.my_shared_preferences, Context.MODE_PRIVATE);
-
+        String url = Server.URL+"get_list_top.php";
         id = getActivity().getIntent().getStringExtra(TAG_ID);
         mail = getActivity().getIntent().getStringExtra(TAG_EMAIL);
 
-        swipeRefreshLayout = root.findViewById (R.id.swipeRefreshLayout);
 
-        ListTop = root.findViewById (R.id.ListTop);
 //        edtKeyword = root.findViewById(R.id.edtKeyword);
 //        btnSearch = root.findViewById(R.id.btnSearch);
 //        txtAlert = root.findViewById (R.id.txtAlert);
 //        final String keyword = edtKeyword.getText().toString();
 
-        cla = new adapterListTop(getActivity());
-        ListAPI2 = ADMIN_PANEL_URL + "/get_list_top.php";
-        Log.d("TAG", "url: "+ListAPI);
-        new getDataTask().execute();
+        top = (RecyclerView) root.findViewById(R.id.ListTop);
+        top.setLayoutManager(new LinearLayoutManager(getActivity().getApplicationContext()));
 
 
-//        btnSearch.setOnClickListener(new View.OnClickListener() {
-//            @Override
-//            public void onClick(View view) {
-//                //sharedpreferences
-//
-//                String keyword = edtKeyword.getText().toString();
-//                cla = new adapterList (getActivity());
-//                new getDataTask().execute ();
-//
-//                ListAPI2 = ADMIN_PANEL_URL + "/get_list_top3.php"+"?keyword="+keyword;
-//                ListTop.setVisibility (View.VISIBLE);
-//                ListTop.setAdapter (cla);
-//
-//            }
-//        });
+        requestQueue = Volley.newRequestQueue(getActivity().getApplicationContext());
 
-        //Click List Event to Detail
-        ListTop.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-                // TODO Auto-generated method stub
-                // go to menu detail page
-                Intent iDetail = new Intent (getActivity(), DetailProduct.class);
-                iDetail.putExtra ("ID", id_data.get (position));
-                startActivity (iDetail);
-            }
-        });
+        list_top = new ArrayList<>();
 
-        //Get List Data Bisnis Event to Display with Refresh Layout
-        ListTop.setOnScrollListener (new AbsListView.OnScrollListener () {
 
+        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
             @Override
-            public void onScrollStateChanged(AbsListView view, int scrollState) {
-            }
+            public void onResponse(String response) {
+                Log.d("response ", response);
+                try {
+                    JSONObject jsonObject = new JSONObject(response);
+                    JSONArray jsonArray = jsonObject.getJSONArray("top");
+                    for (int a = 0; a < jsonArray.length(); a++) {
+                        JSONObject json = jsonArray.getJSONObject(a);
+                        HashMap<String, String> map = new HashMap<>();
+                        map.put("id_data", json.getString("id_data"));
+                        map.put("nama_bisnis", json.getString("nama_bisnis"));
+                        map.put("kategori", json.getString("kategori"));
+                        map.put("alamat", json.getString("alamat"));
+                        map.put("no_telp", json.getString("no_telp"));
+                        map.put("foto", json.getString("foto"));
+                        list_top.add(map);
+                        adapterListTop adapter = new adapterListTop(HomeFragment.this, list_top);
+                        top.setAdapter(adapter);
 
-            @Override
-            public void onScroll(AbsListView view, int firstVisibleItem, int visibleItemCount, int totalItemCount) {
-                boolean enable = false;
-
-                if (ListTop != null && ListTop.getChildCount () > 0) {
-                    boolean firstItemVisible = ListTop.getFirstVisiblePosition () == 0;
-                    boolean topOfFirstItemVisible = ListTop.getChildAt (0).getTop () == 0;
-                    enable = firstItemVisible && topOfFirstItemVisible;
-                }
-//                swipeRefreshLayout.setEnabled (enable);
-            }
-        });
-
-        //Refreshig List Data Bisnis Event
-        swipeRefreshLayout.setOnRefreshListener (new SwipeRefreshLayout.OnRefreshListener () {
-            @Override
-            public void onRefresh() {
-                new Handler().postDelayed (new Runnable () {
-                    @Override
-                    public void run() {
-                        swipeRefreshLayout.setRefreshing (false);
-                        IOConnect = 0;
-                        ListTop.invalidateViews ();
-                        clearData ();
-                        new getDataTask().execute();
                     }
-                }, 3000);
+                } catch (JSONException e) {
+                    e.printStackTrace();
+                }
+            }
+        }, new Response.ErrorListener() {
+            @Override
+            public void onErrorResponse(VolleyError error) {
+//                Toast.makeText(HomeFragment.this, error.getMessage(), Toast.LENGTH_SHORT).show();
             }
         });
+
+        requestQueue.add(stringRequest);
+
+        top.addOnItemTouchListener(new RecyclerTouchListener(getActivity(), top, new ClickListener() {
+            @Override
+            public void onDataClick(View view, int position) {
+                Intent intent = new Intent(getActivity(), DetailProduct.class);
+                intent.putExtra("id_data", list_top.get(position).get("id_data"));
+                startActivity(intent);
+            }
+
+            @Override
+            public void onDataLongClick(View view, int position) {
+//                Toast.makeText(getActivity(),"Kepencet Lama "+position,Toast.LENGTH_LONG).show();
+            }
+        }));
 
         return root;
     }
 
 
-    void clearData() {
-        id_data.clear ();
-        nama_bisnis.clear ();
-        kategori.clear ();
-        price.clear();
-        alamat.clear ();
-        foto.clear ();
-    }
+//    void clearData() {
+//        id_data.clear ();
+//        nama_bisnis.clear ();
+//        kategori.clear ();
+//        price.clear();
+//        alamat.clear ();
+//        foto.clear ();
+//    }
 
     // asynctask class to handle parsing json in background
-    public class getDataTask extends AsyncTask<Void, Void, Void> {
-        // show progressbar first
 
-        getDataTask() {
-            conMgr = (ConnectivityManager) getActivity().getSystemService (Context.CONNECTIVITY_SERVICE);
-            {
-                if (conMgr.getActiveNetworkInfo () != null
-                        && conMgr.getActiveNetworkInfo ().isAvailable ()
-                        && conMgr.getActiveNetworkInfo ().isConnected ()) {
-//                    if (!prgLoading.isShown ()) {
-//                        prgLoading.setVisibility (View.VISIBLE);
-//                        txtAlert.setVisibility (View.GONE);
-//                    }
-
-                } else {
-
-                }
-            }
-
-        }
-
-        @Override
-        protected Void doInBackground(Void... arg0) {
-            // TODO Auto-generated method stub
-            // parse json data from server in background
-            parseJSONData ();
-            return null;
-        }
-
-        @Override
-        protected void onPostExecute(Void result) {
-            // TODO Auto-generated method stub
-            // when finish parsing, hide progressbar
-//            prgLoading.setVisibility (View.GONE);
-            // if internet connection and data available show data on list
-            // otherwise, show alert text
-
-            if ((id_data.size () > 0) && (IOConnect == 0)) {
-
-                ListTop.setVisibility (View.VISIBLE);
-                ListTop.setAdapter (cla);
-
-            } else {
-                ListTop.setVisibility (View.VISIBLE);
-                Toast.makeText (getActivity(), "No Internet Connection",
-                        Toast.LENGTH_LONG).show ();
-//                txtAlert.setVisibility (View.VISIBLE);
-
-            }
-        }
-
+    public interface OnFragmentInteractionListener {
+        // TODO: Update argument type and name
+        void onFragmentInteraction(Uri uri);
     }
+    class RecyclerTouchListener implements RecyclerView.OnItemTouchListener{
+        private GestureDetector mGestureDetector;
+        private ClickListener mClickListener;
 
 
-    public void parseJSONData() {
-        clearData ();
-        //sharedpreferences
+        public RecyclerTouchListener(final Context context, final RecyclerView recyclerView, final ClickListener clickListener) {
+            this.mClickListener = clickListener;
+            mGestureDetector = new GestureDetector(context,new GestureDetector.SimpleOnGestureListener(){
+                @Override
+                public boolean onSingleTapUp(MotionEvent e) {
+                    return true;
+                }
 
-        String url = Server.URL+"get_list_top.php";
+                @Override
+                public void onLongPress(MotionEvent e) {
+                    View child = recyclerView.findChildViewUnder(e.getX(),e.getY());
+                    if (child!=null && clickListener!=null){
+                        clickListener.onDataLongClick(child,recyclerView.getChildAdapterPosition(child));
+                    }
+                    super.onLongPress(e);
+                }
+            });
+        }
 
-
-        try {
-            // request data from Category API
-
-
-            HttpClient client = new DefaultHttpClient();
-            HttpConnectionParams.setConnectionTimeout (client.getParams (), 15000);
-            HttpConnectionParams.setSoTimeout (client.getParams (), 15000);
-            HttpUriRequest request = new HttpGet(ListAPI2);
-            HttpResponse response = client.execute (request);
-            InputStream atomInputStream = response.getEntity ().getContent ();
-            BufferedReader in = new BufferedReader (new InputStreamReader(atomInputStream));
-            String line;
-            String str ="";
-            while ((line = in.readLine ()) != null) {
-                str += line;
+        @Override
+        public boolean onInterceptTouchEvent(RecyclerView rv, MotionEvent e) {
+            View child = rv.findChildViewUnder(e.getX(), e.getY());
+            if (child!=null && mClickListener!=null && mGestureDetector.onTouchEvent(e)){
+                mClickListener.onDataClick(child,rv.getChildAdapterPosition(child));
             }
-            // parse json data and store into arraylist variables
-            JSONObject json = new JSONObject (str);
-            JSONArray data = json.getJSONArray ("data");
-
-            for (int i = 0; i < data.length (); i++) {
-                JSONObject object = data.getJSONObject (i);
-                JSONObject staff = object.getJSONObject ("Staff");
-
-                id_data.add (staff.getString ("id_data"));
-                nama_bisnis.add (staff.getString ("nama_bisnis"));
-                kategori.add (staff.getString ("kategori"));
-                price.add(staff.getString("price"));
-                alamat.add (staff.getString ("alamat"));
-                foto.add (staff.getString ("foto"));
-
-            }
+            return false;
         }
 
-        catch (MalformedURLException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
+        @Override
+        public void onTouchEvent(RecyclerView rv, MotionEvent e) {
+
         }
 
-        catch (IOException e) {
-            // TODO Auto-generated catch block
-            IOConnect = 1;
-            e.printStackTrace();
-        }
+        @Override
+        public void onRequestDisallowInterceptTouchEvent(boolean disallowIntercept) {
 
-        catch (JSONException e) {
-            // TODO Auto-generated catch block
-            e.printStackTrace();
         }
-
+    }
+    public static interface ClickListener{
+        public void onDataClick(View view, int position);
+        public void onDataLongClick(View view, int position);
     }
 }

@@ -11,66 +11,69 @@ import android.widget.Filterable;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import androidx.recyclerview.widget.RecyclerView;
+
+import com.bumptech.glide.Glide;
 import com.squareup.picasso.Picasso;
+
+import java.util.ArrayList;
+import java.util.HashMap;
 
 import id.ac.bisnisdirektori.R;
 import id.ac.bisnisdirektori.admin.ListInformationActivity;
+import id.ac.bisnisdirektori.admin.Server;
 import id.ac.bisnisdirektori.admin.adapterList;
 import id.ac.bisnisdirektori.ui.home.HomeFragment;
 
-public class adapterListTop extends BaseAdapter implements Filterable {
-    public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
+public class adapterListTop extends RecyclerView.Adapter<adapterListTop.ViewHolder> {
+    Context context;
+    ArrayList<HashMap<String, String>> list_top;
     private Activity activity;
-    public adapterListTop(Activity act) {
-        this.activity = act;
-    }
+    private LayoutInflater inflater;
 
-
-    public int getCount() {
-        return HomeFragment.id_data.size();
-    }
-    public Object getItem(int position) {
-        return position;
-    }
-    public long getItemId(int position) {
-        return position;
+    public adapterListTop(HomeFragment homeFragment, ArrayList<HashMap<String, String>> list_top) {
+        this.context = homeFragment.getContext();
+        this.list_top = list_top;
     }
 
     @Override
-    public Filter getFilter() {
-        return null;
+    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
+        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.row_list_top, null);
+        return new ViewHolder(view);
     }
 
-    static class ViewHolder {
-        TextView txtNama,txtCat, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin, txtPrice ;
-        ImageView imgThumb;
+
+    @Override
+    public void onBindViewHolder(adapterListTop.ViewHolder holder, int position) {
+        Glide.with(context)
+                .load(Server.URL+list_top.get(position).get("foto"))
+                .placeholder(R.mipmap.ic_launcher)
+                .into(holder.foto);
+        holder.nama_bisnis.setText(list_top.get(position).get("nama_bisnis"));
+        holder.kategori.setText(list_top.get(position).get("kategori"));
+        holder.alamat.setText(list_top.get(position).get("alamat"));
+        holder.no_telp.setText(list_top.get(position).get("no_telp"));
     }
-    public View getView(int position, View convertView, ViewGroup parent) {
-        adapterListTop.ViewHolder holder;
-        if(convertView == null){
-            LayoutInflater inflater = (LayoutInflater) activity
-                    .getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            convertView = inflater.inflate(R.layout.row_list_top, null);
-            holder = new adapterListTop.ViewHolder();
-            convertView.setTag(holder);
-        }else{
-            holder = (adapterListTop.ViewHolder) convertView.getTag();
+
+
+
+    @Override
+    public int getItemCount() {
+        return list_top.size();
+    }
+
+    public class ViewHolder extends RecyclerView.ViewHolder {
+        TextView nama_bisnis, kategori, alamat, no_telp;
+        ImageView foto;
+
+        public ViewHolder(View itemView) {
+            super(itemView);
+
+            nama_bisnis = (TextView) itemView.findViewById(R.id.title_product);
+            kategori = (TextView) itemView.findViewById(R.id.cat_product);
+            alamat = (TextView) itemView.findViewById(R.id.loc_product);
+            no_telp = (TextView) itemView.findViewById(R.id.price_product);
+            foto = (ImageView) itemView.findViewById(R.id.imgThumb);
         }
-
-        holder.txtNama = (TextView) convertView.findViewById(R.id.title_product);
-        holder.txtCat = (TextView) convertView.findViewById(R.id.cat_product);
-        holder.txtAlamat = (TextView) convertView.findViewById(R.id.loc_product);
-        holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
-        holder.txtPrice = (TextView) convertView.findViewById(R.id.price_product);
-
-
-        holder.txtNama.setText(HomeFragment.nama_bisnis.get(position));
-        holder.txtCat.setText(HomeFragment.kategori.get(position));
-        holder.txtPrice.setText(HomeFragment.price.get(position));
-        holder.txtAlamat.setText(HomeFragment.alamat.get(position));
-        Picasso.with(activity).load(ADMIN_PANEL_URL+"/"+HomeFragment.foto.get(position)).placeholder(R.drawable.imgthumb).into(holder.imgThumb);
-        return convertView;
-
-
     }
 }
