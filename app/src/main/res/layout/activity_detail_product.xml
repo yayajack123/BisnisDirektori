@@ -57,14 +57,16 @@
         android:layout_margin="10dp"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
+
         <TextView
+            android:id="@+id/name_product"
+            style="@style/subheader"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="Jack Music Studio"
-            android:textStyle="bold"
-            style="@style/subheader"
             android:textColor="#000"
-            android:textSize="20sp"/>
+            android:textSize="20sp"
+            android:textStyle="bold" />
         <TextView
             android:id="@+id/cat_product"
             android:text="Music"
@@ -75,6 +77,13 @@
         <TextView
             android:id="@+id/loc_product"
             android:text="Tuban, Bali"
+            android:textColor="#000"
+            style="@style/body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"/>
+        <TextView
+            android:id="@+id/telp_product"
+            android:text="08177261661"
             android:textColor="#000"
             style="@style/body"
             android:layout_width="wrap_content"
@@ -218,13 +227,15 @@
             style="@style/body"
             android:textSize="16dp"
             android:textStyle="bold"/>
+
         <TextView
-            android:layout_marginTop="10dp"
-            android:layout_width="wrap_content" android:textColor="#000"
-            android:layout_height="wrap_content"
+            android:id="@+id/loc2_product"
             style="@style/body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
             android:text="Jl. Raya Tuban No.120 Tuban, Bali"
-            />
+            android:textColor="#000" />
 
         <TextView
             android:textColor="#FF2C6B"
@@ -262,14 +273,50 @@
             android:layout_height="wrap_content"
             android:text="Category"
             />
+
         <TextView
-            android:layout_marginTop="5dp"
+            android:id="@+id/cat2_product"
+            style="@style/body"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="Music, Produce"
-            style="@style/body"
-            android:textColor="#000"
+            android:textColor="#000" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            style="@style/body2"
+            android:layout_height="wrap_content"
+            android:text="Email"
             />
+
+        <TextView
+            android:id="@+id/email_product"
+            style="@style/body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="product@mail.com"
+            android:textColor="#000" />
+
+        <TextView
+            android:layout_marginTop="10dp"
+            android:layout_width="wrap_content"
+            style="@style/body2"
+            android:layout_height="wrap_content"
+            android:text="Website"
+            />
+
+        <TextView
+            android:id="@+id/web_product"
+            style="@style/body"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="www.product.com"
+            android:textColor="#000" />
+
         <TextView
             android:layout_marginTop="10dp"
             android:layout_width="wrap_content"
@@ -277,14 +324,15 @@
             android:layout_height="wrap_content"
             android:text="Average Cost"
             />
+
         <TextView
-            android:layout_marginTop="5dp"
-            android:layout_width="wrap_content"
+            android:id="@+id/price2_product"
             style="@style/body"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
             android:text="Rp100000 for two hours\nCash only"
-            android:textColor="#000"
-            />
+            android:textColor="#000" />
         <TextView
             android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
@@ -300,7 +348,7 @@
             <TableRow>
                 <ImageView android:src="@drawable/ic_baseline_check_circle_outline_24"
                     />
-                <TextView android:text="Cheap" style="@style/body" android:padding="2dp" android:textColor="#000"/>
+                <TextView android:id="@+id/otherinfo_product" android:text="Cheap" style="@style/body" android:padding="2dp" android:textColor="#000"/>
             </TableRow>
             <TableRow>
                 <ImageView android:src="@drawable/ic_baseline_check_circle_outline_24"
