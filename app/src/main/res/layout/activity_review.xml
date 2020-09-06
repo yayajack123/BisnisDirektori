@@ -9,7 +9,52 @@
     android:background="@color/white"
     tools:context=".review.ReviewActivity">
 
-    <include android:id="@+id/layout_1" layout="@layout/card_headerreview"/>
+    <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+        android:id="@+id/layout_1"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+
+        <TextView
+            android:id="@+id/title_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/subheader"
+            android:layout_marginTop="10dp"
+            android:text="Wiras Music Studio"
+            />
+
+        <TextView
+            android:id="@+id/cat_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:text="Music"/>
+
+        <TextView
+            android:id="@+id/loc_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:text="Tuban, Bali"
+            android:layout_marginBottom="10dp"/>
+
+        <TextView
+            android:id="@+id/open_time"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:text="Open now - 12 hours today ( 10.00 - 12.00 )"/>
+        <TextView
+            android:id="@+id/price_product"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            style="@style/body"
+            android:text="Cost for two hours - Rp100.000"
+            android:layout_marginBottom="20dp"/>
+        <View
+            style="@style/view"/>
+    </LinearLayout>
 
     <TextView
         android:id="@+id/text_1"
@@ -25,20 +70,21 @@
         />
 
     <Button
+        android:id="@+id/btn_writereview"
+        style="@style/btn_follow"
+        android:layout_width="wrap_content"
+        android:layout_height="35dp"
         android:layout_below="@id/layout_1"
         android:layout_alignParentEnd="true"
-        android:id="@+id/btn_writereview"
-        android:layout_width="wrap_content"
         android:layout_marginTop="10dp"
-        android:layout_height="35dp"
         android:background="@drawable/btn_follow"
-        android:textAllCaps="false"
-        android:padding="10dp"
-        android:textSize="12sp"
-        style="@style/btn_follow"
-        android:drawablePadding="10dp"
         android:drawableStart="@drawable/ic_outline_input_24"
-        android:text="Write a review"/>
+        android:drawablePadding="10dp"
+        android:padding="10dp"
+        android:text="Write a review"
+        android:textAllCaps="false"
+        android:textColor="@color/colorPrimaryDark"
+        android:textSize="12sp" />
 
     <RatingBar
         android:id="@+id/rating_product"
@@ -53,6 +99,7 @@
         android:isIndicator="true"/>
 
     <TextView
+        android:id="@+id/txt_rating_product"
         android:layout_toEndOf="@id/rating_product"
         android:layout_below="@id/text_1"
         android:layout_width="wrap_content"
@@ -69,7 +116,16 @@
         style="@style/body"
         android:layout_below="@id/rating_product"
         android:padding="5dp"
-        android:text="405 REVIEWS"/>
+        android:text="0"/>
+    <TextView
+        android:id="@+id/caption_review"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        style="@style/body"
+        android:layout_toRightOf="@id/total_review"
+        android:layout_below="@id/rating_product"
+        android:padding="5dp"
+        android:text="REVIEWS"/>
 
     <Button
         android:id="@+id/search_review"
@@ -96,8 +152,11 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:orientation="vertical">
-        <include layout="@layout/card_listreview"/>
-        <include layout="@layout/card_listreview"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ListRvw"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null" />
     </LinearLayout>
 
 </RelativeLayout>

@@ -124,16 +124,7 @@ public class HomeFragment extends Fragment {
         homeViewModel =
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
-//        CardView cardView = (CardView) root.findViewById(R.id.card_product);
-//        cardView.setOnClickListener(new View.OnClickListener()
-//        {
-//            @Override
-//            public void onClick(View v)
-//            {
-//                Intent intent = new Intent(getActivity(), DetailProduct.class);
-//                startActivity(intent);
-//            }
-//        });
+
         CardView kategori = (CardView) root.findViewById(R.id.card_category);
         kategori.setOnClickListener(new View.OnClickListener()
         {

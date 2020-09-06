@@ -30,18 +30,22 @@
         android:layout_marginTop="20dp"
         style="@style/subheader"
         android:text="Rate your experience"/>
+
     <RatingBar
         android:id="@+id/rating_product"
-        style="?android:attr/ratingBarStyleIndicator"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_below="@id/text_1"
-        android:layout_marginBottom="20dp"
         android:layout_marginTop="5dp"
-        android:numStars="5"
-        android:rating="3"
-        android:stepSize="0.5"
-        android:isIndicator="true"/>
+        android:layout_marginBottom="20dp"
+         />
+
+    <TextView
+        android:id="@+id/txt_rate"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:text="Rate" />
+
     <View
         style="@style/view"/>
 
@@ -80,10 +84,10 @@
 
     <Button
         android:id="@+id/submit_btn"
-        android:layout_marginTop="20dp"
-        android:text="Submit review"
         style="@style/btn_submit"
-        android:textAllCaps="false"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"/>
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:text="Submit Review"
+        android:textAllCaps="false" />
 </LinearLayout>

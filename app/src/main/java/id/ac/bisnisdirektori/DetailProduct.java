@@ -13,7 +13,10 @@ import android.graphics.drawable.BitmapDrawable;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
+import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
@@ -44,6 +47,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import id.ac.bisnisdirektori.admin.Server;
+import id.ac.bisnisdirektori.review.PostReviewActivity;
+import id.ac.bisnisdirektori.review.ReviewActivity;
 
 public class DetailProduct extends AppCompatActivity {
 
@@ -52,8 +57,9 @@ public class DetailProduct extends AppCompatActivity {
     public static final String TAG_ID = "id";
     public static final String TAG_EMAIL = "email";
     private ImageView img;
-    private TextView nm, cat, tp, loc, tm, pr, loc2, cat2, pr2, em, web, ot;
-    String nama_bisnis, no_telp, email, website, opentime, price, kategori, alamat, otherinfo, foto;
+    private TextView nm, cat, tp, loc, tm, pr, loc2, cat2, pr2, em, web, ot, tr, rr;
+    private RatingBar rb;
+    String nama_bisnis, no_telp, email, website, opentime, price, kategori, alamat, otherinfo, foto, jumlah_review, rata;
     String id;
     String url_detail;
     String DetailAPI;
@@ -74,8 +80,6 @@ public class DetailProduct extends AppCompatActivity {
 
         id = sharedpreferences.getString("id_member", "null");
 
-//        email = getIntent().getStringExtra(TAG_EMAIL);
-
         Intent iGet = getIntent();
         id_data = iGet.getStringExtra("id_data");
 
@@ -94,9 +98,50 @@ public class DetailProduct extends AppCompatActivity {
         em = (TextView) findViewById(R.id.email_product);
         web = (TextView) findViewById(R.id.web_product);
         ot = (TextView) findViewById(R.id.otherinfo_product);
+        tr = (TextView) findViewById(R.id.total_review);
+        rr = (TextView) findViewById(R.id.text_review);
+        rb = (RatingBar) findViewById(R.id.rating_product);
+
 
         requestQueue = Volley.newRequestQueue(DetailProduct.this);
 
+        TextView rvw = (TextView) findViewById(R.id.review);
+        rvw.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(DetailProduct.this, ReviewActivity.class);
+                intent.putExtra("id_data", id_data);
+                intent.putExtra("nama_bisnis", nama_bisnis);
+                intent.putExtra("kategori", kategori);
+                intent.putExtra("alamat", alamat);
+                intent.putExtra("opentime", opentime);
+                intent.putExtra("price", price);
+                intent.putExtra("jumlah_review", jumlah_review);
+                intent.putExtra("rata", rata);
+                startActivity(intent);
+            }
+        });
+
+        Button list_rvw = (Button) findViewById(R.id.btn_review);
+        list_rvw.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(DetailProduct.this, ReviewActivity.class);
+                intent.putExtra("id_data", id_data);
+                intent.putExtra("nama_bisnis", nama_bisnis);
+                intent.putExtra("kategori", kategori);
+                intent.putExtra("alamat", alamat);
+                intent.putExtra("opentime", opentime);
+                intent.putExtra("price", price);
+                intent.putExtra("jumlah_review", jumlah_review);
+                intent.putExtra("rata", rata);
+                startActivity(intent);
+            }
+        });
 
         new getDataTask().execute();
 
@@ -148,6 +193,9 @@ public class DetailProduct extends AppCompatActivity {
                 em.setText(email);
                 web.setText(website);
                 ot.setText(otherinfo);
+                tr.setText(jumlah_review);
+                rr.setText(rata);
+                rb.setRating(Float.parseFloat(rata));
 
 
             }
@@ -182,6 +230,8 @@ public class DetailProduct extends AppCompatActivity {
                 kategori = detail.getString("kategori");
                 alamat = detail.getString("alamat");
                 otherinfo = detail.getString("otherinfo");
+                jumlah_review = detail.getString("jumlah_review");
+                rata = detail.getString("rata");
             }
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block
