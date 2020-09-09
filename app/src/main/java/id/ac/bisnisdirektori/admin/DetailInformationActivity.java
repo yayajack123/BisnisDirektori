@@ -549,7 +549,7 @@ public class DetailInformationActivity extends AppCompatActivity {
                 super.onPostExecute(s);
                 loading.dismiss();
                 if (s != null) {
-                    Toast.makeText(DetailInformationActivity.this, "Success", Toast.LENGTH_LONG).show();
+                    Toast.makeText(DetailInformationActivity.this, "Updating Data Successfully", Toast.LENGTH_LONG).show();
                     startActivity(new Intent(DetailInformationActivity.this, ListInformationActivity.class));
 
                 } else {

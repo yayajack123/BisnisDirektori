@@ -1,7 +1,5 @@
 package id.ac.bisnisdirektori.admin;
-
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.annotation.SuppressLint;
 import android.app.AlertDialog;
 import android.app.ProgressDialog;
@@ -164,18 +162,6 @@ public class ListPhotoActivity extends AppCompatActivity {
         Log.d("TAG", "url: "+ListAPI);
         new getDataTask ().execute ();
 
-//        ListEvent.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-//            @Override
-//            public void onItemClick(AdapterView<?> parent, View v,
-//                                    int position, long id) {
-//
-//                // Sending image id to FullScreenActivity
-//                Intent i = new Intent(getApplicationContext(), FullImageActivity.class);
-//                // passing array index
-//                i.putExtra("id", position);
-//                startActivity(i);
-//            }
-//        });
 
         //Get List Data Bisnis Event to Display with Refresh Layout
         ListEvent.setOnScrollListener (new AbsListView.OnScrollListener () {
@@ -250,8 +236,6 @@ public class ListPhotoActivity extends AppCompatActivity {
                 iDetail.putExtra ("id_foto", id_foto.get (position));
                 iDetail.putExtra ("id_data", id_data.get (position));
                 startActivity (iDetail);
-//                Toast.makeText (getApplicationContext (), "Id Data",
-//                        Toast.LENGTH_LONG).show ();
 
             }
         });

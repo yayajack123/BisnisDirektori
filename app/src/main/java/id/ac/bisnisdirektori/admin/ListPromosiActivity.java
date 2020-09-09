@@ -77,7 +77,6 @@ public class ListPromosiActivity extends AppCompatActivity {
     private int GALLERY = 1, CAMERA = 2;
     Bitmap bitmap, decoded;
     private String UPLOAD_URL = "https://www.pantaucovid19.net/bd_upload_promosi_product.php";
-    public static final String URL_DELETE = "https://www.pantaucovid19.net/bd_delete_product.php?id_foto=";
     int success;
     private static final String TAG = InformationActivity.class.getSimpleName();
     private static final String TAG_SUCCESS = "success";
@@ -154,8 +153,6 @@ public class ListPromosiActivity extends AppCompatActivity {
         ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_promosi_product.php?id_data="+idData;
         Log.d("TAG", "url: "+ListAPI);
         new getDataTask ().execute ();
-
-
 
 
 
@@ -561,12 +558,4 @@ public class ListPromosiActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-
-
-
-
-
-
 }

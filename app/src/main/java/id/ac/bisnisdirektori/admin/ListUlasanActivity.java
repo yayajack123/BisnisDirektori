@@ -3,27 +3,43 @@ package id.ac.bisnisdirektori.admin;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.annotation.SuppressLint;
+import android.app.AlertDialog;
+import android.app.ProgressDialog;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.BitmapFactory;
+import android.graphics.drawable.BitmapDrawable;
 import android.net.ConnectivityManager;
+import android.net.Uri;
 import android.os.AsyncTask;
 import android.os.Bundle;
+import android.os.Environment;
 import android.os.Handler;
+import android.provider.MediaStore;
+import android.util.Base64;
 import android.util.Log;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.GridView;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.android.volley.Request;
 import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 
 import org.apache.http.HttpResponse;
 import org.apache.http.client.HttpClient;
@@ -36,17 +52,29 @@ import org.json.JSONException;
 import org.json.JSONObject;
 
 import java.io.BufferedReader;
+import java.io.ByteArrayInputStream;
+import java.io.ByteArrayOutputStream;
+import java.io.File;
+import java.io.FileNotFoundException;
+import java.io.FileOutputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.io.InputStreamReader;
 import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.Map;
 
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 import id.ac.bisnisdirektori.R;
 
-public class ListManageUlasanActivity extends AppCompatActivity {
+public class ListUlasanActivity extends AppCompatActivity {
+
+    private String id_data1, id_foto1, phonenumber1;
+
+    private static final String TAG = ListUlasanActivity.class.getSimpleName();
+
+
     //Shared Preferences from Login Admin
     public final static String TAG_ID = "id";
     String id;
@@ -56,6 +84,17 @@ public class ListManageUlasanActivity extends AppCompatActivity {
     private StringRequest stringRequest;
 
     ArrayList<HashMap<String, String>> list_data;
+
+    private String UPLOAD_URL = "https://www.pantaucovid19.net/bd_upload_call_admin.php";
+
+    private static final String TAG_SUCCESS = "success";
+    private static final String TAG_MESSAGE = "message";
+    String tag_json_obj = "json_obj_req";
+    int success;
+
+    private String KEY_IDUSER = "id_user_call";
+    private String KEY_IDDATA = "id_data_call";
+    private  String KEY_KETERANGAN = "keterangan";
 
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
     public static String AccessKey = "12345";
@@ -68,30 +107,36 @@ public class ListManageUlasanActivity extends AppCompatActivity {
     EditText edtKeyword;
     ImageButton btnSearch;
     TextView txtAlert;
-    adapterListUlasan cla;
+    FloatingActionButton addImage;
+    adapterListDetailUlasan cla;
     ConnectivityManager conMgr;
 
+    public static ArrayList<String> id_review = new ArrayList<String> ();
     public static ArrayList<String> id_data = new ArrayList<String> ();
-    public static ArrayList<String> nama_bisnis = new ArrayList<String> ();
-    public static ArrayList<String> no_telp = new ArrayList<String> ();
-    public static ArrayList<String> email = new ArrayList<String> ();
-    public static ArrayList<String> website = new ArrayList<String> ();
-    public static ArrayList<String> opentime = new ArrayList<String> ();
-    public static ArrayList<String> price = new ArrayList<String> ();
-    public static ArrayList<String> kategori = new ArrayList<String> ();
-    public static ArrayList<String> alamat = new ArrayList<String> ();
-    public static ArrayList<String> latitude = new ArrayList<String> ();
-    public static ArrayList<String> longitude = new ArrayList<String> ();
-    public static ArrayList<String> otherinfo = new ArrayList<String> ();
+    public static ArrayList<String> id_user = new ArrayList<String> ();
+    public static ArrayList<String> fullname = new ArrayList<String> ();
+    public static ArrayList<String> rate = new ArrayList<String> ();
+    public static ArrayList<String> review= new ArrayList<String> ();
+    public static ArrayList<String> tanggal = new ArrayList<String> ();
     public static ArrayList<String> foto = new ArrayList<String> ();
-    public static ArrayList<String> id_admin = new ArrayList<String> ();
-    String ListAPI, ListAPI2;
+
+    String ListAPI;
     int IOConnect = 0;
+
+    public static final String URL_USER = "https://www.pantaucovid19.net/bd_call_user.php?id_user=";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate (savedInstanceState);
-        setContentView (R.layout.activity_list_manage_ulasan);
+        setContentView (R.layout.activity_list_ulasan);
+
+
+        // Intent to detail with id data
+        Intent iGet = getIntent ();
+        id_data1 = iGet.getStringExtra ("id_data");
+        String idData = id_data1;
+
+
 
         swipeRefreshLayout = findViewById (R.id.swipeRefreshLayout);
         //sharedpreferences
@@ -105,61 +150,12 @@ public class ListManageUlasanActivity extends AppCompatActivity {
 
         swipeRefreshLayout.setColorSchemeResources (R.color.orange, R.color.green, R.color.blue);
         prgLoading = findViewById (R.id.prgLoading);
-        ListEvent = findViewById (R.id.ListBisnis);
-        edtKeyword = findViewById(R.id.edtKeyword);
-        btnSearch = findViewById(R.id.btnSearch);
+        ListEvent = findViewById (R.id.ListUlasan);
         txtAlert = findViewById (R.id.txtAlert);
-        cla = new adapterListUlasan (ListManageUlasanActivity.this);
-//        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_promosi.php?id_admin=" + id1;
-        ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_ulasan3.php"+"?id_admin="+id1;
+        cla = new adapterListDetailUlasan (ListUlasanActivity.this);
+        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_ulasan_user.php?id_data="+idData;
         Log.d("TAG", "url: "+ListAPI);
         new getDataTask ().execute ();
-
-        btnSearch.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //sharedpreferences
-                sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
-                //get data
-                id = getIntent ().getStringExtra (TAG_ID);
-                //set data if data null
-                id = sharedpreferences.getString (TAG_ID, null);
-                //convert id to string id1
-                String id1 = id;
-
-                String keyword = edtKeyword.getText().toString();
-                cla = new adapterListUlasan (ListManageUlasanActivity.this);
-                new getDataTask ().execute ();
-
-                ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_ulasan3.php"+"?keyword="+keyword+"&&id_admin="+id1;
-                ListEvent.setVisibility (View.VISIBLE);
-                ListEvent.setAdapter (cla);
-
-            }
-        });
-
-
-        //Click List Event to Detail
-        ListEvent.setOnItemClickListener (new AdapterView.OnItemClickListener () {
-            public void onItemClick(AdapterView<?> arg0, View arg1, int position,
-                                    long arg3) {
-                // TODO Auto-generated method stub
-                // go to menu detail page
-                Intent iDetail = new Intent (ListManageUlasanActivity.this, ListUlasanActivity.class);
-                iDetail.putExtra ("id_data", id_data.get (position));
-                startActivity (iDetail);
-            }
-        });
-
-        //Click Button to Outlet Activity
-        Button btnDashboard = (Button) findViewById (R.id.btnDashboard);
-        btnDashboard.setOnClickListener (new View.OnClickListener () {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent (ListManageUlasanActivity.this, HomeAdminActivity.class);
-                startActivity (intent);
-            }
-        });
 
 
         //Get List Data Bisnis Event to Display with Refresh Layout
@@ -199,22 +195,22 @@ public class ListManageUlasanActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
+
+
 
     void clearData() {
+        id_review.clear ();
         id_data.clear ();
-        nama_bisnis.clear ();
-        no_telp.clear ();
-        email.clear ();
-        price.clear();
-        alamat.clear ();
-        website.clear ();
-        otherinfo.clear ();
+        id_user.clear();
+        fullname.clear ();
+        rate.clear();
+        review.clear();
+        tanggal.clear ();
         foto.clear ();
-        id_admin.clear ();
+
     }
+
 
     // asynctask class to handle parsing json in background
     public class getDataTask extends AsyncTask<Void, Void, Void> {
@@ -278,8 +274,6 @@ public class ListManageUlasanActivity extends AppCompatActivity {
 
             } else {
                 ListEvent.setVisibility (View.VISIBLE);
-                Toast.makeText (getApplicationContext (), "Not Found Data",
-                        Toast.LENGTH_LONG).show ();
                 txtAlert.setVisibility (View.VISIBLE);
 
             }
@@ -302,18 +296,10 @@ public class ListManageUlasanActivity extends AppCompatActivity {
         try {
             // request data from Category API
 
-            sharedpreferences = getSharedPreferences (LoginAdminActivity.my_shared_preferences, Context.MODE_PRIVATE);
-            //get data
-            id = getIntent ().getStringExtra (TAG_ID);
-            //set data if data null
-            id = sharedpreferences.getString (TAG_ID, null);
-            //convert id to string id1
-            String id1 = id;
-
             HttpClient client = new DefaultHttpClient ();
             HttpConnectionParams.setConnectionTimeout (client.getParams (), 15000);
             HttpConnectionParams.setSoTimeout (client.getParams (), 15000);
-            HttpUriRequest request = new HttpGet (ListAPI2);
+            HttpUriRequest request = new HttpGet (ListAPI);
             HttpResponse response = client.execute (request);
             InputStream atomInputStream = response.getEntity ().getContent ();
             BufferedReader in = new BufferedReader (new InputStreamReader (atomInputStream));
@@ -330,16 +316,16 @@ public class ListManageUlasanActivity extends AppCompatActivity {
                 JSONObject object = data.getJSONObject (i);
                 JSONObject staff = object.getJSONObject ("Staff");
 
+                id_review.add (staff.getString ("id_review"));
                 id_data.add (staff.getString ("id_data"));
-                nama_bisnis.add (staff.getString ("nama_bisnis"));
-                no_telp.add (staff.getString ("no_telp"));
-                email.add (staff.getString ("email"));
-                alamat.add (staff.getString ("alamat"));
-                price.add(staff.getString("price"));
-                website.add (staff.getString ("website"));
-                otherinfo.add (staff.getString ("otherinfo"));
+                id_user.add(staff.getString ("id_user"));
+                fullname.add(staff.getString ("fullname"));
+                rate.add(staff.getString ("rate"));
+                review.add(staff.getString ("review"));
+                tanggal.add (staff.getString ("tanggal"));
                 foto.add (staff.getString ("foto"));
-                id_admin.add (staff.getString ("id_admin"));
+
+
 
             }
         }
@@ -359,9 +345,7 @@ public class ListManageUlasanActivity extends AppCompatActivity {
             // TODO Auto-generated catch block
             e.printStackTrace();
         }
-
-
-
     }
+
 
 }

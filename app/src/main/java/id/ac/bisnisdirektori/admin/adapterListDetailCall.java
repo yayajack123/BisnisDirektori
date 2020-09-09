@@ -59,7 +59,7 @@ public class adapterListDetailCall extends BaseAdapter {
         holder.txtKeterangan.setText (ListCallActivity.keterangan.get(position));
         holder.txtTime.setText (ListCallActivity.time.get(position));
         holder.txtIdData.setText(ListCallActivity.id_data.get(position));
-        Picasso.with(activity).load(ADMIN_PANEL_URL+"/"+ListCallActivity.foto.get(position)).placeholder(R.drawable.imgthumb).into(holder.imgThumb);
+        Picasso.with(activity).load(ADMIN_PANEL_URL+"/"+ListCallActivity.foto.get(position)).placeholder(R.drawable.userthumb).into(holder.imgThumb);
         return convertView;
 
 

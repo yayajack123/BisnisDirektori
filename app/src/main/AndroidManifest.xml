@@ -22,23 +22,31 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".admin.ListCallActivity" ></activity>
-        <activity android:name=".admin.ListManageCallActivity" android:parentActivityName=".admin.HomeAdminActivity" />
-        <activity android:name=".admin.ListManageUlasanActivity" android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity android:name=".admin.ListUlasanActivity"></activity>
+        <activity android:name=".admin.ListCallActivity" />
+        <activity
+            android:name=".admin.ListManageCallActivity"
+            android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity
+            android:name=".admin.ListManageUlasanActivity"
+            android:parentActivityName=".admin.HomeAdminActivity" />
         <activity android:name=".admin.DetailPromosiProductActivity" />
         <activity android:name=".admin.ListPromosiActivity" />
-        <activity android:name=".admin.ListManagePromosiActivity" android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity
+            android:name=".admin.ListManagePromosiActivity"
+            android:parentActivityName=".admin.HomeAdminActivity" />
         <activity android:name=".admin.FullImageActivity" />
         <activity android:name=".admin.DetailPhotoProductActivity" /> <!-- <activity android:name=".admin.UploadPhotoProductActivity" /> -->
         <activity
             android:name=".admin.ListPhotoActivity"
-            android:label="@string/title_activity_list_photo"
-            />
+            android:label="@string/title_activity_list_photo" />
         <activity
             android:name=".admin.ListManagePhotoActivity"
             android:parentActivityName=".admin.OutletDetailsActivity" />
         <activity android:name=".admin.TestDetailInformationActivity" />
-        <activity android:name=".admin.AdminPasswordActivity" android:parentActivityName=".admin.OutletDetailsActivity" /> <!-- <activity android:name=".admin.EditFotoProfilAdminActivity"></activity> -->
+        <activity
+            android:name=".admin.AdminPasswordActivity"
+            android:parentActivityName=".admin.OutletDetailsActivity" /> <!-- <activity android:name=".admin.EditFotoProfilAdminActivity"></activity> -->
         <activity android:name=".admin.DetailInformationActivity" />
         <activity
             android:name=".admin.ListInformationActivity"
@@ -49,24 +57,32 @@
             android:value="AIzaSyD3KC8meIqBkJRTO1Rs6jUBt1XzeWjT-4o" />
 
         <activity android:name=".admin.DashboardInformationAdminActivity" />
-        <activity android:name=".admin.InformationActivity" android:parentActivityName=".admin.OutletDetailsActivity" />
-        <activity android:name=".admin.OutletDetailsActivity" android:parentActivityName=".admin.HomeAdminActivity" />
+        <activity
+            android:name=".admin.InformationActivity"
+            android:parentActivityName=".admin.OutletDetailsActivity" />
+        <activity
+            android:name=".admin.OutletDetailsActivity"
+            android:parentActivityName=".admin.HomeAdminActivity" />
         <activity android:name=".EditProfileUserActivity" />
         <activity
             android:name=".admin.RegisterAdminActivity"
             android:theme="@style/Theme.MaterialComponents.Light.NoActionBar" />
-        <activity android:name=".admin.AdminProfileActivity" android:parentActivityName=".admin.OutletDetailsActivity" />
+        <activity
+            android:name=".admin.AdminProfileActivity"
+            android:parentActivityName=".admin.OutletDetailsActivity" />
         <activity android:name=".admin.HomeAdminActivity" />
         <activity
             android:name=".admin.LoginAdminActivity"
             android:theme="@style/loginregister">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name=".SplashScreenActivity"
-            android:theme="@style/loginregister" >
-
-        </activity>
+            android:theme="@style/loginregister"></activity>
         <activity android:name=".review.PostReviewActivity" />
         <activity android:name=".review.ReviewActivity" />
         <activity android:name=".DetailCategory" />
@@ -75,13 +91,7 @@
             android:theme="@style/loginregister" />
         <activity
             android:name=".LoginActivity"
-            android:theme="@style/loginregister" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+            android:theme="@style/loginregister"></activity>
         <activity android:name=".DetailProduct" />
         <activity
             android:name=".MainActivity"
