@@ -37,7 +37,11 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="See what people are saying"/>
-        <include layout="@layout/card_explorereview"/>
+        <androidx.recyclerview.widget.RecyclerView
+            android:id="@+id/ListExplore"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:divider="@null" />
     </LinearLayout>
 
 

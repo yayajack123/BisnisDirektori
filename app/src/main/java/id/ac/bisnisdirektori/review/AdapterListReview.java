@@ -6,6 +6,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -48,6 +49,7 @@ public class AdapterListReview extends RecyclerView.Adapter<AdapterListReview.Vi
         holder.rate.setText(list_rev.get(position).get("rate"));
         holder.review.setText(list_rev.get(position).get("review"));
         holder.tanggal.setText(list_rev.get(position).get("tanggal"));
+        holder.rating.setRating(Float.parseFloat(list_rev.get(position).get("rate")));
     }
 
 
@@ -60,6 +62,7 @@ public class AdapterListReview extends RecyclerView.Adapter<AdapterListReview.Vi
     public class ViewHolder extends RecyclerView.ViewHolder {
         TextView fullname, rate, review, tanggal;
         ImageView foto;
+        RatingBar rating;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -69,6 +72,8 @@ public class AdapterListReview extends RecyclerView.Adapter<AdapterListReview.Vi
             review = (TextView) itemView.findViewById(R.id.text_review);
             tanggal = (TextView) itemView.findViewById(R.id.txt_date);
             foto = (ImageView) itemView.findViewById(R.id.photo_user);
+            rating = (RatingBar) itemView.findViewById(R.id.rating_product);
+
         }
     }
 }

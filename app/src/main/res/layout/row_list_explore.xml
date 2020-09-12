@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_marginBottom="20dp"
+    app:cardCornerRadius="10dp">
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <de.hdodenhof.circleimageview.CircleImageView
+            android:id="@+id/profil_product"
+            android:layout_width="50dp"
+            android:layout_height="50dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/kategori"
+            android:scaleType="centerCrop"/>
+        <TextView
+            android:id="@+id/name_product"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/profil_product"
+            android:layout_marginLeft="10dp"
+            android:layout_marginTop="10dp"
+            android:text="Jack Music Studio"
+            android:textStyle="bold"/>
+
+        <TextView
+            android:id="@+id/name_bisnis"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/name_product"
+            android:layout_toRightOf="@id/profil_product"
+            android:text="Tuban"/>
+        <ImageView
+            android:id="@+id/photo_uploaded"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_margin="10dp"
+            android:src="@drawable/studio_music"
+            android:scaleType="centerCrop"
+            android:layout_below="@id/profil_product"/>
+        <TextView
+            android:id="@+id/text_review"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_margin="10dp"
+            android:layout_below="@id/photo_uploaded"
+            android:text="Posted one month ago"/>
+
+        <TextView
+            android:id="@+id/time_post"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="10dp"
+            android:layout_below="@id/text_review"
+            android:text="Posted one month ago"/>
+        <View
+            android:id="@+id/batas2"
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginStart="10dp"
+            android:layout_marginEnd="10dp"
+            android:layout_below="@id/time_post"/>
+
+        <Button
+            android:id="@+id/btn_share"
+            android:layout_below="@id/batas2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Share"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:drawableStart="@drawable/ic_outline_share_24"
+            />
+
+        <Button
+            android:id="@+id/btn_like"
+            android:layout_below="@id/batas2"
+            android:layout_toEndOf="@id/btn_share"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="5dp"
+            android:text="Like"
+            android:textAllCaps="false"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:drawableStart="@drawable/ic_outline_thumb_up_24"
+            />
+    </RelativeLayout>
+</androidx.cardview.widget.CardView>
+

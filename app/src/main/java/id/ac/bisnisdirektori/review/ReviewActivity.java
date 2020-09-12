@@ -103,8 +103,13 @@ public class ReviewActivity extends AppCompatActivity {
         harga.setText(price);
         jumlah.setText(jumlah_review);
         ratarata.setText(rata);
-        rt.setRating(Float.parseFloat(rata));
-
+        
+//        rt.setRating(Float.parseFloat(rata));
+        if(rata==null){
+            rt.setRating(Float.parseFloat("null"));
+        }else{
+            rt.setRating(Float.parseFloat(rata));
+        }
 
 
         rev = (RecyclerView) findViewById(R.id.ListRvw);

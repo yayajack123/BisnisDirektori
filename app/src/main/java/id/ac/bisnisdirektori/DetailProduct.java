@@ -195,8 +195,11 @@ public class DetailProduct extends AppCompatActivity {
                 ot.setText(otherinfo);
                 tr.setText(jumlah_review);
                 rr.setText(rata);
-                rb.setRating(Float.parseFloat(rata));
-
+                if(rata=="null"){
+                    rb.setRating(Float.parseFloat("0"));
+                }else{
+                    rb.setRating(Float.parseFloat(rata));
+                }
 
             }
         }
