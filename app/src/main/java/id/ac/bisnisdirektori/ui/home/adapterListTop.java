@@ -9,6 +9,7 @@ import android.widget.BaseAdapter;
 import android.widget.Filter;
 import android.widget.Filterable;
 import android.widget.ImageView;
+import android.widget.RatingBar;
 import android.widget.TextView;
 
 import androidx.recyclerview.widget.RecyclerView;
@@ -50,9 +51,17 @@ public class adapterListTop extends RecyclerView.Adapter<adapterListTop.ViewHold
                 .placeholder(R.mipmap.ic_launcher)
                 .into(holder.foto);
         holder.nama_bisnis.setText(list_top.get(position).get("nama_bisnis"));
+        holder.rate.setText(list_top.get(position).get("rata"));
         holder.kategori.setText(list_top.get(position).get("kategori"));
         holder.alamat.setText(list_top.get(position).get("alamat"));
         holder.no_telp.setText(list_top.get(position).get("no_telp"));
+//        holder.rating.setRating(Float.parseFloat(list_top.get(position).get("rata")));
+        holder.jumlah_review.setText(list_top.get(position).get("jumlah_review"));
+        if(list_top.get(position).get("rata")=="null"){
+            holder.rating.setRating(Float.parseFloat("0"));
+        }else{
+            holder.rating.setRating(Float.parseFloat(list_top.get(position).get("rata")));
+        }
     }
 
 
@@ -63,8 +72,9 @@ public class adapterListTop extends RecyclerView.Adapter<adapterListTop.ViewHold
     }
 
     public class ViewHolder extends RecyclerView.ViewHolder {
-        TextView nama_bisnis, kategori, alamat, no_telp;
+        TextView nama_bisnis, kategori, alamat, no_telp, rate, jumlah_review;
         ImageView foto;
+        RatingBar rating;
 
         public ViewHolder(View itemView) {
             super(itemView);
@@ -74,6 +84,9 @@ public class adapterListTop extends RecyclerView.Adapter<adapterListTop.ViewHold
             alamat = (TextView) itemView.findViewById(R.id.loc_product);
             no_telp = (TextView) itemView.findViewById(R.id.price_product);
             foto = (ImageView) itemView.findViewById(R.id.imgThumb);
+            rate = (TextView) itemView.findViewById(R.id.text_review);
+            jumlah_review = (TextView) itemView.findViewById(R.id.total_review);
+            rating = (RatingBar) itemView.findViewById(R.id.rating_product);
         }
     }
 }

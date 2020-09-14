@@ -52,12 +52,13 @@ public class LoginActivity extends AppCompatActivity {
     public final static String TAG_PHONENUMBER = "phonenumber";
     public final static String TAG_ADDRESS = "address";
     public final static String TAG_PASSWORD = "password";
+    public final static String TAG_FOTO = "foto";
 
     String tag_json_obj = "json_obj_req";
 
     SharedPreferences sharedpreferences;
     Boolean session = false;
-    String id, email, fullname, phonenumber, address, password;
+    String id, email, fullname, phonenumber, address, password, foto;
     public static final String my_shared_preferences = "my_shared_preferences";
     public static final String session_status = "session_status";
 
@@ -135,12 +136,14 @@ public class LoginActivity extends AppCompatActivity {
 //        phonenumber = sharedpreferences.getString(TAG_PHONENUMBER, null);
 //        address = sharedpreferences.getString(TAG_ADDRESS, null);
         password = sharedpreferences.getString (TAG_PASSWORD, null);
+//        foto = sharedpreferences.getString (TAG_FOTO, null);
 
         if (session) {
             Intent intent = new Intent(LoginActivity.this, MainActivity.class);
             intent.putExtra(TAG_ID, id);
-            intent.putExtra(TAG_EMAIL, email);
-            intent.putExtra(TAG_FULLNAME, fullname);
+//            intent.putExtra(TAG_EMAIL, email);
+//            intent.putExtra(TAG_FULLNAME, fullname);
+//            intent.putExtra(TAG_FOTO, foto);
 //            intent.putExtra(TAG_PHONENUMBER, phonenumber);
 //            intent.putExtra(TAG_ADDRESS, address);
             finish();
@@ -192,9 +195,10 @@ public class LoginActivity extends AppCompatActivity {
 
                     // Check for error node in json
                     if (success == 1) {
-                        String email = jObj.getString(TAG_EMAIL);
+//                        String email = jObj.getString(TAG_EMAIL);
                         String id = jObj.getString(TAG_ID);
-                        String fullname = jObj.getString(TAG_FULLNAME);
+//                        String fullname = jObj.getString(TAG_FULLNAME);
+//                        String foto = jObj.getString(TAG_FOTO);
 //                        String phonenumber = jObj.getString(TAG_PHONENUMBER);
 //                        String address = jObj.getString(TAG_ADDRESS);
 
@@ -206,8 +210,9 @@ public class LoginActivity extends AppCompatActivity {
                         SharedPreferences.Editor editor = sharedpreferences.edit();
                         editor.putBoolean(session_status, true);
                         editor.putString(TAG_ID, id);
-                        editor.putString(TAG_EMAIL, email);
-                        editor.putString(TAG_FULLNAME, fullname);
+//                        editor.putString(TAG_EMAIL, email);
+//                        editor.putString(TAG_FULLNAME, fullname);
+//                        editor.putString(TAG_FOTO, foto);
 //                        editor.putString(TAG_PHONENUMBER, phonenumber);
 //                        editor.putString(TAG_ADDRESS, address);
 
@@ -216,8 +221,9 @@ public class LoginActivity extends AppCompatActivity {
                         // Memanggil main activity
                         Intent intent = new Intent(LoginActivity.this, MainActivity.class);
                         intent.putExtra(TAG_ID, id);
-                        intent.putExtra(TAG_EMAIL, email);
-                        intent.putExtra(TAG_FULLNAME, fullname);
+//                        intent.putExtra(TAG_EMAIL, email);
+//                        intent.putExtra(TAG_FULLNAME, fullname);
+//                        intent.putExtra(TAG_FOTO, foto);
 //                        intent.putExtra(TAG_PHONENUMBER, phonenumber);
 //                        intent.putExtra(TAG_ADDRESS, address);
                         finish();

@@ -17,7 +17,7 @@
         android:textColor="#000"
         android:textStyle="bold"
         android:textSize="20sp"
-        android:text="Juliarta"/>
+        android:text="Bussiness Directory"/>
 
     <TextView
         android:id="@+id/email_user"
@@ -28,7 +28,7 @@
         android:textColor="#000"
         android:layout_marginTop="5dp"
         android:layout_marginStart="10dp"
-        android:text="juliartarya06@gmail.com"/>
+        android:text="bd@mail.com"/>
 
     <TextView
         android:id="@+id/view_act"
@@ -136,6 +136,22 @@
             android:text="Login"
             android:drawablePadding="15dp"
             android:drawableStart="@drawable/ic_outline_exit_to_app_24"
+            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
+            style="@style/Widget.AppCompat.Button.Borderless"
+            android:textAlignment="viewStart"
+            android:textAllCaps="false"/>
+        <View
+            style="@style/view"
+            />
+        <Button
+            android:id="@+id/register"
+            android:fontFamily="@font/montserat_regular"
+            android:textColor="#000"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:text="Register"
+            android:drawablePadding="15dp"
+            android:drawableStart="@drawable/ic_baseline_perm_contact_calendar_24"
             android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
             style="@style/Widget.AppCompat.Button.Borderless"
             android:textAlignment="viewStart"

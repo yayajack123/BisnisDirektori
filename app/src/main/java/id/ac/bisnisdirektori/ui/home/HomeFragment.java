@@ -138,7 +138,7 @@ public class HomeFragment extends Fragment {
         sharedpreferences = getContext().getSharedPreferences(LoginActivity.my_shared_preferences, Context.MODE_PRIVATE);
         String url = Server.URL+"get_list_top.php";
         id = getActivity().getIntent().getStringExtra(TAG_ID);
-        mail = getActivity().getIntent().getStringExtra(TAG_EMAIL);
+//        mail = getActivity().getIntent().getStringExtra(TAG_EMAIL);
 
 
 //        edtKeyword = root.findViewById(R.id.edtKeyword);
@@ -171,6 +171,8 @@ public class HomeFragment extends Fragment {
                         map.put("alamat", json.getString("alamat"));
                         map.put("no_telp", json.getString("no_telp"));
                         map.put("foto", json.getString("foto"));
+                        map.put("rata", json.getString("rata"));
+                        map.put("jumlah_review", json.getString("jumlah_review"));
                         list_top.add(map);
                         adapterListTop adapter = new adapterListTop(HomeFragment.this, list_top);
                         top.setAdapter(adapter);
