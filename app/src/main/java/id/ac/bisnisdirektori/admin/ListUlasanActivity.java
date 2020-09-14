@@ -21,6 +21,7 @@ import android.os.Handler;
 import android.provider.MediaStore;
 import android.util.Base64;
 import android.util.Log;
+import android.view.MenuItem;
 import android.view.View;
 import android.widget.AbsListView;
 import android.widget.AdapterView;
@@ -135,6 +136,8 @@ public class ListUlasanActivity extends AppCompatActivity {
         Intent iGet = getIntent ();
         id_data1 = iGet.getStringExtra ("id_data");
         String idData = id_data1;
+        assert getSupportActionBar() != null;   //null check
+        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
 
 
 
@@ -195,6 +198,17 @@ public class ListUlasanActivity extends AppCompatActivity {
             }
         });
 
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        if (item.getItemId() == android.R.id.home) {// app icon in action bar clicked; go home
+            Intent intent = new Intent(this, ListManageUlasanActivity.class);
+            intent.addFlags (Intent.FLAG_ACTIVITY_CLEAR_TOP);
+            startActivity(intent);
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 
 
