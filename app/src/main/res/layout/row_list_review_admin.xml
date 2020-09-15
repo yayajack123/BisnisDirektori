@@ -41,20 +41,7 @@
         android:hint="Fullname User"
         android:textStyle="bold"/>
 
-    <com.google.android.material.button.MaterialButton
-        android:id="@+id/btn_follow"
-        android:layout_width="60dp"
-        android:layout_height="wrap_content"
-        android:text="Follow"
-        android:textSize="11dp"
-        android:textAlignment="center"
-        style="@style/Widget.MaterialComponents.Button.OutlinedButton"
-        app:strokeColor="@color/colorPrimaryDark"
-        android:padding="5dp"
-        android:layout_alignParentEnd="true"
-        android:layout_margin="10dp"
-        android:textAllCaps="false"
-        />
+
     <TextView
         android:id="@+id/total_follower"
         android:layout_width="wrap_content"
@@ -172,17 +159,7 @@
             android:fontFamily="@font/montserat_regular"
             android:textAllCaps="false"
             android:drawableStart="@drawable/ic_outline_mode_comment_24"/>
-        <Button
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_weight="1"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:text="Share"
-            android:textAlignment="textStart"
-            android:drawablePadding="5dp"
-            android:fontFamily="@font/montserat_regular"
-            android:textAllCaps="false"
-            android:drawableStart="@drawable/ic_outline_share_24"/>
+
     </LinearLayout>
     <View
         android:layout_below="@id/layout_2"

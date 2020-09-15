@@ -6,6 +6,7 @@ import android.annotation.SuppressLint;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
@@ -17,6 +18,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageButton;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.ProgressBar;
 import android.widget.TextView;
@@ -53,6 +55,9 @@ public class ListManageCallActivity extends AppCompatActivity {
     String id;
     SharedPreferences sharedpreferences;
 
+
+
+
     private RequestQueue requestQueue;
     private StringRequest stringRequest;
 
@@ -77,7 +82,6 @@ public class ListManageCallActivity extends AppCompatActivity {
     public static ArrayList<String> no_telp = new ArrayList<String> ();
     public static ArrayList<String> email = new ArrayList<String> ();
     public static ArrayList<String> website = new ArrayList<String> ();
-    public static ArrayList<String> opentime = new ArrayList<String> ();
     public static ArrayList<String> price = new ArrayList<String> ();
     public static ArrayList<String> kategori = new ArrayList<String> ();
     public static ArrayList<String> alamat = new ArrayList<String> ();
@@ -88,6 +92,7 @@ public class ListManageCallActivity extends AppCompatActivity {
     public static ArrayList<String> id_admin = new ArrayList<String> ();
     String ListAPI, ListAPI2;
     int IOConnect = 0;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -111,7 +116,6 @@ public class ListManageCallActivity extends AppCompatActivity {
         btnSearch = findViewById(R.id.btnSearch);
         txtAlert = findViewById (R.id.txtAlert);
         cla = new adapterListCall (ListManageCallActivity.this);
-//        ListAPI = ADMIN_PANEL_URL + "/bd_get_all_list_promosi.php?id_admin=" + id1;
         ListAPI2 = ADMIN_PANEL_URL + "/bd_get_all_list_call3.php"+"?id_admin="+id1;
         Log.d("TAG", "url: "+ListAPI);
         new getDataTask ().execute ();
@@ -213,6 +217,7 @@ public class ListManageCallActivity extends AppCompatActivity {
         otherinfo.clear ();
         foto.clear ();
         id_admin.clear ();
+//        rating.clear ();
     }
 
     // asynctask class to handle parsing json in background
@@ -339,6 +344,7 @@ public class ListManageCallActivity extends AppCompatActivity {
                 otherinfo.add (staff.getString ("otherinfo"));
                 foto.add (staff.getString ("foto"));
                 id_admin.add (staff.getString ("id_admin"));
+//                rating.add(staff.getString ("rating"));
 
             }
         }

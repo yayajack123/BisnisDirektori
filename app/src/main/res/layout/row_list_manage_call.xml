@@ -23,7 +23,7 @@
                 android:layout_height="150dp"
                 android:scaleType="centerCrop"
                 android:layout_marginBottom="10dp"
-                android:src="@drawable/userthumb"
+                android:src="@drawable/imgthumb"
                 />
             <LinearLayout
                 android:layout_width="match_parent"
@@ -56,6 +56,8 @@
             </LinearLayout>
 
 
+
+
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -70,6 +72,8 @@
                     android:layout_weight="1"
                     android:hint="Address"
                     android:textColor="#000" />
+
+
 
             </LinearLayout>
 

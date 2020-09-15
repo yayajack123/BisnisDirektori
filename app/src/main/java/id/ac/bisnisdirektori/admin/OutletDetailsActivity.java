@@ -70,18 +70,14 @@ public class OutletDetailsActivity extends AppCompatActivity {
     private int GALLERY = 1, CAMERA = 2;
     Bitmap bitmap, decoded;
     ImageView imgPreview;
-    TextView txt_name_admin, txt_address_admin;
+    TextView txt_name_admin, txt_address_admin, txt_email_admin;
     int IOConnect = 0;
-    String fullname, address, foto;
+    String fullname, address, foto, email;
     String DetailAPI;
     private String id_data;
     public static String ADMIN_PANEL_URL = "https://www.pantaucovid19.net/";
     public static String AccessKey = "12345";
     public static final String KEY_ID= "id";
-    public static final String KEY_FULLNAME = "fullname";
-    public static final String KEY_ADDRESS = "address";
-    public static final String KEY_FOTO = "foto";
-    public static final String EMP_ID = "emp_id";
 
 
     @Override
@@ -162,6 +158,7 @@ public class OutletDetailsActivity extends AppCompatActivity {
 
         txt_name_admin = (TextView) findViewById (R.id.admin_fullname);
         txt_address_admin = (TextView)findViewById (R.id.admin_address);
+        txt_email_admin = (TextView)findViewById (R.id.admin_email);
 
         imgPreview = (ImageView) findViewById (R.id.imgPreview);
 
@@ -202,6 +199,7 @@ public class OutletDetailsActivity extends AppCompatActivity {
 
 
 
+    //Display Profile Admin
     private void setToImageView(Bitmap bmp) {
         //compress image
 
@@ -312,6 +310,7 @@ public class OutletDetailsActivity extends AppCompatActivity {
                 });
                 txt_name_admin.setText(fullname);
                 txt_address_admin.setText(address);
+                txt_email_admin.setText (email);
 
             }
         }
@@ -349,6 +348,7 @@ public class OutletDetailsActivity extends AppCompatActivity {
                 fullname = detail.getString("fullname");
                 address = detail.getString("address");
                 foto = detail.getString ("foto");
+                email = detail.getString ("email");
 
 
             }
@@ -364,17 +364,6 @@ public class OutletDetailsActivity extends AppCompatActivity {
             e.printStackTrace();
         }
     }
-
-
-    @Override
-    public void onConfigurationChanged(final Configuration newConfig) {
-        // Ignore orientation change to keep activity from restarting
-        super.onConfigurationChanged(newConfig);
-    }
-
-
-
-
 
 
 }

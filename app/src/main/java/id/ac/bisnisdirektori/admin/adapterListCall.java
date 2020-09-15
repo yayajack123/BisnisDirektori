@@ -31,7 +31,7 @@ public class adapterListCall extends BaseAdapter {
         return position;
     }
     static class ViewHolder {
-        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin, txtPrice ;
+        TextView txtNama,txtNotelp, txtEmail, txtAlamat, txtOtherinfo, txtIdAdmin, txtPrice, txtRating ;
         ImageView imgThumb;
     }
     public View getView(int position, View convertView, ViewGroup parent) {
@@ -53,6 +53,7 @@ public class adapterListCall extends BaseAdapter {
         holder.txtIdAdmin = (TextView) convertView.findViewById(R.id.txtIdAdmin);
         holder.imgThumb = (ImageView) convertView.findViewById(R.id.imgThumb);
         holder.txtPrice = (TextView) convertView.findViewById(R.id.txtPrice);
+//        holder.txtRating = (TextView) convertView.findViewById(R.id.txt_rating);
 
 
         holder.txtNama.setText(ListManageCallActivity.nama_bisnis.get(position));

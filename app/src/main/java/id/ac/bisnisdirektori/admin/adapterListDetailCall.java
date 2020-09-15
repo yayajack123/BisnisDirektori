@@ -32,7 +32,7 @@ public class adapterListDetailCall extends BaseAdapter {
         return position;
     }
     static class ViewHolder {
-        TextView txtIdData, txtFullname, txtPhonenumber, txtKeterangan, txtTime ;
+        TextView txtIdData, txtFullname, txtPhonenumber, txtKeterangan, txtTime;
         ImageView imgThumb;
     }
     public View getView(int position, View convertView, ViewGroup parent) {

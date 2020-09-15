@@ -1,14 +1,153 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/tools">
     <LinearLayout
         android:id="@+id/lytSearch"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@color/white"
         android:orientation="vertical"
         android:visibility="visible">
+
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/imgThumb"
+                    android:layout_width="60dp"
+                    android:layout_height="60dp"
+                    android:layout_marginStart="10dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginBottom="5dp"
+                    android:src="@drawable/imgthumb"
+                    app:civ_border_color="@color/colorAccent"
+                    app:civ_border_width="3dp" />
+
+                <TextView
+                    android:id="@+id/txtNama"
+                    style="@style/subheader"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/imgThumb"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="-63dp"
+                    android:layout_toEndOf="@+id/imgThumb"
+                    android:hint="Business Name"
+                    android:textColor="#000"
+                    android:textStyle="bold" />
+
+                <TextView
+                    android:id="@+id/txtAddress"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtNama"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toEndOf="@+id/imgThumb"
+                    android:fontFamily="@font/montserat_regular"
+                    android:hint="Address"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:id="@+id/txtPhonenumber"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txtAddress"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toEndOf="@+id/imgThumb"
+                    android:fontFamily="@font/montserat_regular"
+                    android:hint="Phonenumber"
+                    android:textColor="#000"
+                    android:textSize="12sp" />
+
+                <RatingBar
+                    android:id="@+id/rating_product"
+                    style="?android:attr/ratingBarStyleIndicator"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtPhonenumber"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="10dp"
+                    android:isIndicator="true"
+                    android:numStars="5"
+                    android:rating="0"
+                    android:stepSize="0.5" />
+
+
+                <TextView
+                    android:id="@+id/txt_rating"
+                    style="@style/body"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignTop="@+id/rating_product"
+                    android:layout_marginStart="0dp"
+                    android:layout_marginTop="0dp"
+                    android:layout_toEndOf="@+id/rating_product"
+                    android:padding="10dp"
+                    android:text="0.0" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_marginBottom="10dp"                    android:layout_below="@+id/rating_product"
+                    android:layout_marginTop="5dp"
+                    android:orientation="horizontal">
+
+
+                    <TextView
+                        android:id="@+id/txtOtherinfo"
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="Otherinfo" />
+
+                    <TextView
+                        android:id="@+id/txtPrice"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="15dp"
+                        android:text="Price"
+                        android:textAlignment="textEnd" />
+
+
+
+
+
+                </LinearLayout>
+
+
+
+
+
+
+                <TextView
+                    android:id="@+id/idData"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@+id/txtPhonenumber"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginLeft="10dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_marginBottom="10dp"
+                    android:layout_toEndOf="@+id/imgThumb"
+                    android:visibility="gone"
+                    android:fontFamily="@font/montserat_regular"
+                    android:hint="Id Data"
+                    android:textColor="#000" />
+            </RelativeLayout>
+
 
 
         <Button
@@ -18,7 +157,7 @@
             android:layout_marginBottom="10dp"
             android:layout_marginTop="5dp"
             android:drawablePadding="15dp"
-            android:text="List Call User"
+            android:text="List Panggilan User"
             android:fontFamily="@font/montserat_regular"
             android:textColor="#000"
             style="@style/Widget.AppCompat.Button.Borderless"
