@@ -94,39 +94,7 @@ public class NotificationsFragment extends Fragment {
 
         list_data = new ArrayList<HashMap<String, String>>();
 
-        stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
-            @Override
-            public void onResponse(String response) {
-                try {
-                    JSONObject jsonObject = new JSONObject(response);
-                    JSONArray jsonArray = jsonObject.getJSONArray("user");
-                    for (int a = 0; a < jsonArray.length(); a ++){
-                        JSONObject json = jsonArray.getJSONObject(a);
-                        HashMap<String, String> map  = new HashMap<String, String>();
-                        map.put("id", json.getString("id"));
-                        map.put("fullname", json.getString("fullname"));
-                        map.put("email", json.getString("email"));
-                        map.put("foto", json.getString("foto"));
-                        list_data.add(map);
-                    }
-                    nama.setText(list_data.get(0).get("fullname"));
-                    mail.setText(list_data.get(0).get("email"));
-                    Glide.with(getActivity())
-                            .load(Server.URL+list_data.get(0).get("foto"))
-                            .placeholder(R.mipmap.ic_launcher)
-                            .into(photo);
-                } catch (JSONException e) {
-                    e.printStackTrace();
-                }
-            }
-        }, new Response.ErrorListener() {
-            @Override
-            public void onErrorResponse(VolleyError error) {
-                Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
-            }
-        });
 
-        requestQueue.add(stringRequest);
 
         Button btn_edit = (Button) root.findViewById(R.id.top_user);
         btn_edit.setOnClickListener(new View.OnClickListener()
@@ -186,13 +154,45 @@ public class NotificationsFragment extends Fragment {
             }
         });
 
-        if(id==null){
+        if(id=="null"){
             btn_logout.setVisibility(View.GONE);
             btn_edit.setVisibility(View.GONE);
             btn_change.setVisibility(View.GONE);
         }else{
             btn_login.setVisibility(View.GONE);
             btn_register.setVisibility(View.GONE);
+            stringRequest = new StringRequest(Request.Method.GET, url, new Response.Listener<String>() {
+                @Override
+                public void onResponse(String response) {
+                    try {
+                        JSONObject jsonObject = new JSONObject(response);
+                        JSONArray jsonArray = jsonObject.getJSONArray("user");
+                        for (int a = 0; a < jsonArray.length(); a ++){
+                            JSONObject json = jsonArray.getJSONObject(a);
+                            HashMap<String, String> map  = new HashMap<String, String>();
+                            map.put("fullname", json.getString("fullname"));
+                            map.put("email", json.getString("email"));
+                            map.put("foto", json.getString("foto"));
+                            list_data.add(map);
+                        }
+                        nama.setText(list_data.get(0).get("fullname"));
+                        mail.setText(list_data.get(0).get("email"));
+                        Glide.with(getActivity())
+                                .load(Server.URL+list_data.get(0).get("foto"))
+                                .placeholder(R.mipmap.ic_launcher)
+                                .into(photo);
+                    } catch (JSONException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }, new Response.ErrorListener() {
+                @Override
+                public void onErrorResponse(VolleyError error) {
+                    Toast.makeText(getActivity(), error.getMessage(), Toast.LENGTH_SHORT).show();
+                }
+            });
+
+            requestQueue.add(stringRequest);
         }
 
         return root;

@@ -113,13 +113,6 @@ public class DetailProduct extends AppCompatActivity {
             {
                 Intent intent = new Intent(DetailProduct.this, ReviewActivity.class);
                 intent.putExtra("id_data", id_data);
-                intent.putExtra("nama_bisnis", nama_bisnis);
-                intent.putExtra("kategori", kategori);
-                intent.putExtra("alamat", alamat);
-                intent.putExtra("opentime", opentime);
-                intent.putExtra("price", price);
-                intent.putExtra("jumlah_review", jumlah_review);
-                intent.putExtra("rata", rata);
                 startActivity(intent);
             }
         });
@@ -132,13 +125,6 @@ public class DetailProduct extends AppCompatActivity {
             {
                 Intent intent = new Intent(DetailProduct.this, ReviewActivity.class);
                 intent.putExtra("id_data", id_data);
-                intent.putExtra("nama_bisnis", nama_bisnis);
-                intent.putExtra("kategori", kategori);
-                intent.putExtra("alamat", alamat);
-                intent.putExtra("opentime", opentime);
-                intent.putExtra("price", price);
-                intent.putExtra("jumlah_review", jumlah_review);
-                intent.putExtra("rata", rata);
                 startActivity(intent);
             }
         });

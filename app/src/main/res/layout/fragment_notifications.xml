@@ -95,22 +95,22 @@
         <View
             style="@style/view"
             />
-        <Button
-            android:id="@+id/language"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:text="Language"
-            android:drawablePadding="15dp"
-            android:drawableStart="@drawable/ic_outline_language_24"
-            android:fontFamily="@font/montserat_regular"
-            android:textColor="#000"
-            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"
-            style="@style/Widget.AppCompat.Button.Borderless"
-            android:textAlignment="viewStart"
-            android:textAllCaps="false"/>
-        <View
-            style="@style/view"
-            />
+<!--        <Button-->
+<!--            android:id="@+id/language"-->
+<!--            android:layout_width="match_parent"-->
+<!--            android:layout_height="wrap_content"-->
+<!--            android:text="Language"-->
+<!--            android:drawablePadding="15dp"-->
+<!--            android:drawableStart="@drawable/ic_outline_language_24"-->
+<!--            android:fontFamily="@font/montserat_regular"-->
+<!--            android:textColor="#000"-->
+<!--            android:drawableEnd="@drawable/ic_baseline_keyboard_arrow_right_24"-->
+<!--            style="@style/Widget.AppCompat.Button.Borderless"-->
+<!--            android:textAlignment="viewStart"-->
+<!--            android:textAllCaps="false"/>-->
+<!--        <View-->
+<!--            style="@style/view"-->
+<!--            />-->
         <Button
             android:id="@+id/about"
             android:fontFamily="@font/montserat_regular"

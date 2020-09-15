@@ -1,12 +1,16 @@
 package id.ac.bisnisdirektori.review;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.palette.graphics.Palette;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -20,11 +24,24 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+import com.squareup.picasso.Callback;
+import com.squareup.picasso.Picasso;
 
+import org.apache.http.HttpResponse;
+import org.apache.http.client.HttpClient;
+import org.apache.http.client.methods.HttpGet;
+import org.apache.http.client.methods.HttpUriRequest;
+import org.apache.http.impl.client.DefaultHttpClient;
+import org.apache.http.params.HttpConnectionParams;
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
 
+import java.io.BufferedReader;
+import java.io.IOException;
+import java.io.InputStream;
+import java.io.InputStreamReader;
+import java.net.MalformedURLException;
 import java.util.ArrayList;
 import java.util.HashMap;
 
@@ -43,12 +60,11 @@ public class ReviewActivity extends AppCompatActivity {
     ArrayList<HashMap<String, String>> list_rev;
 
     public static final String TAG_ID = "id";
-    String id;
+    String id, DetailAPI;
     int IOConnect = 0;
     private String id_data, nama_bisnis, kategori, alamat, opentime, price, jumlah_review, rata;
-
-    private RequestQueue requestQueue;
-    private StringRequest stringRequest;
+    private RequestQueue requestQueue, requestQueue2;
+    private StringRequest stringRequest, stringRequest2;
     private android.widget.RatingBar RatingBar;
     private TextView rate, title, category, location, open, harga, jumlah, ratarata;
     private RatingBar rt;
@@ -64,13 +80,9 @@ public class ReviewActivity extends AppCompatActivity {
 
         Intent iGet = getIntent();
         id_data = iGet.getStringExtra("id_data");
-        nama_bisnis = iGet.getStringExtra("nama_bisnis");
-        kategori = iGet.getStringExtra("kategori");
-        alamat = iGet.getStringExtra("alamat");
-        opentime = iGet.getStringExtra("opentime");
-        price = iGet.getStringExtra("price");
-        jumlah_review = iGet.getStringExtra("jumlah_review");
-        rata = iGet.getStringExtra("rata");
+
+
+        DetailAPI = Server.URL + "detail_product.php?id_data=" + id_data;
 
         String url = Server.URL+"get_list_review.php?id_data="+id_data;
 
@@ -96,17 +108,17 @@ public class ReviewActivity extends AppCompatActivity {
         ratarata = (TextView) findViewById(R.id.txt_rating_product);
         rt = (RatingBar) findViewById(R.id.rating_product);
 
-        title.setText(nama_bisnis);
-        category.setText(kategori);
-        location.setText(alamat);
-        open.setText(opentime);
-        harga.setText(price);
-        jumlah.setText(jumlah_review);
-        ratarata.setText(rata);
+//        title.setText(nama_bisnis);
+//        category.setText(kategori);
+//        location.setText(alamat);
+//        open.setText(opentime);
+//        harga.setText(price);
+//        jumlah.setText(jumlah_review);
+//        ratarata.setText(rata);
         
 //        rt.setRating(Float.parseFloat(rata));
         if(rata==null){
-            rt.setRating(Float.parseFloat("null"));
+            rt.setRating(Float.parseFloat("0"));
         }else{
             rt.setRating(Float.parseFloat(rata));
         }
@@ -154,5 +166,80 @@ public class ReviewActivity extends AppCompatActivity {
         });
 
         requestQueue.add(stringRequest);
+        new getDataTask().execute();
+    }
+
+    public class getDataTask extends AsyncTask<Void, Void, Void> {
+        // show progressbar first
+        @Override
+        protected Void doInBackground(Void... arg0) {
+            // TODO Auto-generated method stub
+            // parse json data from server in background
+            parseJSONData();
+            return null;
+        }
+
+        @Override
+        protected void onPostExecute(Void result) {
+            // TODO Auto-generated method stub
+            // when finish parsing, hide progressbar
+            // if internet connection and data available show data
+            // otherwise, show alert text
+            if (IOConnect == 0) {
+
+                title.setText(nama_bisnis);
+                category.setText(kategori);
+                location.setText(alamat);
+                open.setText(opentime);
+                harga.setText(price);
+                jumlah.setText(jumlah_review);
+                ratarata.setText(rata);
+                if(rata=="null"){
+                    rt.setRating(Float.parseFloat("0"));
+                }else{
+                    rt.setRating(Float.parseFloat(rata));
+                }
+
+            }
+        }
+    }
+    public void parseJSONData() {
+        try {
+            HttpClient client = new DefaultHttpClient();
+            HttpConnectionParams.setConnectionTimeout(client.getParams(), 15000);
+            HttpConnectionParams.setSoTimeout(client.getParams(), 15000);
+            HttpUriRequest request = new HttpGet(DetailAPI);
+            HttpResponse response = client.execute(request);
+            InputStream atomInputStream = response.getEntity().getContent();
+            BufferedReader in = new BufferedReader(new InputStreamReader(atomInputStream));
+            String line;
+            String str = "";
+            while ((line = in.readLine()) != null) {
+                str += line;
+            }
+            JSONObject json = new JSONObject(str);
+            JSONArray data = json.getJSONArray("data");
+            for (int i = 0; i < data.length(); i++) {
+                JSONObject object = data.getJSONObject(i);
+                JSONObject detail = object.getJSONObject("detail");
+                nama_bisnis = detail.getString("nama_bisnis");
+                price = detail.getString("price");
+                opentime = detail.getString("opentime");
+                kategori = detail.getString("kategori");
+                alamat = detail.getString("alamat");
+                jumlah_review = detail.getString("jumlah_review");
+                rata = detail.getString("rata");
+            }
+        } catch (MalformedURLException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        } catch (IOException e) {
+            // TODO Auto-generated catch block
+            IOConnect = 1;
+            e.printStackTrace();
+        } catch (JSONException e) {
+            // TODO Auto-generated catch block
+            e.printStackTrace();
+        }
     }
 }
