@@ -304,7 +304,7 @@ public class ListCallActivity extends AppCompatActivity {
         txt_otherinfo = (TextView)findViewById (R.id.txtOtherinfo);
         txt_price = (TextView)findViewById (R.id.txtPrice);
         imgBisnis = (ImageView) findViewById (R.id.imgThumb);
-        DetailAPI = ADMIN_PANEL_URL + "/bd_business_admin.php?id_data=" + idData;
+        DetailAPI = ADMIN_PANEL_URL + "/bd_business_admin2.php?id_data=" + idData;
         new getDataTaskBisnis ().execute ();
 
 
@@ -590,7 +590,6 @@ public class ListCallActivity extends AppCompatActivity {
                 txt_rating.setText (ratingBisnis);
                 txt_otherinfo.setText (otherinfo);
                 txt_price.setText (price);
-
 
                 if(ratingBisnis==null){
                     barRatingBisnis.setRating(Float.parseFloat("null"));

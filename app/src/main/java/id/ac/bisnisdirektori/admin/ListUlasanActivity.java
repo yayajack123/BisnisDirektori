@@ -133,8 +133,8 @@ public class ListUlasanActivity extends AppCompatActivity {
     Bitmap bitmap, decoded;
     RatingBar barRatingBisnis;
     ImageView imgBisnis;
-    TextView txt_nama_bisnis, txt_alamat_bisnis, txt_notelp_bisnis, txt_rating, txt_otherinfo, txt_price;
-    String fotoBisnis, namaBisnis, alamatBisnis, notelpBisnis, ratingBisnis, otherinfo, price;
+    TextView txt_nama_bisnis, txt_alamat_bisnis, txt_notelp_bisnis, txt_rating, txt_otherinfo, txt_price, txt_ulasan;
+    String fotoBisnis, namaBisnis, alamatBisnis, notelpBisnis, ratingBisnis, otherinfo, price, ulasan;
     String DetailAPI;
 
     public static final String URL_USER = "https://www.pantaucovid19.net/bd_call_user.php?id_user=";
@@ -219,6 +219,7 @@ public class ListUlasanActivity extends AppCompatActivity {
         txt_rating = (TextView)findViewById (R.id.txt_rating);
         txt_otherinfo = (TextView)findViewById (R.id.txtOtherinfo);
         txt_price = (TextView)findViewById (R.id.txtPrice);
+        txt_ulasan = (TextView)findViewById (R.id.txtJumlahUlasan);
         imgBisnis = (ImageView) findViewById (R.id.imgThumb);
         DetailAPI = ADMIN_PANEL_URL + "/bd_business_admin.php?id_data=" + idData;
         new getDataTaskBisnis ().execute ();
@@ -503,6 +504,7 @@ public class ListUlasanActivity extends AppCompatActivity {
                 txt_rating.setText (ratingBisnis);
                 txt_otherinfo.setText (otherinfo);
                 txt_price.setText (price);
+                txt_ulasan.setText (ulasan);
 
 
                 if(ratingBisnis==null){
@@ -552,6 +554,7 @@ public class ListUlasanActivity extends AppCompatActivity {
                 ratingBisnis = detail.getString ("rate");
                 otherinfo = detail.getString ("otherinfo");
                 price = detail.getString ("price");
+                ulasan = detail.getString ("jumlahulasan");
 
             }
         } catch (MalformedURLException e) {
