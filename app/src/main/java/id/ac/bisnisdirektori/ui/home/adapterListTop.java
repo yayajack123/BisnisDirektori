@@ -51,7 +51,7 @@ public class adapterListTop extends RecyclerView.Adapter<adapterListTop.ViewHold
                 .placeholder(R.mipmap.ic_launcher)
                 .into(holder.foto);
         holder.nama_bisnis.setText(list_top.get(position).get("nama_bisnis"));
-        holder.rate.setText(list_top.get(position).get("rata"));
+
         holder.kategori.setText(list_top.get(position).get("kategori"));
         holder.alamat.setText(list_top.get(position).get("alamat"));
         holder.no_telp.setText(list_top.get(position).get("no_telp"));
@@ -59,8 +59,10 @@ public class adapterListTop extends RecyclerView.Adapter<adapterListTop.ViewHold
         holder.jumlah_review.setText(list_top.get(position).get("jumlah_review"));
         if(list_top.get(position).get("rata")=="null"){
             holder.rating.setRating(Float.parseFloat("0"));
+            holder.rate.setText("0");
         }else{
             holder.rating.setRating(Float.parseFloat(list_top.get(position).get("rata")));
+            holder.rate.setText(list_top.get(position).get("rata"));
         }
     }
 

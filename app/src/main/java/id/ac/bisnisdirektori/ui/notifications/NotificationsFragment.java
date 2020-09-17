@@ -41,6 +41,7 @@ import id.ac.bisnisdirektori.LoginActivity;
 import id.ac.bisnisdirektori.MainActivity;
 import id.ac.bisnisdirektori.R;
 import id.ac.bisnisdirektori.RegisterActivity;
+import id.ac.bisnisdirektori.UserPasswordActivity;
 import id.ac.bisnisdirektori.admin.Server;
 
 import static id.ac.bisnisdirektori.LoginActivity.TAG_ADDRESS;
@@ -108,6 +109,15 @@ public class NotificationsFragment extends Fragment {
         });
 
         Button btn_change = (Button) root.findViewById(R.id.change_password);
+        btn_change.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), UserPasswordActivity.class);
+                startActivity(intent);
+            }
+        });
 
         Button btn_login = (Button) root.findViewById(R.id.login);
         btn_login.setOnClickListener(new View.OnClickListener()

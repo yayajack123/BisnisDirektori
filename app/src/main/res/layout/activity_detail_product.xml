@@ -246,8 +246,27 @@
             android:layout_marginTop="10dp"
             android:text="Jl. Raya Tuban No.120 Tuban, Bali"
             android:textColor="#000" />
+        <TextView
+            android:id="@+id/latitude_pro"
+            style="@style/body"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Jl. Raya Tuban No.120 Tuban, Bali"
+            android:textColor="#000" />
+        <TextView
+            android:id="@+id/longitude_pro"
+            style="@style/body"
+            android:visibility="gone"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:text="Jl. Raya Tuban No.120 Tuban, Bali"
+            android:textColor="#000" />
 
         <TextView
+            android:id="@+id/direction"
             android:textColor="#FF2C6B"
             android:layout_marginTop="5dp"
             android:layout_width="wrap_content"

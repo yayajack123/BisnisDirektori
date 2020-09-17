@@ -57,9 +57,9 @@ public class DetailProduct extends AppCompatActivity {
     public static final String TAG_ID = "id";
     public static final String TAG_EMAIL = "email";
     private ImageView img;
-    private TextView nm, cat, tp, loc, tm, pr, loc2, cat2, pr2, em, web, ot, tr, rr;
+    private TextView nm, cat, tp, loc, tm, pr, loc2, cat2, pr2, em, web, ot, tr, rr, la, lo;
     private RatingBar rb;
-    String nama_bisnis, no_telp, email, website, opentime, price, kategori, alamat, otherinfo, foto, jumlah_review, rata;
+    String nama_bisnis, no_telp, email, website, opentime, price, kategori, alamat, otherinfo, foto, jumlah_review, rata, latitude, longitude;
     String id;
     String url_detail;
     String DetailAPI;
@@ -101,7 +101,8 @@ public class DetailProduct extends AppCompatActivity {
         tr = (TextView) findViewById(R.id.total_review);
         rr = (TextView) findViewById(R.id.text_review);
         rb = (RatingBar) findViewById(R.id.rating_product);
-
+        la = (TextView) findViewById(R.id.latitude_pro);
+        lo = (TextView) findViewById(R.id.longitude_pro);
 
         requestQueue = Volley.newRequestQueue(DetailProduct.this);
 
@@ -113,6 +114,21 @@ public class DetailProduct extends AppCompatActivity {
             {
                 Intent intent = new Intent(DetailProduct.this, ReviewActivity.class);
                 intent.putExtra("id_data", id_data);
+                startActivity(intent);
+            }
+        });
+
+        TextView dir = (TextView) findViewById(R.id.direction);
+        dir.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(DetailProduct.this, ProductMapsActivity.class);
+                intent.putExtra("id_data", id_data);
+                intent.putExtra("nama_bisnis", nama_bisnis);
+                intent.putExtra("latitude", latitude);
+                intent.putExtra("longitude", longitude);
                 startActivity(intent);
             }
         });
@@ -180,11 +196,15 @@ public class DetailProduct extends AppCompatActivity {
                 web.setText(website);
                 ot.setText(otherinfo);
                 tr.setText(jumlah_review);
-                rr.setText(rata);
+                la.setText(latitude);
+                lo.setText(longitude);
+
                 if(rata=="null"){
                     rb.setRating(Float.parseFloat("0"));
+                    rr.setText("0");
                 }else{
                     rb.setRating(Float.parseFloat(rata));
+                    rr.setText(rata);
                 }
 
             }
@@ -221,6 +241,8 @@ public class DetailProduct extends AppCompatActivity {
                 otherinfo = detail.getString("otherinfo");
                 jumlah_review = detail.getString("jumlah_review");
                 rata = detail.getString("rata");
+                latitude = detail.getString("latitude");
+                longitude = detail.getString("longitude");
             }
         } catch (MalformedURLException e) {
             // TODO Auto-generated catch block

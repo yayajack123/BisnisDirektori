@@ -63,8 +63,8 @@ public class ReviewActivity extends AppCompatActivity {
     String id, DetailAPI;
     int IOConnect = 0;
     private String id_data, nama_bisnis, kategori, alamat, opentime, price, jumlah_review, rata;
-    private RequestQueue requestQueue, requestQueue2;
-    private StringRequest stringRequest, stringRequest2;
+    private RequestQueue requestQueue;
+    private StringRequest stringRequest;
     private android.widget.RatingBar RatingBar;
     private TextView rate, title, category, location, open, harga, jumlah, ratarata;
     private RatingBar rt;
@@ -80,7 +80,6 @@ public class ReviewActivity extends AppCompatActivity {
 
         Intent iGet = getIntent();
         id_data = iGet.getStringExtra("id_data");
-
 
         DetailAPI = Server.URL + "detail_product.php?id_data=" + id_data;
 
@@ -108,15 +107,6 @@ public class ReviewActivity extends AppCompatActivity {
         ratarata = (TextView) findViewById(R.id.txt_rating_product);
         rt = (RatingBar) findViewById(R.id.rating_product);
 
-//        title.setText(nama_bisnis);
-//        category.setText(kategori);
-//        location.setText(alamat);
-//        open.setText(opentime);
-//        harga.setText(price);
-//        jumlah.setText(jumlah_review);
-//        ratarata.setText(rata);
-        
-//        rt.setRating(Float.parseFloat(rata));
         if(rata==null){
             rt.setRating(Float.parseFloat("0"));
         }else{
@@ -193,11 +183,13 @@ public class ReviewActivity extends AppCompatActivity {
                 open.setText(opentime);
                 harga.setText(price);
                 jumlah.setText(jumlah_review);
-                ratarata.setText(rata);
+
                 if(rata=="null"){
                     rt.setRating(Float.parseFloat("0"));
+                    ratarata.setText("0");
                 }else{
                     rt.setRating(Float.parseFloat(rata));
+                    ratarata.setText(rata);
                 }
 
             }
