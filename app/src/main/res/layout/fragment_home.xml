@@ -35,7 +35,7 @@
                 android:background="@drawable/input_border"
                 android:padding="10dp"
                 style="@style/body"
-                android:drawableStart="@drawable/ic_search"
+                android:drawableStart="@drawable/ic_baseline_search_24"
                 android:layout_height="wrap_content"
                 android:layout_width="match_parent"
                 android:layout_marginTop="10dp"
@@ -79,9 +79,99 @@
                             android:orientation="horizontal"
                             android:layout_width="match_parent"
                             android:layout_height="wrap_content">
-                            <include layout="@layout/card_category"/>
-                            <include layout="@layout/card_category"/>
-                            <include layout="@layout/card_category"/>
+                            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:id="@+id/cat_makanan"
+                                android:layout_width="150dp"
+                                android:layout_height="200dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="10dp"
+                                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/fb" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:padding="20dp"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:textColor="#ffffff"
+                                        android:layout_alignParentBottom="true"
+                                        android:text="Makanan"/>
+                                </RelativeLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:id="@+id/cat_otomotif"
+                                android:layout_width="150dp"
+                                android:layout_height="200dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="10dp"
+                                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/oto" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:padding="20dp"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:textColor="#ffffff"
+                                        android:layout_alignParentBottom="true"
+                                        android:text="Otomotif"/>
+                                </RelativeLayout>
+                            </androidx.cardview.widget.CardView>
+                            <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+                                android:id="@+id/cat_musik"
+                                android:layout_width="150dp"
+                                android:layout_height="200dp"
+                                android:layout_marginEnd="10dp"
+                                android:layout_marginBottom="10dp"
+                                app:cardCornerRadius="10dp"
+                                xmlns:app="http://schemas.android.com/apk/res-auto">
+
+
+                                <RelativeLayout
+                                    android:layout_width="match_parent"
+                                    android:layout_height="wrap_content">
+
+                                    <ImageView
+                                        android:layout_width="match_parent"
+                                        android:layout_height="match_parent"
+                                        android:scaleType="centerCrop"
+                                        android:src="@drawable/cat" />
+                                    <TextView
+                                        android:layout_width="wrap_content"
+                                        android:layout_height="wrap_content"
+                                        android:padding="20dp"
+                                        android:textSize="20sp"
+                                        android:textStyle="bold"
+                                        android:fontFamily="@font/montserrat_semibold"
+                                        android:textColor="#ffffff"
+                                        android:layout_alignParentBottom="true"
+                                        android:text="Musik"/>
+                                </RelativeLayout>
+                            </androidx.cardview.widget.CardView>
                         </LinearLayout>
                     </HorizontalScrollView>
 

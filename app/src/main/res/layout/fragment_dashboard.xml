@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#f0f0f0"
     tools:context=".ui.dashboard.DashboardFragment">
     <LinearLayout
         android:id="@+id/layout_1"
@@ -37,14 +38,19 @@
             android:layout_height="wrap_content"
             android:layout_marginBottom="10dp"
             android:text="See what people are saying"/>
-        <androidx.recyclerview.widget.RecyclerView
-            android:id="@+id/ListExplore"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:divider="@null" />
+
     </LinearLayout>
 
-
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/ListExplore"
+        android:layout_below="@id/layout_1"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:layout_marginLeft="8dp"
+        android:layout_marginRight="8dp"
+        android:layout_marginBottom="70dp"
+         />
 
 <!--    <androidx.recyclerview.widget.RecyclerView-->
 <!--        android:id="@+id/recycler_review"-->
