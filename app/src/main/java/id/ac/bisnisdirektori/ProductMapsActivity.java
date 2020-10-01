@@ -71,42 +71,6 @@ public class ProductMapsActivity extends FragmentActivity implements OnMapReadyC
         lat = Double.parseDouble(latitude);
         lon = Double.parseDouble(longitude);
 
-//        DetailAPI = Server.URL + "detail_product.php?id_data=" + id_data;
-//
-//        requestQueue = Volley.newRequestQueue(this.getApplicationContext());
-//
-//        list_loc = new ArrayList<>();
-//
-//        stringRequest = new StringRequest(Request.Method.GET, DetailAPI, new Response.Listener<String>() {
-//            @Override
-//            public void onResponse(String response) {
-//                try {
-//                    JSONObject jsonObject = new JSONObject(response);
-//                    JSONArray jsonArray = jsonObject.getJSONArray("data");
-//                    for (int a = 0; a < jsonArray.length(); a ++){
-//                        JSONObject json = jsonArray.getJSONObject(a);
-//                        HashMap<String, String> map  = new HashMap<String, String>();
-//                        map.put("latitude", json.getString("latitude"));
-//                        map.put("longitude", json.getString("longitude"));
-//                        list_loc.add(map);
-//                    }
-//                    lo = list_loc.get(0).get("longitude");
-//                    la = list_loc.get(0).get("latitude");
-//                    lat = Double.parseDouble(la);
-//                    lon = Double.parseDouble(lo);
-//                } catch (JSONException e) {
-//                    e.printStackTrace();
-//                }
-//            }
-//        }, new Response.ErrorListener() {
-//            @Override
-//            public void onErrorResponse(VolleyError error) {
-//                Toast.makeText(ProductMapsActivity.this, error.getMessage(), Toast.LENGTH_SHORT).show();
-//            }
-//        });
-//
-//        requestQueue.add(stringRequest);
-
     }
 
     /**
@@ -122,10 +86,8 @@ public class ProductMapsActivity extends FragmentActivity implements OnMapReadyC
     public void onMapReady(GoogleMap googleMap) {
         mMap = googleMap;
 
-        // Add a marker in Sydney and move the camera
         LatLng loc = new LatLng(lat, lon);
         mMap.addMarker(new MarkerOptions().position(loc).title(nama_bisnis));
-//        mMap.moveCamera(CameraUpdateFactory.newLatLng(loc));
 
         CameraPosition cameraPosition = new CameraPosition.Builder()
                 .target(new LatLng(lat, lon))  //here latitude and longtitude are null as no value is assigned to them    // Sets the center of the map to Mountain View

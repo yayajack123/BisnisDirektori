@@ -125,13 +125,36 @@ public class HomeFragment extends Fragment {
                 ViewModelProviders.of(this).get(HomeViewModel.class);
         View root = inflater.inflate(R.layout.fragment_home, container, false);
 
-        CardView kategori = (CardView) root.findViewById(R.id.cat_musik);
-        kategori.setOnClickListener(new View.OnClickListener()
+        CardView kat_musik = (CardView) root.findViewById(R.id.cat_musik);
+        kat_musik.setOnClickListener(new View.OnClickListener()
         {
             @Override
             public void onClick(View v)
             {
                 Intent intent = new Intent(getActivity(), DetailCategory.class);
+                intent.putExtra("kategori", "Barang");
+                startActivity(intent);
+            }
+        });
+        CardView kat_makanan = (CardView) root.findViewById(R.id.cat_makanan);
+        kat_makanan.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), DetailCategory.class);
+                intent.putExtra("kategori", "Makanan");
+                startActivity(intent);
+            }
+        });
+        CardView kat_jasa = (CardView) root.findViewById(R.id.cat_otomotif);
+        kat_jasa.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(getActivity(), DetailCategory.class);
+                intent.putExtra("kategori", "Jasa");
                 startActivity(intent);
             }
         });

@@ -379,21 +379,21 @@
                     />
                 <TextView android:id="@+id/otherinfo_product" android:text="Cheap" style="@style/body" android:padding="2dp" android:textColor="#000"/>
             </TableRow>
-            <TableRow>
-                <ImageView android:src="@drawable/ic_baseline_check_circle_outline_24"
-                    />
-                <TextView android:text="Premium tools" style="@style/body" android:padding="2dp" android:textColor="#000"/>
-            </TableRow>
-            <TableRow>
-                <ImageView android:src="@drawable/ic_baseline_check_circle_outline_24"
-                    />
-                <TextView android:text="Air Conditioner" style="@style/body" android:padding="2dp" android:textColor="#000"/>
-            </TableRow>
-            <TableRow>
-                <ImageView android:src="@drawable/ic_baseline_cancel_24"
-                    />
-                <TextView android:text="Online payment" style="@style/body" android:padding="2dp" android:textColor="#000"/>
-            </TableRow>
+<!--            <TableRow>-->
+<!--                <ImageView android:src="@drawable/ic_baseline_check_circle_outline_24"-->
+<!--                    />-->
+<!--                <TextView android:text="Premium tools" style="@style/body" android:padding="2dp" android:textColor="#000"/>-->
+<!--            </TableRow>-->
+<!--            <TableRow>-->
+<!--                <ImageView android:src="@drawable/ic_baseline_check_circle_outline_24"-->
+<!--                    />-->
+<!--                <TextView android:text="Air Conditioner" style="@style/body" android:padding="2dp" android:textColor="#000"/>-->
+<!--            </TableRow>-->
+<!--            <TableRow>-->
+<!--                <ImageView android:src="@drawable/ic_baseline_cancel_24"-->
+<!--                    />-->
+<!--                <TextView android:text="Online payment" style="@style/body" android:padding="2dp" android:textColor="#000"/>-->
+<!--            </TableRow>-->
         </TableLayout>
     </LinearLayout>
     </RelativeLayout>

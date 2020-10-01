@@ -1,0 +1,60 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+    <Button
+        android:id="@+id/edit_profile"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:drawableStart="@drawable/ic_picture"
+        android:layout_marginBottom="10dp"
+        android:layout_marginTop="5dp"
+        android:drawablePadding="15dp"
+        android:text="Photo Review Product"
+        android:fontFamily="@font/montserat_regular"
+        android:textColor="#000"
+        style="@style/Widget.AppCompat.Button.Borderless"
+        android:textAlignment="viewStart"
+        android:textAllCaps="false"/>
+    <View style="@style/view" />
+
+    <androidx.swiperefreshlayout.widget.SwipeRefreshLayout
+        android:id="@+id/swipeRefreshLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_below="@+id/edit_profile"
+        android:layout_margin="10dp"
+        android:padding="3dp">
+
+
+        <GridView
+            android:id="@+id/ListPhotoReview"
+            android:layout_width="fill_parent"
+            android:layout_height="fill_parent"
+            android:numColumns="auto_fit"
+            android:columnWidth="90dp"
+            android:horizontalSpacing="10dp"
+            android:verticalSpacing="10dp"
+            android:gravity="center"
+            android:stretchMode="columnWidth">
+        </GridView>
+
+
+    </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
+    <ProgressBar
+        android:id="@+id/prgLoading"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true" />
+    <TextView
+        android:id="@+id/txtAlert"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_centerInParent="true"
+        android:text="Not Found Photo"
+        android:textSize="14sp"
+        android:visibility="gone" />
+
+
+</RelativeLayout>

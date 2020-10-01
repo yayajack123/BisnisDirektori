@@ -47,6 +47,8 @@ import java.util.ArrayList;
 import java.util.HashMap;
 
 import id.ac.bisnisdirektori.admin.Server;
+import id.ac.bisnisdirektori.review.ListPhotoProductActivity;
+import id.ac.bisnisdirektori.review.ListPhotoReviewActivity;
 import id.ac.bisnisdirektori.review.PostReviewActivity;
 import id.ac.bisnisdirektori.review.ReviewActivity;
 
@@ -140,6 +142,30 @@ public class DetailProduct extends AppCompatActivity {
             public void onClick(View v)
             {
                 Intent intent = new Intent(DetailProduct.this, ReviewActivity.class);
+                intent.putExtra("id_data", id_data);
+                startActivity(intent);
+            }
+        });
+
+        Button list_ptrvw = (Button) findViewById(R.id.btn_photo);
+        list_ptrvw.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(DetailProduct.this, ListPhotoReviewActivity.class);
+                intent.putExtra("id_data", id_data);
+                startActivity(intent);
+            }
+        });
+
+        Button list_menu = (Button) findViewById(R.id.btn_menu);
+        list_menu.setOnClickListener(new View.OnClickListener()
+        {
+            @Override
+            public void onClick(View v)
+            {
+                Intent intent = new Intent(DetailProduct.this, ListPhotoProductActivity.class);
                 intent.putExtra("id_data", id_data);
                 startActivity(intent);
             }
